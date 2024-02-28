@@ -2,9 +2,10 @@
 #include "simple_vector.hpp"
 #include <vector>
 
+typedef unsigned long long ull;
 
 struct Object {
-    uint64_t key;
+    ull key;
     std::string value;
 };
 
@@ -19,7 +20,7 @@ int GetDigit(int elem, int i) {
 
 void Radix(TSimpleVector<Object> & mas) {
 
-    for (uint64_t i = 0; i < sizeof(uint64_t); i++) {
+    for (ull i = 0; i < 8; i++) {
         
         int max_elem = 0;
         for (size_t j = 0; j < mas.Size(); j++) {
