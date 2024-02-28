@@ -1,11 +1,8 @@
 CC = g++
 FLAGS = -std=c++17 -pedantic -Wall
 
-all: main.o
-	$(CC) $(FLAGS) main.o -o lab1
-
-main.o:
-	$(CC) $(FLAGS) -c main.cpp
+all:
+	$(CC) $(FLAGS) main.cpp -o lab1
 
 clear:
 	rm -f *.o lab1 

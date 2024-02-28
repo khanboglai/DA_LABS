@@ -6,11 +6,11 @@ import string
 
 TESTS_CNT = 10
 
-CNT_TEST_PER_FILE = 10
+CNT_TEST_PER_FILE = 100
 
 def generate_kv():
     key = random.randint(0, 2 ** 64 - 1)
-    value = random.choice(string.ascii_letters)
+    value = ''.join((random.choice(string.ascii_letters) for i in range(2048)))
     return key, value
 
 
