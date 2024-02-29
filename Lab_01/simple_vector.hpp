@@ -57,12 +57,19 @@ TSimpleVector<T>::TSimpleVector(const size_t & n, const T & value) {
 
 template<class T>
 TSimpleVector<T>::TSimpleVector(TSimpleVector&& other) {
+    delete[] buffer;
     cap = other.cap;
     size = other.size;
-    buffer = other.buffer;
+
+    buffer = new T[cap];
+    
+    for (size_t i = 0; i < other.size; i++) {
+        buffer[i] = other.buffer[i];
+    }
 
     other.cap = 0;
     other.size = 0;
+    delete[] buffer; // leak was here
     other.buffer = nullptr;
 }
 
@@ -155,6 +162,9 @@ TSimpleVector<T>& TSimpleVector<T>::operator=(TSimpleVector<T>&& other) {
 
     other.cap = 0;
     other.size = 0;
+    
+    // leak was here
+    delete[] other.buffer;
     other.buffer = nullptr;
 
     return *this;

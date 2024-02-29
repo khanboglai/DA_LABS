@@ -3,7 +3,7 @@
 
 class TObject {
     public:
-        unsigned long long key;
+        uint64_t key;
         std::string value;
 
         // constructors
