@@ -4,5 +4,5 @@ FLAGS = -std=c++17 -pedantic -Wall
 all:
 	$(CC) $(FLAGS) main.cpp -o lab1
 
-clear:
+clean:
 	rm -f *.o lab1 

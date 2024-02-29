@@ -1,69 +1,83 @@
 #include <iostream>
 #include "simple_vector.hpp"
+#include "object.hpp"
 
 
-typedef unsigned long long ull;
+// объявил свой тип, чтобы не писать много
+typedef unsigned long long Tull;
 
-struct Object {
-    ull key;
-    std::string value;
-};
 
-ull GetDigit(ull elem, int i) {
-    ull digit = (elem >> (8 * i)) & 0xFF;
+// получаю разряд числа, двигаюсь по байтам
+Tull GetDigit(Tull elem, int i) {
+    Tull digit = (elem >> (8 * i)) & 0xFF;
     return digit;
 }
 
 
-void Radix(TSimpleVector<Object> & mas) {
+// алгоритм поразрядной сортировки
+void Radix(TSimpleVector<TObject> & mas) {
 
-    for (ull i = 0; i < 8; i++) {
+    size_t sz = mas.Size();
+
+    // 8 байт под мой тип данных
+    for (Tull i = 0; i < 8; i++) {
         
-        ull max_elem = 0;
-        for (size_t j = 0; j < mas.Size(); j++) {
-            ull digit = GetDigit(mas[j].key, i);
+        // поиск маскимального разряда
+        Tull max_elem = 0;
+        for (size_t j = 0; j < sz; j++) {
+            Tull digit = GetDigit(mas[j].key, i);
             if (max_elem < digit) {
                 max_elem = digit;
             }
         }
 
+        // создание вектора для подсчета элементов
         size_t cnt_sz = max_elem + 1;
-        TSimpleVector<ull> cnts(cnt_sz, 0);
+        TSimpleVector<Tull> cnts(cnt_sz, 0);
 
-        for (size_t j = 0; j < mas.Size(); j++) {
+        // подсчет элементов
+        for (size_t j = 0; j < sz; j++) {
             cnts[GetDigit(mas[j].key, i)]++;
         }
 
+
+        // подсчет префикс-суммы. Сколько элементов >= текущему стоит находится впереди
         for (size_t j = 1; j < cnt_sz; j++) {
             cnts[j] += cnts[j - 1];
         }
 
-        TSimpleVector<Object> result(mas.Size());
-        size_t sz = mas.Size();
+        // блок сбора отсортированной части
+        TSimpleVector<TObject> interm_result(sz);
+
+        // идем с конца
         for (int j = sz - 1; j >= 0; j--) {
-            ull pos = cnts[GetDigit(mas[j].key, i)] - 1;
-            result[pos] = mas[j];
+
+            // вычисляем позицию
+            Tull pos = cnts[GetDigit(mas[j].key, i)] - 1;
+            // сохраняем результат
+            interm_result[pos] = std::move(mas[j]);
+            // уменьшаем значение префиксной-суммы
             cnts[GetDigit(mas[j].key, i)] = pos;
         }
 
-        mas.Clear();
-        for (size_t j = 0; j < result.Size(); j++) {
-            mas.PushBack(result[j]);
-        }
+        mas = std::move(interm_result);
     }
 }
 
 
 int main() {
-    TSimpleVector<Object> mas;
+    TSimpleVector<TObject> mas;
 
-    Object elem;
+    // считывание элементов
+    TObject elem;
     while (std::cin >> elem.key >> elem.value) {
         mas.PushBack(elem);
     }
 
+    // вызов функции сортировки
     Radix(mas);
 
+    // вывод
     for (size_t i = 0; i < mas.Size(); i++) {
         std::cout << mas[i].key << "\t" <<  mas[i].value << std::endl;
     }
