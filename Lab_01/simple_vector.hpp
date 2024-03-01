@@ -26,6 +26,14 @@ class TSimpleVector {
         // operators
         T& operator[](const size_t & i);
         TSimpleVector& operator=(TSimpleVector<T>&& other);
+        
+        friend std::ostream& operator<<(std::ostream& os, const TSimpleVector<T>& other) {
+            for (int i = 0; i < other.size; i++) {
+                os << other.buffer[i];
+            }
+
+            return os;
+        }
 };
 
 
@@ -40,7 +48,7 @@ TSimpleVector<T>::TSimpleVector() {
 template<class T>
 TSimpleVector<T>::TSimpleVector(const size_t & n) {
     size = n;
-    cap = n * 2;
+    cap = n;
     buffer = new T[cap];
 }
 

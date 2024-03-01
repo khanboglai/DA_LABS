@@ -4,8 +4,8 @@
 
 
 // получаю разряд числа, двигаюсь по байтам
-uint64_t GetDigit(uint64_t & elem, int & i) {
-    uint64_t digit = (elem >> (8 * i)) & 0xFF;
+int GetDigit(uint64_t & elem, int & i) {
+    int digit = (elem >> (8 * i)) & 0xFF;
     return digit;
 }
 
@@ -19,9 +19,9 @@ void Radix(TSimpleVector<TObject> & mas) {
     for (int i = 0; i < 8; i++) {
         
         // поиск маскимального разряда
-        uint64_t max_elem = 0;
+        int max_elem = 0;
         for (int j = 0; j < sz; j++) {
-            uint64_t digit = GetDigit(mas[j].key, i);
+            int digit = GetDigit(mas[j].key, i);
             if (max_elem < digit) {
                 max_elem = digit;
             }
@@ -29,7 +29,7 @@ void Radix(TSimpleVector<TObject> & mas) {
 
         // создание вектора для подсчета элементов
         int cnt_sz = max_elem + 1;
-        TSimpleVector<uint64_t> cnts(cnt_sz, 0);
+        int* cnts = new int[cnt_sz]{};
 
         // подсчет элементов
         for (int j = 0; j < sz; j++) {
@@ -55,6 +55,8 @@ void Radix(TSimpleVector<TObject> & mas) {
             // уменьшаем значение префиксной-суммы
             cnts[GetDigit(mas[j].key, i)] = pos;
         }
+        
+        delete[] cnts;
 
         mas = std::move(interm_result);
     }
@@ -67,6 +69,7 @@ int main() {
     // считывание элементов
     TObject elem;
     while (std::cin >> elem.key >> elem.value) {
+        elem.value.shrink_to_fit();
         mas.PushBack(elem);
     }
 

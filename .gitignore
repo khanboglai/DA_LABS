@@ -1,2 +1,8 @@
 *.out
 test.cpp
+.vscode/
+tests/
+tmp
+*.tar
+solution/
+lab1
