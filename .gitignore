@@ -6,3 +6,4 @@ tmp
 *.tar
 solution/
 lab1
+massif*
