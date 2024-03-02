@@ -8,7 +8,7 @@ class TObject {
 
         // constructors
         TObject();
-        TObject(TObject&& other);
+        TObject(const TObject& other);
         ~TObject() noexcept;
 
         // operators
@@ -21,12 +21,10 @@ TObject::TObject() {
     value = "";
 }
 
-TObject::TObject(TObject&& other) {
+TObject::TObject(const TObject& other) {
     key = other.key;
     value = other.value;
 
-    other.key = 0;
-    other.value = "";
 }
 
 TObject::~TObject() noexcept {

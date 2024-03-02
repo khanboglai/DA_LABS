@@ -6,25 +6,50 @@ template<class T>
 class TSimpleVector {
     private:
         T* buffer;
-        size_t size;
-        size_t cap;
+        int size;
+        int cap;
     public:
 
         // constructors
         TSimpleVector();
-        TSimpleVector(const size_t & n);
-        TSimpleVector(const size_t & n, const T & value);
+        TSimpleVector(const int & n);
+        TSimpleVector(const int & n, const T & value);
         TSimpleVector(TSimpleVector<T>&& other); // move constructor
         ~TSimpleVector();
 
         // methods
         void PushBack(const T & value);
+
+        template<typename... Args>
+        void EmplaceBack(Args&&... args) {
+            if (buffer == nullptr) {
+                cap = 1;
+                buffer = new T[cap];
+            }
+
+            if (cap == size) {
+                cap *= 2;
+                T* new_buff = new T[cap];
+                for (int i = 0; i < size; i++) {
+                    new_buff[i] = std::forward<T>(buffer[i]);
+                }
+
+                delete[] buffer;
+                buffer = std::move(new_buff);
+
+                // delete[] new_buff;
+            }
+
+            buffer[size] = T(std::forward<Args>(args)...);
+            size++;
+        }
+
         void PopBack();
-        size_t Size() const; // getter
+        int Size() const; // getter
         void Print();
 
         // operators
-        T& operator[](const size_t & i);
+        T& operator[](const int & i);
         TSimpleVector& operator=(TSimpleVector<T>&& other);
         
         friend std::ostream& operator<<(std::ostream& os, const TSimpleVector<T>& other) {
@@ -46,19 +71,19 @@ TSimpleVector<T>::TSimpleVector() {
 
 
 template<class T>
-TSimpleVector<T>::TSimpleVector(const size_t & n) {
+TSimpleVector<T>::TSimpleVector(const int & n) {
     size = n;
     cap = n;
     buffer = new T[cap];
 }
 
 template<class T>
-TSimpleVector<T>::TSimpleVector(const size_t & n, const T & value) {
+TSimpleVector<T>::TSimpleVector(const int & n, const T & value) {
     size = n;
     cap = n;
     buffer = new T[cap];
-    for (size_t i = 0; i < size; i++) {
-        buffer[i] = value;
+    for (int i = 0; i < size; i++) {
+        buffer[i] = std::forward<T>(value);
     }
 }
 
@@ -71,8 +96,8 @@ TSimpleVector<T>::TSimpleVector(TSimpleVector&& other) {
 
     buffer = new T[cap];
     
-    for (size_t i = 0; i < other.size; i++) {
-        buffer[i] = other.buffer[i];
+    for (int i = 0; i < other.size; i++) {
+        buffer[i] = std::forward<T>(other.buffer[i]);
     }
 
     other.cap = 0;
@@ -99,14 +124,15 @@ void TSimpleVector<T>::PushBack(const T & value) {
     
     if (size == cap) {
         cap *= 2;
-        T * tmp = new T[cap];
+        T* tmp = new T[cap];
 
-        for (size_t i = 0; i < size; i++) {
-            tmp[i] = buffer[i];
+        for (int i = 0; i < size; i++) {
+            tmp[i] = std::forward<T>(buffer[i]);
         }
 
         delete[] buffer;
         buffer = tmp;
+
     }
 
     buffer[size] = value;
@@ -121,7 +147,7 @@ void TSimpleVector<T>::PopBack() {
     } else if ((cap / (size - 1)) >= 2) {
         cap /= 2;
         T* tmp = new T[cap];
-        for (size_t i = 0; i < size; i++) {
+        for (int i = 0; i < size; i++) {
             tmp[i] = buffer[i];
         }
 
@@ -134,14 +160,14 @@ void TSimpleVector<T>::PopBack() {
 
 
 template<class T>
-size_t TSimpleVector<T>::Size() const {
+int TSimpleVector<T>::Size() const {
     return this->size;
 }
 
 
 template<class T>
 void TSimpleVector<T>::Print() {
-    for (size_t i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++) {
         std::cout << buffer[i] << " ";
     }
     std::cout << std::endl;
@@ -149,7 +175,7 @@ void TSimpleVector<T>::Print() {
 
 
 template<class T>
-T& TSimpleVector<T>::operator[](const size_t & i) {
+T& TSimpleVector<T>::operator[](const int & i) {
     if (i < 0 || i >= size) {
         throw std::out_of_range("Invalid index");
     }
@@ -165,8 +191,8 @@ TSimpleVector<T>& TSimpleVector<T>::operator=(TSimpleVector<T>&& other) {
     cap = other.cap;
     buffer = new T[cap];
 
-    for (size_t i = 0; i < size; i++) {
-        buffer[i] = other.buffer[i];
+    for (int i = 0; i < size; i++) {
+        buffer[i] = std::forward<T>(other.buffer[i]);
     }
 
     other.cap = 0;

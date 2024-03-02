@@ -22,26 +22,13 @@ int MaxD(TSimpleVector<TObject> & mas, int & d) {
 }
 
 
-int MinD(TSimpleVector<TObject> & mas, int & d) {
-    int min_elem = 0;
-    for (int j = 0; j < (int)(mas.Size()); j++) {
-        int digit = GetDigit(mas[j].key, d);
-        if (min_elem > digit) {
-            min_elem = digit;
-        }
-    }
-    return min_elem;
-}
-
-
 void CountingSort(TSimpleVector<TObject>& mas, int & i) {
     int sz = mas.Size();
 
     int max_elem = MaxD(mas, i);
-    int min_elem = MinD(mas, i);
 
     // создание вектора для подсчета элементов
-    int cnt_sz = max_elem - min_elem + 1;
+    int cnt_sz = max_elem + 1;
     int cnts[cnt_sz] = {0};
 
     // подсчет элементов
@@ -56,7 +43,7 @@ void CountingSort(TSimpleVector<TObject>& mas, int & i) {
     }
 
     // блок сбора отсортированной части
-    TSimpleVector<TObject> interm_result(sz);
+    TObject interm_result[sz];
 
     // идем с конца
     for (int j = sz - 1; j >= 0; j--) {
@@ -64,14 +51,14 @@ void CountingSort(TSimpleVector<TObject>& mas, int & i) {
         // вычисляем позицию
         int pos = cnts[GetDigit(mas[j].key, i)] - 1;
         // сохраняем результат
-        interm_result[pos] = std::move(mas[j]);
+        interm_result[pos] = mas[j];
         // уменьшаем значение префиксной-суммы
         cnts[GetDigit(mas[j].key, i)] = pos;
     }
-    
-    // delete[] cnts;
 
-    mas = std::move(interm_result);
+    for (int i = 0; i < sz; i++) {
+        mas[i] = interm_result[i];
+    }
 }
 
 
@@ -86,9 +73,6 @@ void Radix(TSimpleVector<TObject> & mas) {
 
 
 int main() {
-    // std::ios::sync_with_stdio(false);
-    // std::cin.tie(0);
-    // std::cout.tie(0);
 
     TSimpleVector<TObject> mas;
 
@@ -102,7 +86,7 @@ int main() {
     Radix(mas);
 
     // вывод
-    for (size_t i = 0; i < mas.Size(); i++) {
+    for (int i = 0; i < mas.Size(); i++) {
         std::cout << mas[i].key << "\t" <<  mas[i].value << std::endl;
     }
 
