@@ -55,7 +55,7 @@ TSimpleVector<T>::TSimpleVector(const size_t & n) {
 template<class T>
 TSimpleVector<T>::TSimpleVector(const size_t & n, const T & value) {
     size = n;
-    cap = n * 2;
+    cap = n;
     buffer = new T[cap];
     for (size_t i = 0; i < size; i++) {
         buffer[i] = value;
@@ -85,6 +85,7 @@ TSimpleVector<T>::TSimpleVector(TSimpleVector&& other) {
 template<class T>
 TSimpleVector<T>::~TSimpleVector() {
     size = 0;
+    cap = 0;
     delete[] buffer;
 }
 
@@ -92,7 +93,7 @@ TSimpleVector<T>::~TSimpleVector() {
 template<class T>
 void TSimpleVector<T>::PushBack(const T & value) {
     if (buffer == nullptr) {
-        cap = 2;
+        cap = 1;
         buffer = new T[cap];
     }
     
