@@ -87,7 +87,7 @@ int main() {
 
     // вывод
     for (int i = 0; i < mas.Size(); i++) {
-        std::cout << mas[i].key << "\t" <<  mas[i].value << std::endl;
+        std::cout << mas[i] << std::endl;
     }
 
 }

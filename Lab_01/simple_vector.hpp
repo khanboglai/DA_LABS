@@ -18,31 +18,24 @@ class TSimpleVector {
         ~TSimpleVector();
 
         // methods
+        void Reserve(const int new_cap) {
+            if (cap > new_cap) {
+                return;
+            }
+
+            T* new_buffer = new T[new_cap];
+
+            for (int i = 0; i < size; i++) {
+                new_buffer[i] = std::move(buffer[i]);
+            }
+
+            delete[] buffer;
+            buffer = new_buffer;
+            cap = new_cap;
+        } 
+
+
         void PushBack(const T & value);
-
-        template<typename... Args>
-        void EmplaceBack(Args&&... args) {
-            if (buffer == nullptr) {
-                cap = 1;
-                buffer = new T[cap];
-            }
-
-            if (cap == size) {
-                cap *= 2;
-                T* new_buff = new T[cap];
-                for (int i = 0; i < size; i++) {
-                    new_buff[i] = std::forward<T>(buffer[i]);
-                }
-
-                delete[] buffer;
-                buffer = std::move(new_buff);
-
-                // delete[] new_buff;
-            }
-
-            buffer[size] = T(std::forward<Args>(args)...);
-            size++;
-        }
 
         void PopBack();
         int Size() const; // getter
@@ -118,21 +111,11 @@ TSimpleVector<T>::~TSimpleVector() {
 template<class T>
 void TSimpleVector<T>::PushBack(const T & value) {
     if (buffer == nullptr) {
-        cap = 1;
-        buffer = new T[cap];
+        Reserve(100);
     }
     
     if (size == cap) {
-        cap *= 2;
-        T* tmp = new T[cap];
-
-        for (int i = 0; i < size; i++) {
-            tmp[i] = std::forward<T>(buffer[i]);
-        }
-
-        delete[] buffer;
-        buffer = tmp;
-
+        Reserve(size * 2);
     }
 
     buffer[size] = value;

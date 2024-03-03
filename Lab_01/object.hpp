@@ -8,11 +8,16 @@ class TObject {
 
         // constructors
         TObject();
+        TObject(const uint64_t& c_key, const std::string& c_value);
         TObject(const TObject& other);
         ~TObject() noexcept;
 
         // operators
         TObject& operator=(const TObject& other);
+        friend std::ostream& operator<<(std::ostream& os, const TObject & other) {
+            os << other.key << "\t" << other.value;
+            return os;
+        }
 };
 
 
@@ -25,6 +30,12 @@ TObject::TObject(const TObject& other) {
     key = other.key;
     value = other.value;
 
+}
+
+
+TObject::TObject(const uint64_t& c_key, const std::string& c_value) {
+    key = c_key;
+    value = c_value;
 }
 
 TObject::~TObject() noexcept {
