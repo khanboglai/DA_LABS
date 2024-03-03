@@ -4,7 +4,7 @@
 class TObject {
     public:
         uint64_t key;
-        std::string value;
+        std::string* value;
 
         // constructors
         TObject();
@@ -15,7 +15,7 @@ class TObject {
         // operators
         TObject& operator=(const TObject& other);
         friend std::ostream& operator<<(std::ostream& os, const TObject & other) {
-            os << other.key << "\t" << other.value;
+            os << other.key << "\t" << *(other.value);
             return os;
         }
 };
@@ -23,7 +23,7 @@ class TObject {
 
 TObject::TObject() {
     key = 0;
-    value = "";
+    value = nullptr;
 }
 
 TObject::TObject(const TObject& other) {
@@ -35,12 +35,12 @@ TObject::TObject(const TObject& other) {
 
 TObject::TObject(const uint64_t& c_key, const std::string& c_value) {
     key = c_key;
-    value = c_value;
+    value = new std::string(c_value);
 }
 
 TObject::~TObject() noexcept {
     key = 0;
-    value = " ";
+    value = nullptr;
 }
 
 TObject& TObject::operator=(const TObject& other) {

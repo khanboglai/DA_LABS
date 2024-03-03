@@ -10,25 +10,25 @@ int GetDigit(uint64_t & elem, int & i) {
 }
 
 
-int MaxD(TSimpleVector<TObject> & mas, int & d) {
-    int max_elem = 0;
-    for (int j = 0; j < (int)(mas.Size()); j++) {
-        int digit = GetDigit(mas[j].key, d);
-        if (max_elem < digit) {
-            max_elem = digit;
-        }
-    }
-    return max_elem;
-}
+// int MaxD(TSimpleVector<TObject> & mas, int & d) {
+//     int max_elem = 0;
+//     for (int j = 0; j < (int)(mas.Size()); j++) {
+//         int digit = GetDigit(mas[j].key, d);
+//         if (max_elem < digit) {
+//             max_elem = digit;
+//         }
+//     }
+//     return max_elem;
+// }
 
 
 void CountingSort(TSimpleVector<TObject>& mas, int & i) {
     int sz = mas.Size();
 
-    int max_elem = MaxD(mas, i);
+    // int max_elem = MaxD(mas, i);
 
     // создание вектора для подсчета элементов
-    int cnt_sz = max_elem + 1;
+    int cnt_sz = 256;
     int cnts[cnt_sz] = {0};
 
     // подсчет элементов
@@ -77,8 +77,11 @@ int main() {
     TSimpleVector<TObject> mas;
 
     // считывание элементов
-    TObject elem;
-    while (std::cin >> elem.key >> elem.value) {
+    
+    uint64_t key;
+    std::string str;
+    while (std::cin >> key >> str) {
+        TObject elem(key, str);
         mas.PushBack(elem);
     }
 
