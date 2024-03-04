@@ -66,18 +66,24 @@ int main() {
     // считывание элементов
     
     uint64_t key;
-    std::string str;
-    while (std::cin >> key >> str) {
-        TObject elem(key, str);
-        mas.PushBack(elem);
+    char str[2049];
+    while (scanf("%lu\t%[^\n]", &key, str) != EOF) {
+        mas.PushBack(TObject(key, std::string(str)));
     }
 
+    
+
+    // clock_t start = clock();
     // вызов функции сортировки
     Radix(mas);
 
+    // clock_t end = clock();
+    // double time = (double)(end - start) / CLOCKS_PER_SEC;
+    // printf("%lf\n", time);
+
     // вывод
     for (int i = 0; i < mas.Size(); i++) {
-        std::cout << mas[i] << std::endl;
+        printf("%lu\t%s\n", mas[i].key, mas[i].value->c_str());
     }
 
 }
