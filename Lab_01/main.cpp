@@ -10,22 +10,9 @@ int GetDigit(uint64_t & elem, int & i) {
 }
 
 
-// int MaxD(TSimpleVector<TObject> & mas, int & d) {
-//     int max_elem = 0;
-//     for (int j = 0; j < (int)(mas.Size()); j++) {
-//         int digit = GetDigit(mas[j].key, d);
-//         if (max_elem < digit) {
-//             max_elem = digit;
-//         }
-//     }
-//     return max_elem;
-// }
-
-
 void CountingSort(TSimpleVector<TObject>& mas, int & i) {
     int sz = mas.Size();
 
-    // int max_elem = MaxD(mas, i);
 
     // создание вектора для подсчета элементов
     int cnt_sz = 256;
