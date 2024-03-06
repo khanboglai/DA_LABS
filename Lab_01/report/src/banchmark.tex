@@ -1,0 +1,38 @@
+\section{Тест производительности}
+% {\itshape Тут Вы описываете собственно тест производительности, сравнение Вашей реализации с уже существующими и т.д.}
+
+
+Тест производительности представляет из себя следующее: будем сравнивать время выполнения нашей поразрядной сортировки и 
+встроенной сортировки.
+
+\begin{alltt}
+alex@wega:~/da_labs/Lab_01$ make
+g++ -std=c++17 -pedantic -Wall main.cpp -o lab1
+g++ -std=c++17 -pedantic -Wall benchmark.cpp -o bench1
+alex@wega:~/da_labs/Lab_01$ ./bench1 < tests/01.t
+Count lines is: 100
+Radix_sort time: 0.243 ms
+Stable_sort time: 0.24 ms
+Difference: 0.987654
+alex@wega:~/da_labs/Lab_01$ ./bench1 < tests/01.t
+Count lines is: 1000
+Radix_sort time: 0.677 ms
+Stable_sort time: 1.118 ms
+Difference: 1.6514
+alex@wega:~/da_labs/Lab_01$ ./bench1 < tests/01.t
+Count lines is: 10000
+Radix_sort time: 7.36 ms
+Stable_sort time: 16.426 ms
+Difference: 2.23179
+alex@wega:~/da_labs/Lab_01$ ./bench1 < tests/01.t
+Count lines is: 50000
+Radix_sort time: 52.646 ms
+Stable_sort time: 100.743 ms
+Difference: 1.91359
+alex@wega:~/da_labs/Lab_01$
+\end{alltt}
+
+Можем заметить, что поразрядная сортировка примерно в 2 раза быстрее, это можно объяснить тем, что сложность поразрядной сортировки
+$O(n + k)$, а у встроенной сортировки сложность $O(n*log n)$. 
+
+\pagebreak

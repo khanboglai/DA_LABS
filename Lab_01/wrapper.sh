@@ -64,6 +64,14 @@ function main() {
         fi
         log_info "${test_file}, lines=${file_line_cnt} \e[32mOK\e[0m"
     done
+
+    log_info "\e[32mStage #4. Benchmark...\e[0m"
+    if ! ./bench1 < ${TEST_DIR}/01.t; then
+        log_error "\e[31mFailed to run benchmark\[0m"
+        return 1
+    fi
+
+    log_info "\e[32mbenchmark calculated\e[0m"
 }
 
 main

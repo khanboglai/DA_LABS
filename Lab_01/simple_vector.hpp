@@ -39,7 +39,6 @@ class TSimpleVector {
 
         void PopBack();
         int Size() const; // getter
-        void Print();
 
         // operators
         T& operator[](const int & i);
@@ -145,15 +144,6 @@ void TSimpleVector<T>::PopBack() {
 template<class T>
 int TSimpleVector<T>::Size() const {
     return this->size;
-}
-
-
-template<class T>
-void TSimpleVector<T>::Print() {
-    for (int i = 0; i < size; i++) {
-        std::cout << buffer[i] << " ";
-    }
-    std::cout << std::endl;
 }
 
 

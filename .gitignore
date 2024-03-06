@@ -8,3 +8,9 @@ solution/
 lab1
 massif*
 fl*
+bench1
+*.aux
+*.fls
+*.log
+*.fdb*
+*.synctex*
