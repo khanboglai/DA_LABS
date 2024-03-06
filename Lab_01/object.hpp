@@ -1,10 +1,11 @@
 #pragma once
 #include <iostream>
+#include <memory>
 
 class TObject {
     public:
         uint64_t key;
-        std::string* value;
+        std::shared_ptr<std::string> value;
 
         // constructors
         TObject();
@@ -26,16 +27,15 @@ TObject::TObject() {
     value = nullptr;
 }
 
-TObject::TObject(const TObject& other) {
+TObject::TObject(const TObject& other) { // конструктор копирования
     key = other.key;
     value = other.value;
-
 }
 
 
 TObject::TObject(const uint64_t& c_key, const std::string& c_value) {
     key = c_key;
-    value = new std::string(c_value);
+    value = std::make_shared<std::string>(c_value);
 }
 
 TObject::~TObject() noexcept {
