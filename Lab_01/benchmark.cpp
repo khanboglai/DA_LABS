@@ -14,8 +14,8 @@ int GetDigit(uint64_t & elem, int& i) {
 }
 
 
-void CountingSort(std::vector<TObject>& mas, int& i) {
-    int sz = mas.size();
+void CountingSort(TSimpleVector<TObject>& mas, int& i) {
+    int sz = mas.Size();
 
     // создание вектора для подсчета элементов
 
@@ -37,7 +37,7 @@ void CountingSort(std::vector<TObject>& mas, int& i) {
     }
 
     // блок сбора отсортированной части, сделал на векторе
-    std::vector<TObject> interm_result(sz);
+    TSimpleVector<TObject> interm_result(sz);
 
     // идем с конца
     for (int j = sz - 1; j >= 0; j--) {
@@ -56,7 +56,7 @@ void CountingSort(std::vector<TObject>& mas, int& i) {
 
 
 // алгоритм поразрядной сортировки
-void Radix(std::vector<TObject>& mas) {
+void Radix(TSimpleVector<TObject>& mas) {
     
     // 8 байт под тип данных uint64_t
     for (int i = 0; i < 8; i++) {
@@ -78,18 +78,18 @@ int main() {
     вообще я ощущал себя самым экономным рабочим, экономия на всем абсолютно. кризиссс...
     */
 
-    std::vector<TObject> mas;
-    std::vector<TObject> stl_mas;
+    TSimpleVector<TObject> mas;
+    TSimpleVector<TObject> stl_mas;
 
     // считывание элементов
     uint64_t key;
     char str[2049];
     while (scanf("%lu\t%[^\n]", &key, str) != EOF) {
-        mas.push_back(TObject(key, std::string(str)));
-        stl_mas.push_back(TObject(key, std::string(str)));
+        mas.PushBack(TObject(key, std::string(str)));
+        stl_mas.PushBack(TObject(key, std::string(str)));
     }
 
-    std::cout << "Count lines is: " << mas.size() << std::endl;
+    std::cout << "Count lines is: " << mas.Size() << std::endl;
 
     clock_t start_r = clock();
     Radix(mas);
@@ -97,7 +97,7 @@ int main() {
     double radix = 1000.0 * (double)(end_r - start_r) / CLOCKS_PER_SEC;
 
     clock_t start_stl = clock();
-    std::stable_sort(stl_mas.begin(), stl_mas.end(), comp);
+    std::stable_sort(stl_mas.Begin(), stl_mas.End(), comp);
     clock_t end_stl = clock();
     double sort = 1000.0 * (double)(end_stl - start_stl) / CLOCKS_PER_SEC;
 
