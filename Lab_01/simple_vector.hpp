@@ -17,6 +17,15 @@ class TSimpleVector {
         TSimpleVector(TSimpleVector<T>&& other); // move constructor
         ~TSimpleVector();
 
+        // for sort benchmark c++
+        T* Begin() {
+            return buffer;
+        }
+
+        T* End() {
+            return buffer + size;
+        }
+
         // methods
         void Reserve(const int new_cap) {
             if (cap > new_cap) {
