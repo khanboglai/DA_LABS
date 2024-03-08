@@ -1,6 +1,9 @@
 #pragma once
 #include <stddef.h>
 
+const int START_CAP = 100;
+const int BUFFER_EXPAND_VALUE = 2;
+
 
 template<class T>
 class TSimpleVector {
@@ -119,11 +122,11 @@ TSimpleVector<T>::~TSimpleVector() {
 template<class T>
 void TSimpleVector<T>::PushBack(const T & value) {
     if (buffer == nullptr) {
-        Reserve(100);
+        Reserve(START_CAP);
     }
     
     if (size == cap) {
-        Reserve(size * 2);
+        Reserve(size * BUFFER_EXPAND_VALUE);
     }
 
     buffer[size] = value;
@@ -135,8 +138,8 @@ template<class T>
 void TSimpleVector<T>::PopBack() {
     if (buffer == nullptr) {
         return;
-    } else if ((cap / (size - 1)) >= 2) {
-        cap /= 2;
+    } else if ((cap / (size - 1)) >= BUFFER_EXPAND_VALUE) {
+        cap /= BUFFER_EXPAND_VALUE;
         T* tmp = new T[cap];
         for (int i = 0; i < size; i++) {
             tmp[i] = buffer[i];

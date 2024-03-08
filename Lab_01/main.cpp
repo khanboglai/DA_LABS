@@ -5,11 +5,13 @@
 
 // константы
 const int COUNT_MS_SZ = 256;
+const int MAX_STR_SIZE = 2049;
+const int BYTE_VAL = 8;
 
 
 // получаю разряд числа, двигаюсь по байтам
 int GetDigit(uint64_t & elem, int& i) {
-    int digit = (elem >> (8 * i)) & 0xFF;
+    int digit = (elem >> (BYTE_VAL * i)) & 0xFF;
     return digit;
 }
 
@@ -59,7 +61,7 @@ void CountingSort(TSimpleVector<TObject>& mas, int& i) {
 void Radix(TSimpleVector<TObject>& mas) {
     
     // 8 байт под тип данных uint64_t
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i < (int)sizeof(uint64_t); i++) {
         CountingSort(mas, i);
     }
 }
@@ -78,7 +80,7 @@ int main() {
 
     // считывание элементов
     uint64_t key;
-    char str[2049];
+    char str[MAX_STR_SIZE];
     while (scanf("%lu\t%[^\n]", &key, str) != EOF) {
         mas.PushBack(TObject(key, std::string(str)));
     }
