@@ -6,6 +6,9 @@ tmp
 *.tar
 solution/
 lab1
+lab2
+
+build/
 massif*
 fl*
 bench1
