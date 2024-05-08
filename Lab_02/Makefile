@@ -1,22 +1,10 @@
-NAME=lab2
-FILES=main.o
-SOURCES=main.cpp
-CC=g++
-CPPFRAGS=-g -std=c++17 -pedantic -Wall
-DIR=build
-OBJ=$(addprefix $(DIR)/,$(FILES))
+CXX = g++
+CXXFLAGS = -std=c++20 -pedantic -Wall
 
+all: lab2
 
-all: $(NAME)
+lab2: main.cpp btree.hpp
+	$(CXX) $(CXXFLAGS) main.cpp -o lab2
 
-$(NAME): dir $(FILES)
-	$(CC) $(CPPFRAGS) $(OBJ) -o $(NAME)
-.cpp.o:
-	$(CC) $(CPPFRAGS) -c $< -o $(DIR)/$@
-	
-
-dir:
-	mkdir -p $(DIR)
 clean:
-	rm -rf $(FILES) $(NAME)
-	cd $(DIR) && rm -rf $(FILES)
+	rm -f lab2 *.o

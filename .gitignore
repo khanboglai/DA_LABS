@@ -17,3 +17,7 @@ bench1
 *.log
 *.fdb*
 *.synctex*
+
+test*
+res*
+ans*
