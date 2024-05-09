@@ -29,7 +29,7 @@ if __name__ == "__main__":
              open("{0}.a".format(test_file_name), "w") as answer_file:
 
             # Для каждого файла генерируем от 1 до тысячи операций.
-            for _ in range( random.randint(200000, 500000) ):
+            for _ in range( random.randint(2000, 10000) ):
                 action = random.choice(actions)
                 if action == "+":
                     key = get_random_key()

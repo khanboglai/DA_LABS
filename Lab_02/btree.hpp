@@ -73,24 +73,21 @@ Elem BTree::FindPredecessor(Node *node) { // находим самый мале�
 
 
 void BTree::DeleteTree(Node *node) {
-    if(node->leaf) {
-        delete[] node->el;
-        delete[] node->children;
-    } else {
-        for(int i = 1; i <= node->n + 1; i++) {
-            DeleteTree(node->children[i]);
-            delete node->children[i];
+    if (node) {
+        if(node->leaf) {
+            Deallocate(node);
+        } else {
+            for(int i = 1; i <= node->n + 1; i++) {
+                DeleteTree(node->children[i]);
+            }
+            Deallocate(node);
         }
-
-        delete[] node->el;
-        delete[] node->children;
     }
 }
 
 
 BTree::~BTree() {
     DeleteTree(root);
-    delete root;
 };
 
 
@@ -111,9 +108,11 @@ BTree::Node *BTree::AllocateNode() {
 
 
 void BTree::Deallocate(Node *node) {
-    delete[] node->el;
-    delete[] node->children;
-    delete node;
+    if (node) {
+        delete[] node->el;
+        delete[] node->children;
+        delete node;
+    }
 }
 
 
