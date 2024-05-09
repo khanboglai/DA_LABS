@@ -1,42 +1,91 @@
 #pragma once
 #include <iostream>
 
-typedef struct _tagBTreeNode
-{
-    int key_count;
-    int* key;
-    _tagBTreeNode** child;
-    bool leaf;
-} BTreeNode, *PBTreeNode;
+
+struct Elem {
+    std::string key;
+    uint64_t value;
+};
+
 
 class BTree {
     private:
-        PBTreeNode* Search(PBTreeNode pNode, int key);
-        PBTreeNode AllocateNode();
-        void SplitChild(PBTreeNode pParent, int index, PBTreeNode pChild);
-        PBTreeNode UnionChild(PBTreeNode pParent, PBTreeNode pCLeft, PBTreeNode pCRight, int index);
-        void InsertNonfull(PBTreeNode pNode, int key);
-        int Max(PBTreeNode pNode);
-        int Min(PBTreeNode pNode);
-        bool DeleteNonHalf(PBTreeNode pNode, int key);
-        void DellocateNode(PBTreeNode pNode);
-        void DeleteTree(PBTreeNode pNode);
-        void Print(PBTreeNode pNode);
+        struct Node {
+            int n;
+            Elem* el;
+            Node** children;
+            bool leaf;
+        };
 
-        PBTreeNode root;
-        int t; // btree's degree
+        struct MyPair {
+            Node **node;
+            int idx;
+        };
+        
+        Elem* Search(Node *node, std::string key);
+
+        Node *AllocateNode();
+        void Deallocate(Node *node);
+
+        void SplitChild(Node *parent, int index, Node* child);
+        Node *MergeNodes(Node *parent, Node *left_child, Node *right_child, int i);
+        
+        void InsertNonfull(Node *node, Elem elem);
+        Elem FindSuccessor(Node *node);
+        Elem FindPredecessor(Node *node);
+        bool DeleteFromNode(Node *node, std::string key);
+        
+        void DeleteTree(Node *node);
+
+        Node *root;
+        int t; // характеристическое число дерева
 
     public:
         BTree();
         ~BTree();
 
-        void Insert(int key);
-        bool Delete(int key);
-        bool Search(int key);
-        void Display(){Print(root);};
+        void Insert(Elem elem);
+        bool Delete(std::string key);
+        bool Search(std::string key);
+        std::string SWV(std::string key);
 };
 
-BTree::BTree() : root(NULL), t(4) {};
+BTree::BTree() {
+    root = nullptr;
+    t = 4;
+};
+
+
+Elem BTree::FindSuccessor(Node *node) { // находим самый большой ключ
+    while (!node->leaf) {
+        node = node->children[node->n + 1];
+    }
+    return node->el[node->n];
+}
+
+
+Elem BTree::FindPredecessor(Node *node) { // находим самый маленький ключ
+    while (!node->leaf) {
+        node = node->children[1];
+    }
+    return node->el[1];
+}
+
+
+void BTree::DeleteTree(Node *node) {
+    if(node->leaf) {
+        delete[] node->el;
+        delete[] node->children;
+    } else {
+        for(int i = 1; i <= node->n + 1; i++) {
+            DeleteTree(node->children[i]);
+            delete node->children[i];
+        }
+
+        delete[] node->el;
+        delete[] node->children;
+    }
+}
 
 
 BTree::~BTree() {
@@ -45,337 +94,307 @@ BTree::~BTree() {
 };
 
 
-PBTreeNode BTree::AllocateNode() {
-    PBTreeNode pTemp = new BTreeNode;
-    pTemp->key = new int[2 * t];
-    pTemp->child = new PBTreeNode[2 * t + 1];
+BTree::Node *BTree::AllocateNode() {
+    Node *node = new Node;
+    node->el = new Elem[2 * t]; // чтобы влезло 2t-1 элементов
+    node->children = new Node*[2 * t + 1]; // детей больше, чем родителей на 1
 
-    for(int i = 0; i < 2 * t ; i++)
-    {
-        pTemp->key[i] = 0;
-        pTemp->child[i] = NULL;
+    for(int i = 0; i < 2 * t ; i++) {
+        node->el[i].key = "";
+        node->children[i] = nullptr;
     }
-    pTemp->child[2 * t] = NULL;
 
-    return pTemp;
+    node->children[2 * t] = nullptr;
+
+    return node;
 }
 
 
-PBTreeNode* BTree::Search(PBTreeNode pNode, int key) {
-    if (pNode == nullptr) { // тут нужно выйти, если нода нулевой указатель
+void BTree::Deallocate(Node *node) {
+    delete[] node->el;
+    delete[] node->children;
+    delete node;
+}
+
+
+Elem* BTree::Search(Node *node, std::string key) {
+    if (node == nullptr) {
         return nullptr;
     }
     
     int i = 1;
-    while (i <= pNode->key_count && key > pNode->key[i]) {
+    while (i <= node->n && key > node->el[i].key) {
         i++;
     }
 
-    if (i <= pNode->key_count && key == pNode->key[i]) {
-        return &(pNode->child[i]);
+    if (i <= node->n && key == node->el[i].key) {
+        return &(node->el[i]);
     }
 
-    if (pNode->leaf) {
-        return NULL;
+    if (node->leaf) {
+        return nullptr;
     } else {
-        return Search(pNode->child[i], key);
+        return Search(node->children[i], key);
     }
 }
 
 
-bool BTree::Search(int key) {
-    PBTreeNode *node = BTree::Search(root, key);
+bool BTree::Search(std::string key) {
+    Elem *res = BTree::Search(root, key);
 
-    if (node != nullptr) {
+    if (res != nullptr) {
         return true;
     }
     return false;
 }
 
 
-void BTree::Insert(int key) {
-    PBTreeNode r = root;
-    if(r == NULL) {
+void BTree::SplitChild(Node *empty_node, int i, Node*em_node_child) {
+    // em_node_child это заполненый узел
+    // empty_node это пустой узел
+
+    // переносим ключи в новый узел
+    Node *up_median = AllocateNode();
+    up_median->leaf = em_node_child->leaf;
+    up_median->n = t - 1;
+
+    for(int j = 1; j <= t - 1; j++) { // отправляем в новую ноду элементы, котороый больше медианы
+        up_median->el[j] = em_node_child->el[j + t];
+    }
+
+    if(!em_node_child->leaf) { // переносим детей
+        for(int j = 1; j <= t; j++) {
+            up_median->children[j] = em_node_child->children[j + t];
+        }
+    }
+
+    em_node_child->n = t - 1; // обновили брата
+
+    // делаем up_median дочерним узлом
+    for(int j = empty_node->n + 1; j >= i + 1; j--) { // переместили детей
+        empty_node->children[j + 1] = empty_node->children[j];
+    }
+    empty_node->children[i + 1] = up_median; // новая нода, стала старшим ребенком
+
+    for(int j = empty_node->n; j >= i; j--) {
+        empty_node->el[j + 1] = empty_node->el[j];
+    }
+
+    empty_node->el[i] = em_node_child->el[t]; // перенесли медиану в родителя (между em_node_ch и up_median)
+    empty_node->n++;
+}
+
+
+
+void BTree::Insert(Elem elem) {
+    Node *r = root;
+    
+    // если корень пустой, создаем ноду
+    if(r == nullptr) {
         r = AllocateNode();
         r->leaf = true;
-        r->key_count = 0;
-
+        r->n = 0;
         root = r;
     }
 
-    if (r != NULL && r->key_count == (2 * t - 1)) {
-        PBTreeNode s = AllocateNode();
+    // если корень насыщенный, разделяем
+    if (r != nullptr && r->n == (2 * t - 1)) {
+        Node *s = AllocateNode();
         root = s;
         s->leaf = false;
-        s->key_count = 0;
-        s->child[1] = r;
+        s->n = 0;
+        s->children[1] = r;
         SplitChild(s, 1, r);
-        InsertNonfull(s, key);
+        InsertNonfull(s, elem);
 
-    } else {
-        InsertNonfull(r, key);
+    } else { // иначе просто вставляем
+        InsertNonfull(r, elem);
     }
 }
 
-void BTree::SplitChild(PBTreeNode pParent, int index, PBTreeNode pChild) {
 
-    PBTreeNode pChildEx = AllocateNode();
-    pChildEx->leaf = pChild->leaf;
-    pChildEx->key_count = t - 1;
+void BTree::InsertNonfull(Node *not_full_node, Elem elem) {
+    // узел должен быть незаполненым
+    int i = not_full_node->n;
 
-    for(int j = 1; j <= t - 1; j++) { // t - 1
-        pChildEx->key[j] = pChild->key[j + t];
-    }
-
-    if(!pChild->leaf) {
-        for(int j = 1; j <= t; j++) {
-            pChildEx->child[j] = pChild->child[j + t];
-        }
-    }
-
-    pChild->key_count = t - 1;
-
-    for(int j = pParent->key_count + 1; j >= index + 1; j--) {
-        pParent->child[j + 1] = pParent->child[j];
-    }
-    pParent->child[index + 1] = pChildEx;
-
-    for(int j = pParent->key_count; j >= index; j--) {
-        pParent->key[j + 1] = pParent->key[j];
-    }
-
-    pParent->key[index] = pChild->key[t];
-    pParent->key_count++;
-}
-
-
-void BTree::InsertNonfull(PBTreeNode pNode, int key) {
-    int i = pNode->key_count;
-
-    if(pNode->leaf) {
-        while(i >= 1 && key < pNode->key[i]) {
-            pNode->key[i + 1] = pNode->key[i];
+    if(not_full_node->leaf) { // вставка в лист
+        while(i >= 1 && elem.key < not_full_node->el[i].key) {
+            not_full_node->el[i + 1] = not_full_node->el[i];
             i--;
         }
 
-        pNode->key[i + 1] = key;
-        pNode->key_count++;
+        not_full_node->el[i + 1] = elem;
+        not_full_node->n++;
 
-    } else {
-        while(i >= 1 && key < pNode->key[i]) {
+    } else { // вставка в не листовой узел
+        // определяем дочерний узел, куда можем вставить элемент
+        while(i >= 1 && elem.key < not_full_node->el[i].key) {
             i--;
         }
         i++;
 
-        if(pNode->child[i]->key_count == (2 * t - 1)) {
-            SplitChild(pNode, i, pNode->child[i]);
+        // если он заполнен, его надо разделить
+        if(not_full_node->children[i]->n == (2 * t - 1)) {
+            SplitChild(not_full_node, i, not_full_node->children[i]);
 
-            if(key > pNode->key[i]) {
+            if(elem.key > not_full_node->el[i].key) {
                 i++;
             }
         }
 
-        InsertNonfull(pNode->child[i], key);
+        InsertNonfull(not_full_node->children[i], elem);
     }
 }
 
 
-bool BTree::Delete(int key) {
-    return DeleteNonHalf(root, key);
+BTree::Node *BTree::MergeNodes(Node *parent, Node *left_child, Node *right_child, int i) {
+    for(int j = 1; j < t; j++) {
+        left_child->el[t + j] = right_child->el[j];
+    }
+    left_child->el[t] = parent->el[i];
+
+    for(int j = 1; j <= t; j++) {
+        left_child->children[t + j] = right_child->children[j];
+    }
+    left_child->n = 2 * t - 1;
+
+    for(int j = i; j < parent->n; j++) {
+        parent->el[j] = parent->el[j + 1];
+    }
+
+    for(int j = i + 1; j <= parent->n; j++) {
+        parent->children[j] = parent->children[j + 1];
+    }
+    parent->n--;
+
+    Deallocate(right_child);
+
+    if (parent->n == 0) {
+        Deallocate(root);
+        root = left_child;
+    }
+
+    return left_child;
 }
 
 
-bool BTree::DeleteNonHalf(PBTreeNode pNode, int key) {
-    if (pNode == nullptr) {
+bool BTree::Delete(std::string key) {
+    return DeleteFromNode(root, key);
+}
+
+
+bool BTree::DeleteFromNode(Node *node, std::string key) {
+
+    if (node == nullptr) {
         return false;
     }
 
     int i = 1;
-
-    while(i <= pNode->key_count && key > pNode->key[i]) {
+    while(i <= node->n && key > node->el[i].key) { // аналогично вставке, проходим по дереву
         i++;
     }
 
-    if(pNode->leaf) { // case 1
-        if(i <= pNode->key_count && key == pNode->key[i]) {
-            for(int j = i; j < pNode->key_count; j++) {
-                pNode->key[j] = pNode->key[j + 1];
+    // Корман: случай 1
+    if(node->leaf) {
+        if(i <= node->n && key == node->el[i].key) {
+            for(int j = i; j < node->n; j++) {
+                node->el[j] = node->el[j + 1];
             }
-            pNode->key_count--;
-
+            node->n--;
             return true;
         } else {
-            return false;//The keyword to delete was not found
+            return false;
         }
     }
 
-    if (i <= pNode->key_count && key == pNode->key[i]) { // case 2
-        if (pNode->child[i]->key_count >= t) { // case a
-            key = Max(pNode->child[i]);
-            pNode->key[i] = key;
+    // Корман: случай 2
+    if (i <= node->n && key == node->el[i].key) {
+        
+        if (node->children[i]->n >= t) { // случай 2.а
+            // рассматриваем дочерний узел, предществующий текущему родителю
+            Elem tmp = FindSuccessor(node->children[i]);
+            node->el[i] = tmp;
+            return DeleteFromNode(node->children[i], tmp.key);
 
-            return DeleteNonHalf(pNode->child[i], key);
-        } else if(pNode->child[i + 1]->key_count >= t) { // case b
-            key = Min(pNode->child[i + 1]);
-            pNode->key[i] = key;
+        } else if(node->children[i + 1]->n >= t) { // случай 2.б
+            // рассматриваем дочерний узел, следующий за текущим родителем
+            Elem tmp = FindPredecessor(node->children[i + 1]);
+            node->el[i] = tmp;
+            return DeleteFromNode(node->children[i + 1], tmp.key);
 
-            return DeleteNonHalf(pNode->child[i + 1], key);
-        } else { // case c
-            PBTreeNode pChild = UnionChild(pNode, pNode->child[i], pNode->child[i + 1], i);
-
-            return DeleteNonHalf(pChild, key);
+        } else { // случай 2.с
+            Node *new_child = MergeNodes(node, node->children[i], node->children[i + 1], i); // объединяем родителя и его детей
+            return DeleteFromNode(new_child, key); // получился новый ребенок, удаляем из него ключ
         }
-    } else if(pNode->child[i]->key_count == t - 1) { // case 3
-        if ( i > 1 && pNode->child[i - 1]->key_count >= t) { // a_left
-            PBTreeNode pMidNode = pNode->child[i];
-            PBTreeNode pPreNode = pNode->child[i - 1];
+    } else if(node->children[i]->n == t - 1) { // Корман: случай 3
+        
+        // 3.а
 
-            int nPreNodeKeyCount = pPreNode->key_count;
+        if ( i > 1 && node->children[i - 1]->n >= t) {
+            Node *current = node->children[i];
+            Node *prev = node->children[i - 1];
 
-            for (int j = pMidNode->key_count + 1; j > 1; j--) {
-                pMidNode->key[j] = pMidNode->key[j - 1];
+            int prev_n = prev->n;
+
+            for (int j = current->n + 1; j > 1; j--) {
+                current->el[j] = current->el[j - 1];
             }
-            pMidNode->key[1] = pNode->key[i - 1];
+            current->el[1] = node->el[i - 1];
 
-            for (int j = pMidNode->key_count + 2; j > 1; j--) {
-                pMidNode->child[j] = pMidNode->child[j - 1];
-            }
-
-            pMidNode->child[1] = pPreNode->child[nPreNodeKeyCount + 1];
-            pMidNode->key_count++;
-
-            pNode->key[i - 1] = pPreNode->key[nPreNodeKeyCount];
-
-            pPreNode->key[nPreNodeKeyCount] = 0;
-            pPreNode->key[nPreNodeKeyCount + 1] = NULL;
-            pPreNode->key_count--;
-
-            return DeleteNonHalf(pMidNode, key);
-        } else if( i <= pNode->key_count && pNode->child[i + 1]->key_count >= t) { // a_right
-            PBTreeNode pMidNode = pNode->child[i];
-            PBTreeNode pNextNode = pNode->child[i + 1];
-
-            int nNextNodeKeyCount = pNextNode->key_count;
-            int nMidNodeKeyCount = pMidNode->key_count;
-
-            pMidNode->key[nMidNodeKeyCount + 1] = pNode->key[i];
-            pMidNode->child[nMidNodeKeyCount + 2] = pNextNode->child[1];
-            pMidNode->key_count++;
-
-            pNode->key[i] = pNextNode->key[1];
-
-            for( int j = 1; j < nNextNodeKeyCount; j++) {
-                pNextNode->key[j] = pNextNode->key[j + 1];
+            for (int j = current->n + 2; j > 1; j--) {
+                current->children[j] = current->children[j - 1];
             }
 
-            for( int j = 1; j <= nNextNodeKeyCount; j++) {
-                pNextNode->child[j] = pNextNode->child[j + 1];
-            }
-            pNextNode->key_count--;
+            current->children[1] = prev->children[prev_n + 1];
+            current->n++;
 
-            return DeleteNonHalf(pMidNode, key);
-        } else { // b
-            if (i > pNode->key_count) { //When i points to the last keyword, move one step forward when merging
+            node->el[i - 1] = prev->el[prev_n];
+
+            prev->n--;
+
+            return DeleteFromNode(current, key);
+        } else if( i <= node->n && node->children[i + 1]->n >= t) {
+            Node *current = node->children[i];
+            Node *next = node->children[i + 1];
+
+            int next_n = next->n;
+            int current_n = current->n;
+
+            current->el[current_n + 1] = node->el[i];
+            current->children[current_n + 2] = next->children[1];
+            current->n++;
+
+            node->el[i] = next->el[1];
+
+            for( int j = 1; j < next_n; j++) {
+                next->el[j] = next->el[j + 1];
+            }
+
+            for( int j = 1; j <= next_n; j++) {
+                next->children[j] = next->children[j + 1];
+            }
+            next->n--;
+
+            return DeleteFromNode(current, key);
+        } else { // 3.б
+            if (i > node->n) {
                 i--;
             }
 
-            PBTreeNode pChild = UnionChild(pNode, pNode->child[i], pNode->child[i + 1], i);
-
-            return DeleteNonHalf(pChild, key);
+            Node *new_child = MergeNodes(node, node->children[i], node->children[i + 1], i);
+            return DeleteFromNode(new_child, key);
         }
     }
 
-    return DeleteNonHalf(pNode->child[i], key);
+    return DeleteFromNode(node->children[i], key);
 }
 
-PBTreeNode BTree::UnionChild(PBTreeNode pParent, PBTreeNode pCLeft, PBTreeNode pCRight, int index) {
-    for(int i = 1; i < t; i++) {
-        pCLeft->key[t + i] = pCRight->key[i];
+
+std::string BTree::SWV(std::string key) {
+    Elem *res = BTree::Search(root, key);
+
+    if (res != nullptr) {
+        return "OK: " + std::to_string((*res).value);
     }
-    pCLeft->key[t] = pParent->key[index];
-
-    for(int i = 1; i <= t; i++) {
-        pCLeft->child[t + i] = pCRight->child[i];
-    }
-    pCLeft->key_count = 2 * t - 1;
-
-    for(int i = index; i < pParent->key_count; i++) {
-        pParent->key[i] = pParent->key[i + 1];
-    }
-
-    for(int i = index + 1; i <= pParent->key_count; i++) {
-        pParent->child[i] = pParent->child[i + 1];
-    }
-    pParent->key_count--;
-
-    DellocateNode(pCRight);
-
-    if (pParent->key_count == 0) {
-        DellocateNode(root);
-        root = pCLeft;
-    }
-
-    return pCLeft;
-}
-
-void BTree::DellocateNode(PBTreeNode pNode) {
-    delete[] pNode->key;
-    delete[] pNode->child;
-    delete pNode;
-}
-
-int BTree::Max(PBTreeNode pNode) {
-    while (!pNode->leaf) {
-        pNode = pNode->child[pNode->key_count + 1];
-    }
-
-    return pNode->key[pNode->key_count];
-}
-
-int BTree::Min(PBTreeNode pNode) {
-    while (!pNode->leaf) {
-        pNode = pNode->child[1];
-    }
-
-    return pNode->key[1];
-}
-
-void BTree::DeleteTree(PBTreeNode pNode) { //The last root element is not deleted, but the key array and child pointer array in the root have been delete
-    if(pNode->leaf) {
-        delete[] pNode->key;
-        delete[] pNode->child;
-    } else {
-        for(int i = 1; i <= pNode->key_count + 1; i++) {
-            DeleteTree(pNode->child[i]);
-            delete pNode->child[i];
-        }
-
-        delete[] pNode->key;
-        delete[] pNode->child;
-    }
-}
-
-void BTree::Print(PBTreeNode pNode) {
-    if(pNode->leaf) {
-        std::cout << "leaf key_count = " << pNode->key_count << " key list :" ;
-
-        for(int i = 1; i <= pNode->key_count;  i++) {
-            //std::cout << " i = " << i << std::endl;
-            std::cout << pNode->key[i] << " , ";
-        }
-
-        std::cout << std::endl;
-    } else {
-        for(int i = 1; i <= pNode->key_count + 1; i++) {
-            Print(pNode->child[i]);
-        }
-
-        std::cout << "inner node key_count " << pNode->key_count << " key list :" ;
-
-        for(int i = 1; i <= pNode->key_count; i++) {
-            //std::cout << " i = " << i << std::endl;
-            std::cout << pNode->key[i] << " , ";
-        }
-        std::cout << std::endl;
-    }
+    return "NoSuchWord";
 }

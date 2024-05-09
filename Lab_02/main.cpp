@@ -1,8 +1,16 @@
 #include "btree.hpp"
-#include <ctime>
 #include <iostream>
-#include <cstdlib>
-#include <set>
+
+
+std::string ToLower(std::string str) {
+    std::string res = "";
+
+    for (char s : str) {
+        res += tolower(s);
+    }
+    return res;
+}
+
 
 int main()
 {
@@ -11,33 +19,28 @@ int main()
     std::string in;
     while (std::cin >> in) {
         if (in == "+") {
-            int val;
-            std::cin >> val;
-            if (!b.Search(val)) {
-                b.Insert(val);
+            Elem e;
+            std::cin >> e.key >> e.value;
+            e.key = ToLower(e.key);
+            if (!b.Search(e.key)) {
+                b.Insert(e);
                 std::cout << "OK" << std::endl;
             } else {
                 std::cout << "Exist" << std::endl;
             }
         } else if (in == "-") {
-            int val;
-            std::cin >> val;
-            bool res = b.Delete(val);
+            std::string key;
+            std::cin >> key;
+            key = ToLower(key);
+            bool res = b.Delete(key);
             if (res) {
                 std::cout << "OK" << std::endl;
             } else {
                 std::cout << "NoSuchWord" << std::endl;
             }
+        } else {
+            in = ToLower(in);
+            std::cout << b.SWV(in) << std::endl;
         }
     }
-
-    // b.Insert(5);
-    // b.Insert(6);
-    // b.Insert(7);
-    // b.Insert(4);
-
-    // b.Display();
-
-    // b.Delete(6);
-    // b.Display();
 }

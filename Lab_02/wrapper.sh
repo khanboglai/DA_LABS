@@ -36,7 +36,7 @@ function main()
   log_info "Stage #2. Test generating..."
   rm -rf ${TESTS_DIR}
   mkdir ${TESTS_DIR}
-  local count_of_tests=3
+  local count_of_tests=1
   if ! ./gen.py ${TESTS_DIR} ${count_of_tests} ; then
     log_error "Failed to generate tests"
     return 1

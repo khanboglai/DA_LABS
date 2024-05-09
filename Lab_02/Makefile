@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -std=c++20 -pedantic -Wall
+CXXFLAGS = -std=c++20 -pedantic -Wall -Wextra -Werror -g
 
 all: lab2
 
