@@ -39,8 +39,38 @@ int main()
                 std::cout << "NoSuchWord" << std::endl;
             }
         } else {
-            in = ToLower(in);
-            std::cout << b.SWV(in) << std::endl;
+            if (in == "!") {
+                std::string cmd;
+                std::cin >> cmd;
+                if (cmd == "Save") {
+                    std::string file_path;
+                    std::cin >> file_path;
+
+                    std::ofstream os(file_path, std::ios::binary);
+
+                    if (os.fail()) {
+                        std::cout << "ERROR: permision denied\n";
+                    } else {
+                        std::cout << b.Save(os) << std::endl;
+                        os.close();
+                    }
+                } else if (cmd == "Load") {
+                    std::string file_path;
+                    std::cin >> file_path;
+                    
+                    std::ifstream in(file_path, std::ios::binary);
+
+                    if (in.fail()) {
+                        std::cout << "ERROR: permision denied\n";
+                    } else {
+                        std::cout << b.Load(in) << std::endl;
+                        in.close();
+                    }
+                }
+            } else {
+                in = ToLower(in);
+                std::cout << b.SWV(in) << std::endl;
+            }
         }
     }
 }

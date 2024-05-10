@@ -21,3 +21,5 @@ bench1
 test*
 res*
 ans*
+*.t
+*.txt
