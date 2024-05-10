@@ -16,22 +16,24 @@ class BTree {
             Elem* el;
             Node** children;
             bool leaf;
+
+
+            static Elem* Search(Node *node, std::string key);
+
+            static Elem FindSuccessor(Node *node);
+            static Elem FindPredecessor(Node *node);
         };
-        
-        Elem* Search(Node *node, std::string key);
 
         Node *AllocateNode();
         void Deallocate(Node *node);
+        void DeleteTree(Node *node);
 
         void SplitChild(Node *parent, int index, Node* child);
         Node *MergeNodes(Node *parent, Node *left_child, Node *right_child, int i);
         
         void InsertNonfull(Node *node, Elem elem);
-        Elem FindSuccessor(Node *node);
-        Elem FindPredecessor(Node *node);
         bool DeleteFromNode(Node *node, std::string key);
-        
-        void DeleteTree(Node *node);
+
         void WriteInFile(Node *node, std::ofstream& os);
         Node *LoadFromFile(std::ifstream& in);
 
@@ -45,10 +47,11 @@ class BTree {
         void Insert(Elem elem);
         bool Delete(std::string key);
         bool Search(std::string key);
-        std::string Save(std::ofstream& os);
-        std::string Load(std::ifstream& in);
+        void Save(std::ofstream& os);
+        void Load(std::ifstream& in);
         std::string SWV(std::string key);
 };
+
 
 BTree::BTree() {
     root = nullptr;
@@ -56,7 +59,7 @@ BTree::BTree() {
 };
 
 
-Elem BTree::FindSuccessor(Node *node) { // находим последователя
+Elem BTree::Node::FindSuccessor(Node *node) { // находим последователя
     while (!node->leaf) {
         node = node->children[node->n + 1];
     }
@@ -64,7 +67,7 @@ Elem BTree::FindSuccessor(Node *node) { // находим последовате
 }
 
 
-Elem BTree::FindPredecessor(Node *node) { // находим предшественника
+Elem BTree::Node::FindPredecessor(Node *node) { // находим предшественника
     while (!node->leaf) {
         node = node->children[1];
     }
@@ -116,7 +119,7 @@ BTree::~BTree() {
 };
 
 
-Elem* BTree::Search(Node *node, std::string key) {
+Elem* BTree::Node::Search(Node *node, std::string key) {
     if (node == nullptr) {
         return nullptr;
     }
@@ -139,7 +142,7 @@ Elem* BTree::Search(Node *node, std::string key) {
 
 
 bool BTree::Search(std::string key) {
-    Elem *res = BTree::Search(root, key);
+    Elem *res = BTree::Node::Search(root, key);
 
     if (res != nullptr) {
         return true;
@@ -301,7 +304,7 @@ bool BTree::DeleteFromNode(Node *node, std::string key) {
     if (node->leaf) {
         if (i <= node->n && key == node->el[i].key) {
             for (int j = i; j < node->n; j++) {
-                node->el[j] = node->el[j + 1]; // сдвигаем элеиенты
+                node->el[j] = node->el[j + 1]; // сдвигаем элементы
             }
             node->n--;
             return true;
@@ -315,13 +318,13 @@ bool BTree::DeleteFromNode(Node *node, std::string key) {
         
         if (node->children[i]->n >= t) { // случай 2.а
             // рассматриваем дочерний узел, предществующий родителю
-            Elem tmp = FindSuccessor(node->children[i]);
+            Elem tmp = BTree::Node::FindSuccessor(node->children[i]); // ищем последователя
             node->el[i] = tmp;
             return DeleteFromNode(node->children[i], tmp.key);
 
         } else if (node->children[i + 1]->n >= t) { // случай 2.б
             // рассматриваем дочерний узел, следующий за родителем
-            Elem tmp = FindPredecessor(node->children[i + 1]);
+            Elem tmp = BTree::Node::FindPredecessor(node->children[i + 1]); // ищем предшественника
             node->el[i] = tmp;
             return DeleteFromNode(node->children[i + 1], tmp.key);
 
@@ -396,8 +399,8 @@ bool BTree::DeleteFromNode(Node *node, std::string key) {
 }
 
 
-std::string BTree::SWV(std::string key) { // надоело, написал отделбную функцию
-    Elem *res = BTree::Search(root, key);
+std::string BTree::SWV(std::string key) { // надоело, написал отдельную функцию
+    Elem *res = BTree::Node::Search(root, key);
 
     if (res != nullptr) {
         return "OK: " + std::to_string((*res).value);
@@ -416,12 +419,13 @@ void BTree::WriteInFile(Node *node, std::ofstream& os) {
             os.write(node->el[i].key.c_str(), str_size);
             os.write(reinterpret_cast<const char *>(&node->el[i].value), sizeof(uint64_t));
         }
+        os.write(reinterpret_cast<const char *>(&node->leaf), sizeof(bool));
 
-        for (int i = 0; i <= node->n + 1; i++) {
+        for (int i = 1; i <= node->n + 1; i++) {
             WriteInFile(node->children[i], os);
         }
     } else {
-        os << "";
+        return;       
     }
 }
 
@@ -429,32 +433,31 @@ void BTree::WriteInFile(Node *node, std::ofstream& os) {
 BTree::Node *BTree::LoadFromFile(std::ifstream& in) {
     // открыт ли файл не проверяем
 
-    if (in.peek() == EOF) { // если файл пустой, дерево пустое
+    if (in.eof() || (in.peek() == EOF)) { // если файл пустой, дерево пустое
         return nullptr;
     } else {
         int n;
-        in.read(reinterpret_cast<char *>(&n), sizeof(n));
+        in.read(reinterpret_cast<char *>(&n), sizeof(int));
 
         Node *new_node = AllocateNode();
-        
+        new_node->n = n;
+
         for (int i = 1; i <= n; i++) {
             std::string key;
-            uint64_t val;
 
             char ch;
             while (in.get(ch) && ch != '\0') {
                 key += ch;
             }
 
-            in.read(reinterpret_cast<char *>(&val), sizeof(val));
-            //std::cout << key << " " << val << std::endl;
             new_node->el[i].key = key;
-            new_node->el[i].value = val;
-
+            in.read(reinterpret_cast<char *>(&new_node->el[i].value), sizeof(uint64_t));
         }
 
-        if (in.eof()) {
-            for (int i = 0; i <= n + 1; i++) {
+        in.read(reinterpret_cast<char *>(&new_node->leaf), sizeof(bool));
+
+        if (!new_node->leaf) {
+            for (int i = 1; i <= n + 1; i++) {
                 new_node->children[i] = LoadFromFile(in);
             }
         }
@@ -463,23 +466,12 @@ BTree::Node *BTree::LoadFromFile(std::ifstream& in) {
 }
 
 
-std::string BTree::Save(std::ofstream& os) {
+void BTree::Save(std::ofstream& os) {
     WriteInFile(root, os);
-    if (os.fail()) {
-        return "ERROR: recording aborted";
-    } else {
-        return "OK";
-    }
 }
 
 
-std::string BTree::Load(std::ifstream& in) {
-    if (in.fail()) {
-        return "ERROR: reading aborted";
-    } else {
-        DeleteTree(root);
-        root = LoadFromFile(in);
-        return "OK";
-    }
+void BTree::Load(std::ifstream& in) {
+    DeleteTree(root);
+    root = LoadFromFile(in);
 }
-

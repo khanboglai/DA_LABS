@@ -12,8 +12,7 @@ std::string ToLower(std::string str) {
 }
 
 
-int main()
-{
+int main() {
     BTree b;
 
     std::string in;
@@ -48,11 +47,13 @@ int main()
 
                     std::ofstream os(file_path, std::ios::binary);
 
+                    // можно отдельно написать проверку на открытие файла, но fail скажет, что есть проблема
                     if (os.fail()) {
                         std::cout << "ERROR: permision denied\n";
                     } else {
-                        std::cout << b.Save(os) << std::endl;
+                        b.Save(os);
                         os.close();
+                        std::cout << "OK" << std::endl;
                     }
                 } else if (cmd == "Load") {
                     std::string file_path;
@@ -63,8 +64,9 @@ int main()
                     if (in.fail()) {
                         std::cout << "ERROR: permision denied\n";
                     } else {
-                        std::cout << b.Load(in) << std::endl;
+                        b.Load(in);
                         in.close();
+                        std::cout << "OK" << std::endl;
                     }
                 }
             } else {
