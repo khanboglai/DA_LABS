@@ -3,48 +3,46 @@
 #include <fstream>
 
 
-struct Elem {
+struct TElem {
     std::string key;
     uint64_t value;
 };
 
 
-class BTree {
+class TBTree {
     private:
-        struct Node {
+        struct TNode {
             int n;
-            Elem* el;
-            Node** children;
+            TElem* el;
+            TNode** children;
             bool leaf;
 
-
-            static Elem* Search(Node *node, std::string key);
-
-            static Elem FindSuccessor(Node *node);
-            static Elem FindPredecessor(Node *node);
+            static TElem* Search(TNode *node, std::string key);
+            static TElem FindSuccessor(TNode *node);
+            static TElem FindPredecessor(TNode *node);
         };
 
-        Node *AllocateNode();
-        void Deallocate(Node *node);
-        void DeleteTree(Node *node);
+        TNode *AllocateTNode();
+        void Deallocate(TNode *node);
+        void DeleteTree(TNode *node);
 
-        void SplitChild(Node *parent, int index, Node* child);
-        Node *MergeNodes(Node *parent, Node *left_child, Node *right_child, int i);
+        void SplitChild(TNode *parent, int index, TNode* child);
+        TNode *MergeTNodes(TNode *parent, TNode *left_child, TNode *right_child, int i);
         
-        void InsertNonfull(Node *node, Elem elem);
-        bool DeleteFromNode(Node *node, std::string key);
+        void InsertNonfull(TNode *node, TElem elem);
+        bool DeleteFromTNode(TNode *node, std::string key);
 
-        void WriteInFile(Node *node, std::ofstream& os);
-        Node *LoadFromFile(std::ifstream& in);
+        void WriteInFile(TNode *node, std::ofstream& os);
+        TNode *LoadFromFile(std::ifstream& in);
 
-        Node *root;
+        TNode *root;
         int t; // характеристическое число дерева
 
     public:
-        BTree();
-        ~BTree();
+        TBTree();
+        ~TBTree();
 
-        void Insert(Elem elem);
+        void Insert(TElem TElem);
         bool Delete(std::string key);
         bool Search(std::string key);
         void Save(std::ofstream& os);
@@ -53,13 +51,13 @@ class BTree {
 };
 
 
-BTree::BTree() {
+TBTree::TBTree() {
     root = nullptr;
     t = 4;
 };
 
 
-Elem BTree::Node::FindSuccessor(Node *node) { // находим последователя
+TElem TBTree::TNode::FindSuccessor(TNode *node) { // находим преемника
     while (!node->leaf) {
         node = node->children[node->n + 1];
     }
@@ -67,7 +65,7 @@ Elem BTree::Node::FindSuccessor(Node *node) { // находим последов
 }
 
 
-Elem BTree::Node::FindPredecessor(Node *node) { // находим предшественника
+TElem TBTree::TNode::FindPredecessor(TNode *node) { // находим предшественника
     while (!node->leaf) {
         node = node->children[1];
     }
@@ -75,10 +73,10 @@ Elem BTree::Node::FindPredecessor(Node *node) { // находим предшес
 }
 
 
-BTree::Node *BTree::AllocateNode() {
-    Node *node = new Node;
-    node->el = new Elem[2 * t]; // чтобы влезло 2t-1 элементов
-    node->children = new Node*[2 * t + 1]; // детей больше, чем родителей на 1
+TBTree::TNode *TBTree::AllocateTNode() {
+    TNode *node = new TBTree::TNode;
+    node->el = new TElem[2 * t]; // чтобы влезло 2t-1 элементов
+    node->children = new TBTree::TNode*[2 * t + 1]; // детей больше, чем родителей на 1
 
     for (int i = 0; i < 2 * t ; i++) {
         node->el[i].key = "";
@@ -91,7 +89,7 @@ BTree::Node *BTree::AllocateNode() {
 }
 
 
-void BTree::Deallocate(Node *node) {
+void TBTree::Deallocate(TNode *node) {
     if (node) {
         delete[] node->el;
         delete[] node->children;
@@ -100,7 +98,7 @@ void BTree::Deallocate(Node *node) {
 }
 
 
-void BTree::DeleteTree(Node *node) {
+void TBTree::DeleteTree(TNode *node) {
     if (node) {
         if (node->leaf) {
             Deallocate(node);
@@ -114,12 +112,12 @@ void BTree::DeleteTree(Node *node) {
 }
 
 
-BTree::~BTree() {
+TBTree::~TBTree() {
     DeleteTree(root);
 };
 
 
-Elem* BTree::Node::Search(Node *node, std::string key) {
+TElem* TBTree::TNode::Search(TNode *node, std::string key) {
     if (node == nullptr) {
         return nullptr;
     }
@@ -141,8 +139,8 @@ Elem* BTree::Node::Search(Node *node, std::string key) {
 }
 
 
-bool BTree::Search(std::string key) {
-    Elem *res = BTree::Node::Search(root, key);
+bool TBTree::Search(std::string key) {
+    TElem *res = TBTree::TNode::Search(root, key);
 
     if (res != nullptr) {
         return true;
@@ -151,12 +149,12 @@ bool BTree::Search(std::string key) {
 }
 
 
-void BTree::SplitChild(Node *empty_node, int i, Node*em_node_child) {
+void TBTree::SplitChild(TNode *empty_node, int i, TNode*em_node_child) {
     // em_node_child это заполненый узел
     // empty_node это пустой узел
 
     // переносим ключи в новый узел, они больше медианного элемента
-    Node *up_median = AllocateNode();
+    TNode *up_median = AllocateTNode();
     up_median->leaf = em_node_child->leaf;
     up_median->n = t - 1;
 
@@ -182,18 +180,18 @@ void BTree::SplitChild(Node *empty_node, int i, Node*em_node_child) {
         empty_node->el[j + 1] = empty_node->el[j];
     }
 
-    empty_node->el[i] = em_node_child->el[t]; // перенесли медиану в родителя (между em_node_ch и up_median)
+    empty_node->el[i] = em_node_child->el[t]; // перенесли медиану в родителя (между em_TNode_ch и up_median)
     empty_node->n++;
 }
 
 
 
-void BTree::Insert(Elem elem) {
-    Node *r = root;
+void TBTree::Insert(TElem elem) {
+    TNode *r = root;
     
     // если корень пустой, создаем ноду
     if (r == nullptr) {
-        r = AllocateNode();
+        r = AllocateTNode();
         r->leaf = true;
         r->n = 0;
         root = r;
@@ -201,7 +199,7 @@ void BTree::Insert(Elem elem) {
 
     // если корень насыщенный, разделяем
     if (r != nullptr && r->n == (2 * t - 1)) {
-        Node *s = AllocateNode();
+        TNode *s = AllocateTNode();
         root = s;
         s->leaf = false;
         s->n = 0;
@@ -215,7 +213,7 @@ void BTree::Insert(Elem elem) {
 }
 
 
-void BTree::InsertNonfull(Node *not_full_node, Elem elem) {
+void TBTree::InsertNonfull(TNode *not_full_node, TElem elem) {
     // узел должен быть незаполненым
     int i = not_full_node->n;
 
@@ -249,7 +247,7 @@ void BTree::InsertNonfull(Node *not_full_node, Elem elem) {
 }
 
 
-BTree::Node *BTree::MergeNodes(Node *parent, Node *left_child, Node *right_child, int i) {
+TBTree::TNode *TBTree::MergeTNodes(TNode *parent, TNode *left_child, TNode *right_child, int i) {
     // элементы из правого дочернего узла добавляем в конец левого
     for (int j = 1; j < t; j++) {
         left_child->el[t + j] = right_child->el[j];
@@ -284,12 +282,12 @@ BTree::Node *BTree::MergeNodes(Node *parent, Node *left_child, Node *right_child
 }
 
 
-bool BTree::Delete(std::string key) {
-    return DeleteFromNode(root, key);
+bool TBTree::Delete(std::string key) {
+    return DeleteFromTNode(root, key);
 }
 
 
-bool BTree::DeleteFromNode(Node *node, std::string key) {
+bool TBTree::DeleteFromTNode(TNode *node, std::string key) {
 
     if (node == nullptr) {
         return false;
@@ -318,27 +316,27 @@ bool BTree::DeleteFromNode(Node *node, std::string key) {
         
         if (node->children[i]->n >= t) { // случай 2.а
             // рассматриваем дочерний узел, предществующий родителю
-            Elem tmp = BTree::Node::FindSuccessor(node->children[i]); // ищем последователя
+            TElem tmp = TBTree::TNode::FindSuccessor(node->children[i]); // ищем последователя
             node->el[i] = tmp;
-            return DeleteFromNode(node->children[i], tmp.key);
+            return DeleteFromTNode(node->children[i], tmp.key);
 
         } else if (node->children[i + 1]->n >= t) { // случай 2.б
             // рассматриваем дочерний узел, следующий за родителем
-            Elem tmp = BTree::Node::FindPredecessor(node->children[i + 1]); // ищем предшественника
+            TElem tmp = TBTree::TNode::FindPredecessor(node->children[i + 1]); // ищем предшественника
             node->el[i] = tmp;
-            return DeleteFromNode(node->children[i + 1], tmp.key);
+            return DeleteFromTNode(node->children[i + 1], tmp.key);
 
-        } else { // случай 2.с
-            Node *new_child = MergeNodes(node, node->children[i], node->children[i + 1], i); // объединяем родителя и его детей
-            return DeleteFromNode(new_child, key); // получился новый ребенок, удаляем из него ключ
+        } else { // случай 2.в
+            TBTree::TNode *new_child = MergeTNodes(node, node->children[i], node->children[i + 1], i); // объединяем родителя и его детей
+            return DeleteFromTNode(new_child, key); // получился новый ребенок, удаляем из него ключ
         }
     } else if (node->children[i]->n == t - 1) { // Корман: случай 3
         // если ключ k отсутствует во внутреннем узле
         // 3.а
 
         if ( i > 1 && node->children[i - 1]->n >= t) { // сосед слева содержит как мимнимут t ключей
-            Node *current = node->children[i];
-            Node *prev = node->children[i - 1];
+            TBTree::TNode *current = node->children[i];
+            TBTree::TNode *prev = node->children[i - 1];
 
             int prev_n = prev->n;
 
@@ -358,10 +356,10 @@ bool BTree::DeleteFromNode(Node *node, std::string key) {
 
             prev->n--;
 
-            return DeleteFromNode(current, key);
+            return DeleteFromTNode(current, key);
         } else if ( i <= node->n && node->children[i + 1]->n >= t) { // сосед справа содержит как минимум t ключей
-            Node *current = node->children[i];
-            Node *next = node->children[i + 1];
+            TBTree::TNode *current = node->children[i];
+            TBTree::TNode *next = node->children[i + 1];
 
             int next_n = next->n;
             int current_n = current->n;
@@ -381,7 +379,7 @@ bool BTree::DeleteFromNode(Node *node, std::string key) {
             }
             next->n--;
 
-            return DeleteFromNode(current, key);
+            return DeleteFromTNode(current, key);
         } else { // 3.б
 
             // нет у соседей, надо объединяться
@@ -390,17 +388,17 @@ bool BTree::DeleteFromNode(Node *node, std::string key) {
             }
 
             // соединяем узлы, ключ разделитель станет медианой нового узла
-            Node *new_child = MergeNodes(node, node->children[i], node->children[i + 1], i);
-            return DeleteFromNode(new_child, key);
+            TBTree::TNode *new_child = MergeTNodes(node, node->children[i], node->children[i + 1], i);
+            return DeleteFromTNode(new_child, key);
         }
     }
 
-    return DeleteFromNode(node->children[i], key);
+    return DeleteFromTNode(node->children[i], key);
 }
 
 
-std::string BTree::SWV(std::string key) { // надоело, написал отдельную функцию
-    Elem *res = BTree::Node::Search(root, key);
+std::string TBTree::SWV(std::string key) { // надоело, написал отдельную функцию
+    TElem *res = TBTree::TNode::Search(root, key);
 
     if (res != nullptr) {
         return "OK: " + std::to_string((*res).value);
@@ -409,7 +407,7 @@ std::string BTree::SWV(std::string key) { // надоело, написал от
 }
 
 
-void BTree::WriteInFile(Node *node, std::ofstream& os) {
+void TBTree::WriteInFile(TNode *node, std::ofstream& os) {
     // не проверяем на открытие файл
 
     if (node) {
@@ -430,7 +428,7 @@ void BTree::WriteInFile(Node *node, std::ofstream& os) {
 }
 
 
-BTree::Node *BTree::LoadFromFile(std::ifstream& in) {
+TBTree::TNode *TBTree::LoadFromFile(std::ifstream& in) {
     // открыт ли файл не проверяем
 
     if (in.eof() || (in.peek() == EOF)) { // если файл пустой, дерево пустое
@@ -439,7 +437,7 @@ BTree::Node *BTree::LoadFromFile(std::ifstream& in) {
         int n;
         in.read(reinterpret_cast<char *>(&n), sizeof(int));
 
-        Node *new_node = AllocateNode();
+        TNode *new_node = AllocateTNode();
         new_node->n = n;
 
         for (int i = 1; i <= n; i++) {
@@ -466,12 +464,12 @@ BTree::Node *BTree::LoadFromFile(std::ifstream& in) {
 }
 
 
-void BTree::Save(std::ofstream& os) {
+void TBTree::Save(std::ofstream& os) {
     WriteInFile(root, os);
 }
 
 
-void BTree::Load(std::ifstream& in) {
+void TBTree::Load(std::ifstream& in) {
     DeleteTree(root);
     root = LoadFromFile(in);
 }

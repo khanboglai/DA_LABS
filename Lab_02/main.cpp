@@ -13,12 +13,12 @@ std::string ToLower(std::string str) {
 
 
 int main() {
-    BTree b;
+    TBTree b;
 
     std::string in;
     while (std::cin >> in) {
         if (in == "+") {
-            Elem e;
+            TElem e;
             std::cin >> e.key >> e.value;
             e.key = ToLower(e.key);
             if (!b.Search(e.key)) {
