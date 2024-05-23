@@ -1,0 +1,1175 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 11.15      1.23     1.23  3334454     0.00     0.00  TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  6.98      2.00     0.77  1665546     0.00     0.00  TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  6.89      2.76     0.76 1697919116     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const
+  4.90      3.30     0.54 679259395     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const
+  4.08      3.75     0.45    21461     0.02     0.02  void std::__detail::__to_chars_10_impl<unsigned long>(char*, unsigned int, unsigned long)
+  3.63      4.15     0.40  5000000     0.00     0.00  ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  3.26      4.51     0.36 164102639     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+  3.08      4.85     0.34 356251961     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long)
+  2.54      5.13     0.28 402402493     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const
+  2.45      5.40     0.27                             _init
+  2.36      5.66     0.26 609359178     0.00     0.00  std::char_traits<char>::assign(char&, char const&)
+  2.27      5.91     0.25 252482141     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)
+  2.04      6.13     0.23 75590382     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long)
+  1.72      6.33     0.19 360523096     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long)
+  1.36      6.47     0.15 514964282     0.00     0.00  __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::base() const
+  1.36      6.62     0.15 257482141     0.00     0.00  bool __gnu_cxx::operator==<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&)
+  1.31      6.77     0.14 174101515     0.00     0.00  unsigned long const& std::min<unsigned long>(unsigned long const&, unsigned long const&)
+  1.27      6.91     0.14 402402493     0.00     0.00  std::pointer_traits<char const*>::pointer_to(char const&)
+  1.22      7.04     0.14 174483356     0.00     0.00  std::char_traits<char>::compare(char const*, char const*, unsigned long)
+  1.18      7.17     0.13 402402493     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const
+  1.18      7.30     0.13 252482141     0.00     0.00  __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator++()
+  1.13      7.43     0.12 402402493     0.00     0.00  char const* std::__addressof<char const>(char const&)
+  1.13      7.55     0.12 84132652     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*)
+  1.04      7.67     0.12 287311487     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const
+  1.04      7.79     0.12 99779403     0.00     0.00  std::allocator_traits<std::allocator<char> >::max_size(std::allocator<char> const&)
+  1.00      7.89     0.11 75590382     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned long)
+  1.00      8.01     0.11    21461     0.01     0.01  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.95      8.11     0.10 64242366     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.91      8.21     0.10 402402493     0.00     0.00  char const* std::addressof<char const>(char const&)
+  0.91      8.31     0.10 99779403     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::max_size() const
+  0.82      8.40     0.09 246289919     0.00     0.00  std::is_constant_evaluated()
+  0.82      8.49     0.09                             std::__size_to_integer(unsigned long)
+  0.77      8.57     0.09 252482141     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char)
+  0.77      8.66     0.09 73351635     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&)
+  0.77      8.74     0.09 64242366     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char*, char*)
+  0.73      8.82     0.08 75590382     0.00     0.00  std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned long)
+  0.68      8.90     0.07 164866321     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::data() const
+  0.68      8.97     0.07 164102639     0.00     0.00  decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.68      9.05     0.07 100819871     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose()
+  0.59      9.12     0.07 75590382     0.00     0.00  __gnu_cxx::new_allocator<char>::deallocate(char*, unsigned long)
+  0.59      9.18     0.07 64242366     0.00     0.00  void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag)
+  0.59      9.24     0.07                             std::char_traits<char>::lt(char const&, char const&)
+  0.54      9.30     0.06 100087694     0.00     0.00  std::char_traits<char>::copy(char*, char const*, unsigned long)
+  0.54      9.37     0.06  1646861     0.00     0.00  TBTree::InsertNonfull(TBTree::TNode*, TElem)
+  0.54      9.43     0.06    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_assign(char*, unsigned long, char)
+  0.50      9.48     0.06 75590382     0.00     0.00  __gnu_cxx::new_allocator<char>::allocate(unsigned long, void const*)
+  0.45      9.53     0.05 252482141     0.00     0.00  __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator*() const
+  0.45      9.58     0.05 80018300     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider()
+  0.45      9.63     0.05   719309     0.00     0.00  TBTree::Deallocate(TBTree::TNode*)
+  0.41      9.68     0.04 161202225     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator()
+  0.41      9.72     0.04 64242366     0.00     0.00  __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_select_on_copy(std::allocator<char> const&)
+  0.41      9.77     0.04 10000000     0.00     0.00  __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::__normal_iterator(char* const&)
+  0.36      9.80     0.04 80039761     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data()
+  0.36      9.85     0.04 80039761     0.00     0.00  char* std::addressof<char>(char&)
+  0.36      9.88     0.04 80018300     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()
+  0.36      9.93     0.04 75590382     0.00     0.00  std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned long)
+  0.36      9.96     0.04 64242366     0.00     0.00  bool __gnu_cxx::__is_null_pointer<char>(char*)
+  0.36     10.01     0.04 64242366     0.00     0.00  std::allocator_traits<std::allocator<char> >::select_on_container_copy_construction(std::allocator<char> const&)
+  0.36     10.04     0.04  9769981     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)
+  0.36     10.09     0.04  6645204     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+  0.32     10.12     0.04 164102639     0.00     0.00  auto std::__detail::__char_traits_cmp_cat<std::char_traits<char> >(int)
+  0.32     10.15     0.04 124916982     0.00     0.00  std::operator>(std::strong_ordering, std::__cmp_cat::__unspec)
+  0.32     10.19     0.04 114395066     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const
+  0.32     10.22     0.04 100712770     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long)
+  0.32     10.26     0.04 84111191     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long)
+  0.32     10.29     0.04  5775933     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned long, unsigned long, char const*) const
+  0.27     10.32     0.03  6666665     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char> const&)
+  0.27     10.36     0.03  6645204     0.00     0.00  void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag)
+  0.27     10.38     0.03                             main
+  0.23     10.41     0.03 80039761     0.00     0.00  std::pointer_traits<char*>::pointer_to(char&)
+  0.23     10.44     0.03 78373096     0.00     0.00  std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&)
+  0.23     10.46     0.03 39185657     0.00     0.00  std::operator<(std::strong_ordering, std::__cmp_cat::__unspec)
+  0.23     10.48     0.03 12225261     0.00     0.00  __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_copy_assign()
+  0.23     10.51     0.03  9998876     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const
+  0.23     10.54     0.03  5754472     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*)
+  0.23     10.56     0.03  5000000     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::begin()
+  0.23     10.59     0.03    21461     0.00     0.00  std::remove_reference<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>::type&& std::move<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+  0.23     10.61     0.03    21461     0.00     0.01  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.18     10.63     0.02 64242366     0.00     0.00  void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char*>(char*, char*, std::__false_type)
+  0.18     10.65     0.02 14806959     0.00     0.00  TElem::TElem(TElem const&)
+  0.18     10.67     0.02  5000000     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  0.18     10.69     0.02    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+  0.14     10.71     0.01 64242366     0.00     0.00  std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*)
+  0.14     10.72     0.01 12225261     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.14     10.73     0.01  7422261     0.00     0.00  TElem::TElem()
+  0.14     10.75     0.01  5754472     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const
+  0.14     10.77     0.01    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_limit(unsigned long, unsigned long) const
+  0.14     10.78     0.01    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned long, char const*)
+  0.14     10.79     0.01                             void std::__fill_a<char*, char>(char*, char*, char const&)
+  0.09     10.80     0.01 164102639     0.00     0.00  std::__cmp_cat::__unspec::__unspec(std::__cmp_cat::__unspec*)
+  0.09     10.81     0.01 164021769     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() const
+  0.09     10.82     0.01 80039761     0.00     0.00  char* std::__addressof<char>(char&)
+  0.09     10.84     0.01 64242366     0.00     0.00  void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*)
+  0.09     10.85     0.01 64242366     0.00     0.00  std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag)
+  0.09     10.86     0.01 22229220     0.00     0.00  TElem::~TElem()
+  0.09     10.87     0.01 12225261     0.00     0.00  TElem::operator=(TElem const&)
+  0.09     10.88     0.01 12225261     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.09     10.88     0.01 12225261     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.09     10.89     0.01  8749706     0.00     0.00  __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_move_assign()
+  0.09     10.90     0.01  5775933     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long)
+  0.09     10.91     0.01  5754472     0.00     0.00  std::less<char const*>::operator()(char const*, char const*) const
+  0.09     10.93     0.01  4645542     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_compare(unsigned long, unsigned long)
+  0.09     10.94     0.01  1646861     0.00     0.00  TBTree::Insert(TElem)
+  0.09     10.95     0.01   750326     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >* std::__addressof<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+  0.09     10.96     0.01   719309     0.00     0.00  TBTree::AllocateTNode()
+  0.09     10.96     0.01    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char)
+  0.09     10.97     0.01        1    10.00    55.93  TBTree::DeleteTree(TBTree::TNode*)
+  0.09     10.98     0.01                             std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::c_str() const
+  0.09     10.99     0.01                             std::char_traits<char>::move(char*, char const*, unsigned long)
+  0.05     11.00     0.01 75590382     0.00     0.00  __gnu_cxx::new_allocator<char>::_M_max_size() const
+  0.05     11.01     0.01  6645204     0.00     0.00  bool __gnu_cxx::__is_null_pointer<char const>(char const*)
+  0.05     11.01     0.01  6645204     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char const*, char const*)
+  0.05     11.02     0.01  5000000     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::clear()
+  0.05     11.02     0.01                             char* std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m<char const*, char*>(char const*, char const*, char*)
+  0.05     11.03     0.01                             std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_move(char*, char const*, unsigned long)
+  0.05     11.03     0.01                             char* std::__copy_move_a2<false, char const*, char*>(char const*, char const*, char*)
+  0.00     11.03     0.00 64242366     0.00     0.00  std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&)
+  0.00     11.03     0.00 31784780     0.00     0.00  __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00     11.03     0.00 22420013     0.00     0.00  std::char_traits<char>::length(char const*)
+  0.00     11.03     0.00  9998876     0.00     0.00  bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  0.00     11.03     0.00  9087808     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string()
+  0.00     11.03     0.00  8749706     0.00     0.00  __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_always_equal()
+  0.00     11.03     0.00  6645204     0.00     0.00  std::iterator_traits<char const*>::difference_type std::__distance<char const*>(char const*, char const*, std::random_access_iterator_tag)
+  0.00     11.03     0.00  6645204     0.00     0.00  std::iterator_traits<char const*>::iterator_category std::__iterator_category<char const*>(char const* const&)
+  0.00     11.03     0.00  6645204     0.00     0.00  std::iterator_traits<char const*>::difference_type std::distance<char const*>(char const*, char const*)
+  0.00     11.03     0.00  5754472     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*)
+  0.00     11.03     0.00  5000000     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::end()
+  0.00     11.03     0.00  5000000     0.00     0.00  void std::__alloc_on_move<std::allocator<char> >(std::allocator<char>&, std::allocator<char>&)
+  0.00     11.03     0.00  1667789     0.00     0.00  TBTree::Search(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  0.00     11.03     0.00  1666665     0.00     0.00  TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  0.00     11.03     0.00  1665546     0.00     0.00  TBTree::Delete(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)
+  0.00     11.03     0.00   549808     0.00     0.00  TBTree::SplitChild(TBTree::TNode*, int, TBTree::TNode*)
+  0.00     11.03     0.00   206643     0.00     0.00  TBTree::MergeTNodes(TBTree::TNode*, TBTree::TNode*, TBTree::TNode*, int)
+  0.00     11.03     0.00    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check(unsigned long, char const*) const
+  0.00     11.03     0.00    21461     0.00     0.00  std::char_traits<char>::assign(char*, unsigned long, char)
+  0.00     11.03     0.00    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned long, unsigned long, char const*, unsigned long)
+  0.00     11.03     0.00    21461     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator[](unsigned long)
+  0.00     11.03     0.00    21461     0.00     0.03  std::__cxx11::to_string(unsigned long)
+  0.00     11.03     0.00    21461     0.00     0.00  unsigned int std::__detail::__to_chars_len<unsigned long>(unsigned long, int)
+  0.00     11.03     0.00     1013     0.00     0.00  TBTree::TNode::FindSuccessor(TBTree::TNode*)
+  0.00     11.03     0.00      211     0.00     0.00  TBTree::TNode::FindPredecessor(TBTree::TNode*)
+  0.00     11.03     0.00        1     0.00     0.00  __static_initialization_and_destruction_0(int, int)
+  0.00     11.03     0.00        1     0.00     0.00  TBTree::TBTree()
+  0.00     11.03     0.00        1     0.00    55.93  TBTree::~TBTree()
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2022 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.09% of 11.03 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]     95.7    0.03   10.53                 main [1]
+                0.40    3.12 5000000/5000000     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+                0.00    2.13 1666665/1666665     TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+                0.00    1.64 1665546/1665546     TBTree::Delete(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [7]
+                0.00    1.36 1667789/1667789     TBTree::Search(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [10]
+                0.01    1.17 1646861/1646861     TBTree::Insert(TElem) [12]
+                0.02    0.22 10000000/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.01    0.13 18332212/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+                0.02    0.10 5000000/5000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.00    0.06 9998876/9998876     bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [80]
+                0.00    0.06       1/1           TBTree::~TBTree() [84]
+                0.00    0.04 1646861/14806959     TElem::TElem(TElem const&) [31]
+                0.00    0.03 3314650/22229220     TElem::~TElem() [45]
+                0.00    0.01 1667789/7422261     TElem::TElem() [85]
+                0.00    0.01 1665547/9087808     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [92]
+                0.00    0.00       1/1           TBTree::TBTree() [150]
+-----------------------------------------------
+                0.40    3.12 5000000/5000000     main [1]
+[2]     31.9    0.40    3.12 5000000         ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+                0.09    2.36 252482141/252482141     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char) [4]
+                0.15    0.15 257482141/257482141     bool __gnu_cxx::operator==<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) [33]
+                0.13    0.00 252482141/252482141     __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator++() [57]
+                0.03    0.08 5000000/6645204     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [52]
+                0.05    0.00 252482141/252482141     __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator*() const [88]
+                0.03    0.02 5000000/5000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::begin() [91]
+                0.00    0.03 5000000/5000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::end() [103]
+-----------------------------------------------
+                             22964781             TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+                0.61    0.69 1666665/3334454     TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+                0.62    0.69 1667789/3334454     TBTree::Search(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [10]
+[3]     23.7    1.23    1.38 3334454+22964781 TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+                0.04    0.58 82493445/164102639     decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [11]
+                0.04    0.50 22964781/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.01    0.16 22964781/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+                0.00    0.03 21145224/31784780     __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [87]
+                0.02    0.00 82493445/124916982     std::operator>(std::strong_ordering, std::__cmp_cat::__unspec) [98]
+                0.01    0.00 82493445/164102639     std::__cmp_cat::__unspec::__unspec(std::__cmp_cat::__unspec*) [115]
+                             22964781             TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+-----------------------------------------------
+                0.09    2.36 252482141/252482141     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+[4]     22.2    0.09    2.36 252482141         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char) [4]
+                0.25    2.11 252482141/252482141     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+-----------------------------------------------
+                0.25    2.11 252482141/252482141     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char) [4]
+[5]     21.4    0.25    2.11 252482141         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+                0.10    0.60 252482141/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const [20]
+                0.24    0.35 252482141/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.04    0.36 9748520/9769981     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.20    0.00 252482141/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.11    0.00 252482141/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.11    0.00 252482141/609359178     std::char_traits<char>::assign(char&, char const&) [35]
+-----------------------------------------------
+                0.00    2.13 1666665/1666665     main [1]
+[6]     19.3    0.00    2.13 1666665         TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+                0.61    0.69 1666665/3334454     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+                0.00    0.54   21461/21461       std::__cxx11::to_string(unsigned long) [25]
+                0.03    0.17   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [43]
+                0.00    0.04 1666665/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.01    0.03 1645204/6645204     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [52]
+                0.00    0.01 1688126/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+-----------------------------------------------
+                0.00    1.64 1665546/1665546     main [1]
+[7]     14.9    0.00    1.64 1665546         TBTree::Delete(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [7]
+                0.77    0.82 1665546/1665546     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.00    0.04 1665546/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.00    0.01 1665546/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+-----------------------------------------------
+                             11470626             TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.77    0.82 1665546/1665546     TBTree::Delete(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [7]
+[8]     14.4    0.77    0.82 1665546+11470626 TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.02    0.29 42043229/164102639     decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [11]
+                0.02    0.25 11470626/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.01    0.08 11470626/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+                0.00    0.07  206643/206643      TBTree::MergeTNodes(TBTree::TNode*, TBTree::TNode*, TBTree::TNode*, int) [75]
+                0.00    0.05 3022440/12225261     TElem::operator=(TElem const&) [36]
+                0.00    0.02 10639556/31784780     __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [87]
+                0.01    0.00 42043229/124916982     std::operator>(std::strong_ordering, std::__cmp_cat::__unspec) [98]
+                0.00    0.00 42043229/164102639     std::__cmp_cat::__unspec::__unspec(std::__cmp_cat::__unspec*) [115]
+                0.00    0.00    1013/1013        TBTree::TNode::FindSuccessor(TBTree::TNode*) [131]
+                0.00    0.00    1224/22229220     TElem::~TElem() [45]
+                0.00    0.00     211/211         TBTree::TNode::FindPredecessor(TBTree::TNode*) [135]
+                             11470626             TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+-----------------------------------------------
+                0.00    0.04 1665546/64242366     TBTree::Delete(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [7]
+                0.00    0.04 1666665/64242366     TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+                0.00    0.04 1667789/64242366     TBTree::Search(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [10]
+                0.02    0.22 10000000/64242366     main [1]
+                0.02    0.25 11470626/64242366     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.02    0.32 14806959/64242366     TElem::TElem(TElem const&) [31]
+                0.04    0.50 22964781/64242366     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+[9]     13.5    0.10    1.39 64242366         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.01    1.02 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*) [14]
+                0.07    0.02 64242366/73351635     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [66]
+                0.03    0.06 64242366/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [64]
+                0.04    0.04 64242366/64242366     __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_select_on_copy(std::allocator<char> const&) [72]
+                0.06    0.00 128484732/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.02    0.00 64242366/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const [99]
+                0.00    0.00 64242366/164021769     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() const [116]
+-----------------------------------------------
+                0.00    1.36 1667789/1667789     main [1]
+[10]    12.3    0.00    1.36 1667789         TBTree::Search(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [10]
+                0.62    0.69 1667789/3334454     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+                0.00    0.04 1667789/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.00    0.01 1667789/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+-----------------------------------------------
+                0.02    0.28 39565965/164102639     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+                0.02    0.29 42043229/164102639     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.04    0.58 82493445/164102639     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+[11]    11.1    0.07    1.14 164102639         decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [11]
+                0.36    0.75 164102639/164102639     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+                0.04    0.00 164102639/164102639     auto std::__detail::__char_traits_cmp_cat<std::char_traits<char> >(int) [97]
+-----------------------------------------------
+                0.01    1.17 1646861/1646861     main [1]
+[12]    10.7    0.01    1.17 1646861         TBTree::Insert(TElem) [12]
+                0.06    0.94 1646861/1646861     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+                0.00    0.07  169500/549808      TBTree::SplitChild(TBTree::TNode*, int, TBTree::TNode*) [40]
+                0.00    0.05  169501/719309      TBTree::AllocateTNode() [41]
+                0.00    0.04 1646861/14806959     TElem::TElem(TElem const&) [31]
+                0.00    0.01 1646861/22229220     TElem::~TElem() [45]
+-----------------------------------------------
+                0.36    0.75 164102639/164102639     decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [11]
+[13]    10.1    0.36    0.75 164102639         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+                0.26    0.00 328205278/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.07    0.07 164102639/164866321     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::data() const [51]
+                0.14    0.00 164102639/174101515     unsigned long const& std::min<unsigned long>(unsigned long const&, unsigned long const&) [53]
+                0.13    0.00 164102639/174483356     std::char_traits<char>::compare(char const*, char const*, unsigned long) [54]
+                0.07    0.00 164102639/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.00    0.00 1312207/4645542     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_compare(unsigned long, unsigned long) [121]
+-----------------------------------------------
+                0.01    1.02 64242366/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+[14]     9.4    0.01    1.02 64242366         void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*) [14]
+                0.02    1.00 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char*>(char*, char*, std::__false_type) [15]
+-----------------------------------------------
+                0.02    1.00 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*) [14]
+[15]     9.3    0.02    1.00 64242366         void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char*>(char*, char*, std::__false_type) [15]
+                0.07    0.94 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+-----------------------------------------------
+                0.07    0.94 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char*>(char*, char*, std::__false_type) [15]
+[16]     9.1    0.07    0.94 64242366         void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+                0.16    0.26 54767350/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+                0.09    0.08 64242366/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char*, char*) [48]
+                0.06    0.09 64242366/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.08    0.00 54767350/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [61]
+                0.04    0.00 64242366/64242366     bool __gnu_cxx::__is_null_pointer<char>(char*) [95]
+                0.03    0.00 64242366/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.01    0.01 64242366/64242366     std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [105]
+                0.02    0.00 54767350/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [100]
+-----------------------------------------------
+                             11512013             TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+                0.06    0.94 1646861/1646861     TBTree::Insert(TElem) [12]
+[17]     9.1    0.06    0.94 1646861+11512013 TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+                0.02    0.28 39565965/164102639     decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [11]
+                0.02    0.27 11512013/14806959     TElem::TElem(TElem const&) [31]
+                0.00    0.15  380308/549808      TBTree::SplitChild(TBTree::TNode*, int, TBTree::TNode*) [40]
+                0.00    0.09 5234230/12225261     TElem::operator=(TElem const&) [36]
+                0.01    0.09 11512013/22229220     TElem::~TElem() [45]
+                0.03    0.00 39185657/39185657     std::operator<(std::strong_ordering, std::__cmp_cat::__unspec) [106]
+                0.00    0.00 39565965/164102639     std::__cmp_cat::__unspec::__unspec(std::__cmp_cat::__unspec*) [115]
+                0.00    0.00  380308/124916982     std::operator>(std::strong_ordering, std::__cmp_cat::__unspec) [98]
+                             11512013             TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+-----------------------------------------------
+                0.00    0.00   21461/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.01    0.02 14249674/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.07    0.17 100819871/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [22]
+                0.20    0.48 287311487/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const [20]
+[18]     8.7    0.28    0.68 402402493         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [18]
+                0.13    0.36 402402493/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [27]
+                0.18    0.00 402402493/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+-----------------------------------------------
+                0.00    0.00   21461/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00   21461/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+                0.00    0.00  750326/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.00    0.01 5000000/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::clear() [110]
+                0.01    0.01 5775933/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.01    0.01 6645204/356251961     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [76]
+                0.01    0.01 9087808/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [92]
+                0.01    0.02 12225261/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.06    0.09 64242366/356251961     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+                0.24    0.35 252482141/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+[19]     7.6    0.34    0.50 356251961         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.19    0.00 356251961/360523096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long) [44]
+                0.16    0.00 356251961/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.15    0.00 356251961/609359178     std::char_traits<char>::assign(char&, char const&) [35]
+-----------------------------------------------
+                0.00    0.01 5775933/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.00    0.03 12225261/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.01    0.04 16828152/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.10    0.60 252482141/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+[20]     7.2    0.12    0.68 287311487         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const [20]
+                0.20    0.48 287311487/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [18]
+-----------------------------------------------
+                0.00    0.00   21461/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator[](unsigned long) [133]
+                0.00    0.00   21461/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00   21461/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+                0.00    0.00 5000000/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::begin() [91]
+                0.00    0.00 5000000/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::end() [103]
+                0.00    0.00 5754472/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.00    0.00 5754472/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const [104]
+                0.00    0.00 6645204/1697919116     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [76]
+                0.00    0.00 9998876/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+                0.00    0.00 10000000/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.01    0.00 16828152/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.01    0.00 24450522/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.03    0.00 64242366/1697919116     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+                0.03    0.00 75590382/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned long) [32]
+                0.06    0.00 128484732/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.07    0.00 164102639/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+                0.07    0.00 164866321/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::data() const [51]
+                0.11    0.00 252482141/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+                0.16    0.00 356251961/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.18    0.00 402402493/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [18]
+[21]     6.9    0.76    0.00 1697919116         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+-----------------------------------------------
+                0.00    0.02 3973419/100819871     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.01    0.10 16828152/100819871     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.06    0.46 80018300/100819871     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+[22]     5.9    0.07    0.58 100819871         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [22]
+                0.11    0.23 75590382/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned long) [32]
+                0.07    0.17 100819871/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [18]
+-----------------------------------------------
+                0.00    0.01 1665546/80018300     TBTree::Delete(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [7]
+                0.00    0.01 1667789/80018300     TBTree::Search(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [10]
+                0.00    0.01 1688126/80018300     TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+                0.01    0.08 11470626/80018300     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.01    0.13 18332212/80018300     main [1]
+                0.01    0.16 22229220/80018300     TElem::~TElem() [45]
+                0.01    0.16 22964781/80018300     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+[23]     5.5    0.04    0.57 80018300         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+                0.06    0.46 80018300/100819871     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [22]
+                0.05    0.00 80018300/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider() [90]
+-----------------------------------------------
+                0.00    0.00   21461/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+                0.01    0.02 3973419/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.05    0.08 16828152/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.16    0.26 54767350/75590382     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+[24]     5.3    0.23    0.36 75590382         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+                0.09    0.11 94003470/99779403     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::max_size() const [38]
+                0.04    0.09 75590382/75590382     std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned long) [59]
+                0.02    0.00 75590382/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() [94]
+-----------------------------------------------
+                0.00    0.54   21461/21461       TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+[25]     4.9    0.00    0.54   21461         std::__cxx11::to_string(unsigned long) [25]
+                0.45    0.00   21461/21461       void std::__detail::__to_chars_10_impl<unsigned long>(char*, unsigned int, unsigned long) [28]
+                0.02    0.07   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&) [69]
+                0.00    0.00   21461/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.00    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator[](unsigned long) [133]
+                0.00    0.00   21461/21461       unsigned int std::__detail::__to_chars_len<unsigned long>(unsigned long, int) [148]
+-----------------------------------------------
+                0.00    0.00   21461/679259395     std::__cxx11::to_string(unsigned long) [25]
+                0.00    0.00   21461/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check(unsigned long, char const*) const [132]
+                0.00    0.00   21461/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_limit(unsigned long, unsigned long) const [112]
+                0.00    0.00 2250978/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.00    0.00 5000000/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::end() [103]
+                0.00    0.00 5754472/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*) [55]
+                0.00    0.00 5775933/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned long, unsigned long, char const*) const [86]
+                0.00    0.00 5775933/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.01    0.00 9998876/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+                0.05    0.00 63951401/679259395     __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [87]
+                0.20    0.00 252482141/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+                0.26    0.00 328205278/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+[26]     4.9    0.54    0.00 679259395         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+-----------------------------------------------
+                0.13    0.36 402402493/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [18]
+[27]     4.5    0.13    0.36 402402493         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [27]
+                0.14    0.22 402402493/402402493     std::pointer_traits<char const*>::pointer_to(char const&) [30]
+-----------------------------------------------
+                0.45    0.00   21461/21461       std::__cxx11::to_string(unsigned long) [25]
+[28]     4.1    0.45    0.00   21461         void std::__detail::__to_chars_10_impl<unsigned long>(char*, unsigned int, unsigned long) [28]
+-----------------------------------------------
+                0.00    0.00   21461/9769981     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.04    0.36 9748520/9769981     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+[29]     3.6    0.04    0.36 9769981         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.05    0.08 16828152/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+                0.01    0.10 16828152/100819871     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [22]
+                0.01    0.04 16828152/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const [20]
+                0.03    0.00 16828152/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [61]
+                0.01    0.02 16849613/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+                0.01    0.00 33656304/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const [99]
+                0.01    0.00 16828152/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.01    0.00 16828152/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [100]
+-----------------------------------------------
+                0.14    0.22 402402493/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [27]
+[30]     3.3    0.14    0.22 402402493         std::pointer_traits<char const*>::pointer_to(char const&) [30]
+                0.10    0.12 402402493/402402493     char const* std::addressof<char const>(char const&) [37]
+-----------------------------------------------
+                0.00    0.00     211/14806959     TBTree::TNode::FindPredecessor(TBTree::TNode*) [135]
+                0.00    0.00    1013/14806959     TBTree::TNode::FindSuccessor(TBTree::TNode*) [131]
+                0.00    0.04 1646861/14806959     TBTree::Insert(TElem) [12]
+                0.00    0.04 1646861/14806959     main [1]
+                0.02    0.27 11512013/14806959     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+[31]     3.3    0.02    0.34 14806959         TElem::TElem(TElem const&) [31]
+                0.02    0.32 14806959/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+-----------------------------------------------
+                0.11    0.23 75590382/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [22]
+[32]     3.1    0.11    0.23 75590382         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned long) [32]
+                0.08    0.09 75590382/75590382     std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned long) [46]
+                0.03    0.00 75590382/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.02    0.00 75590382/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() [94]
+-----------------------------------------------
+                0.15    0.15 257482141/257482141     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+[33]     2.7    0.15    0.15 257482141         bool __gnu_cxx::operator==<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) [33]
+                0.15    0.00 514964282/514964282     __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::base() const [50]
+-----------------------------------------------
+                                                 <spontaneous>
+[34]     2.4    0.27    0.00                 _init [34]
+-----------------------------------------------
+                0.00    0.00  625076/609359178     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+                0.11    0.00 252482141/609359178     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char) [5]
+                0.15    0.00 356251961/609359178     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+[35]     2.4    0.26    0.00 609359178         std::char_traits<char>::assign(char&, char const&) [35]
+-----------------------------------------------
+                0.00    0.02  913043/12225261     TBTree::MergeTNodes(TBTree::TNode*, TBTree::TNode*, TBTree::TNode*, int) [75]
+                0.00    0.05 3022440/12225261     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.00    0.05 3055548/12225261     TBTree::SplitChild(TBTree::TNode*, int, TBTree::TNode*) [40]
+                0.00    0.09 5234230/12225261     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+[36]     2.1    0.01    0.22 12225261         TElem::operator=(TElem const&) [36]
+                0.01    0.21 12225261/12225261     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [39]
+-----------------------------------------------
+                0.10    0.12 402402493/402402493     std::pointer_traits<char const*>::pointer_to(char const&) [30]
+[37]     2.0    0.10    0.12 402402493         char const* std::addressof<char const>(char const&) [37]
+                0.12    0.00 402402493/402402493     char const* std::__addressof<char const>(char const&) [60]
+-----------------------------------------------
+                0.01    0.01 5775933/99779403     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned long, unsigned long, char const*) const [86]
+                0.09    0.11 94003470/99779403     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+[38]     2.0    0.10    0.12 99779403         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::max_size() const [38]
+                0.12    0.00 99779403/99779403     std::allocator_traits<std::allocator<char> >::max_size(std::allocator<char> const&) [63]
+                0.01    0.00 99779403/164021769     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() const [116]
+-----------------------------------------------
+                0.01    0.21 12225261/12225261     TElem::operator=(TElem const&) [36]
+[39]     2.0    0.01    0.21 12225261         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [39]
+                0.01    0.20 12225261/12225261     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [42]
+-----------------------------------------------
+                0.00    0.07  169500/549808      TBTree::Insert(TElem) [12]
+                0.00    0.15  380308/549808      TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+[40]     2.0    0.00    0.22  549808         TBTree::SplitChild(TBTree::TNode*, int, TBTree::TNode*) [40]
+                0.01    0.15  549808/719309      TBTree::AllocateTNode() [41]
+                0.00    0.05 3055548/12225261     TElem::operator=(TElem const&) [36]
+-----------------------------------------------
+                0.00    0.05  169501/719309      TBTree::Insert(TElem) [12]
+                0.01    0.15  549808/719309      TBTree::SplitChild(TBTree::TNode*, int, TBTree::TNode*) [40]
+[41]     1.9    0.01    0.20  719309         TBTree::AllocateTNode() [41]
+                0.03    0.13 5754472/5754472     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*) [49]
+                0.01    0.03 5754472/7422261     TElem::TElem() [85]
+-----------------------------------------------
+                0.01    0.20 12225261/12225261     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [39]
+[42]     1.9    0.01    0.20 12225261         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [42]
+                0.01    0.16 12225261/12225261     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.03    0.00 12225261/12225261     __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_copy_assign() [107]
+-----------------------------------------------
+                0.03    0.17   21461/21461       TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+[43]     1.7    0.03    0.17   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [43]
+                0.11    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.01    0.02   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned long, char const*) [101]
+                0.03    0.00   21461/21461       std::remove_reference<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>::type&& std::move<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) [108]
+-----------------------------------------------
+                0.00    0.00   21461/360523096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00 4249674/360523096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.19    0.00 356251961/360523096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+[44]     1.7    0.19    0.00 360523096         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long) [44]
+-----------------------------------------------
+                0.00    0.00    1224/22229220     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.00    0.01 1646861/22229220     TBTree::Insert(TElem) [12]
+                0.00    0.03 3314650/22229220     main [1]
+                0.00    0.04 5754472/22229220     TBTree::Deallocate(TBTree::TNode*) [67]
+                0.01    0.09 11512013/22229220     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+[45]     1.6    0.01    0.17 22229220         TElem::~TElem() [45]
+                0.01    0.16 22229220/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+-----------------------------------------------
+                0.08    0.09 75590382/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned long) [32]
+[46]     1.6    0.08    0.09 75590382         std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned long) [46]
+                0.07    0.00 75590382/75590382     __gnu_cxx::new_allocator<char>::deallocate(char*, unsigned long) [77]
+                0.03    0.00 75590382/246289919     std::is_constant_evaluated() [70]
+-----------------------------------------------
+                0.01    0.16 12225261/12225261     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [42]
+[47]     1.6    0.01    0.16 12225261         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.00    0.03 12225261/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const [20]
+                0.01    0.02 3973419/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+                0.01    0.02 12225261/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.00    0.02 3973419/100819871     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [22]
+                0.00    0.01 12225261/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+                0.01    0.00 24450522/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.01    0.00 3973419/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [61]
+                0.00    0.00 12225261/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const [99]
+                0.00    0.00 3973419/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [100]
+-----------------------------------------------
+                0.09    0.08 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+[48]     1.5    0.09    0.08 64242366         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char*, char*) [48]
+                0.02    0.06 64242366/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+-----------------------------------------------
+                0.03    0.13 5754472/5754472     TBTree::AllocateTNode() [41]
+[49]     1.4    0.03    0.13 5754472         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*) [49]
+                0.00    0.13 5754472/5754472     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*) [55]
+-----------------------------------------------
+                0.15    0.00 514964282/514964282     bool __gnu_cxx::operator==<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) [33]
+[50]     1.4    0.15    0.00 514964282         __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::base() const [50]
+-----------------------------------------------
+                0.00    0.00  763682/164866321     __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [87]
+                0.07    0.07 164102639/164866321     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+[51]     1.3    0.07    0.07 164866321         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::data() const [51]
+                0.07    0.00 164866321/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+-----------------------------------------------
+                0.01    0.03 1645204/6645204     TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [6]
+                0.03    0.08 5000000/6645204     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+[52]     1.3    0.04    0.11 6645204         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [52]
+                0.03    0.04 6645204/6645204     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [76]
+                0.03    0.00 6645204/6666665     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char> const&) [102]
+                0.00    0.01 6645204/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [64]
+                0.00    0.00 6645204/22420013     std::char_traits<char>::length(char const*) [143]
+-----------------------------------------------
+                0.01    0.00 9998876/174101515     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+                0.14    0.00 164102639/174101515     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+[53]     1.3    0.14    0.00 174101515         unsigned long const& std::min<unsigned long>(unsigned long const&, unsigned long const&) [53]
+-----------------------------------------------
+                0.00    0.00  381841/174483356     __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [87]
+                0.01    0.00 9998876/174483356     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+                0.13    0.00 164102639/174483356     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+[54]     1.2    0.14    0.00 174483356         std::char_traits<char>::compare(char const*, char const*, unsigned long) [54]
+-----------------------------------------------
+                0.00    0.13 5754472/5754472     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*) [49]
+[55]     1.2    0.00    0.13 5754472         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*) [55]
+                0.01    0.12 5754472/5775933     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.00    0.00 5754472/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.00    0.00 5754472/22420013     std::char_traits<char>::length(char const*) [143]
+-----------------------------------------------
+                0.00    0.00  750326/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.00    0.01 6645204/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char const*, char const*) [114]
+                0.00    0.01 12225261/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.01    0.02 16849613/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.02    0.06 64242366/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char*, char*) [48]
+[56]     1.2    0.04    0.10 100712770         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+                0.06    0.03 100087694/100087694     std::char_traits<char>::copy(char*, char const*, unsigned long) [68]
+                0.00    0.00  625076/609359178     std::char_traits<char>::assign(char&, char const&) [35]
+-----------------------------------------------
+                0.13    0.00 252482141/252482141     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+[57]     1.2    0.13    0.00 252482141         __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator++() [57]
+-----------------------------------------------
+                0.00    0.00   21461/5775933     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned long, unsigned long, char const*, unsigned long) [111]
+                0.01    0.12 5754472/5775933     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*) [55]
+[58]     1.2    0.01    0.12 5775933         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.04    0.02 5775933/5775933     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned long, unsigned long, char const*) const [86]
+                0.01    0.01 5754472/5754472     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const [104]
+                0.00    0.01 5775933/287311487     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const [20]
+                0.01    0.01 5775933/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.00    0.00 5775933/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.00    0.00 5754472/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.00    0.00   21461/9769981     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+-----------------------------------------------
+                0.04    0.09 75590382/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+[59]     1.2    0.04    0.09 75590382         std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned long) [59]
+                0.06    0.01 75590382/75590382     __gnu_cxx::new_allocator<char>::allocate(unsigned long, void const*) [82]
+                0.03    0.00 75590382/246289919     std::is_constant_evaluated() [70]
+-----------------------------------------------
+                0.12    0.00 402402493/402402493     char const* std::addressof<char const>(char const&) [37]
+[60]     1.1    0.12    0.00 402402493         char const* std::__addressof<char const>(char const&) [60]
+-----------------------------------------------
+                0.00    0.00   21461/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+                0.00    0.00   42922/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.01    0.00 3973419/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.01    0.00 8499348/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.03    0.00 16828152/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.08    0.00 54767350/84132652     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+[61]     1.1    0.12    0.00 84132652         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [61]
+-----------------------------------------------
+                0.02    0.10 5000000/5000000     main [1]
+[62]     1.1    0.02    0.10 5000000         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.01    0.02 14249674/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [18]
+                0.01    0.01 5000000/5000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::clear() [110]
+                0.01    0.00 8499348/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [61]
+                0.01    0.00 8749706/8749706     __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_move_assign() [119]
+                0.01    0.00  750326/750326      std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >* std::__addressof<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) [122]
+                0.00    0.00 10000000/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.00    0.00 8499348/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [100]
+                0.00    0.00 10000000/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() [94]
+                0.00    0.00 4249674/360523096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long) [44]
+                0.00    0.00 2250978/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.00    0.00  750326/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.00    0.00 5000000/5000000     void std::__alloc_on_move<std::allocator<char> >(std::allocator<char>&, std::allocator<char>&) [130]
+                0.00    0.00 4249674/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const [99]
+                0.00    0.00  750326/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+                0.00    0.00 8749706/8749706     __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_always_equal() [144]
+-----------------------------------------------
+                0.12    0.00 99779403/99779403     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::max_size() const [38]
+[63]     1.0    0.12    0.00 99779403         std::allocator_traits<std::allocator<char> >::max_size(std::allocator<char> const&) [63]
+-----------------------------------------------
+                0.00    0.00   21461/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&) [69]
+                0.00    0.00   42922/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.01 6645204/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [52]
+                0.00    0.01 9087808/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [92]
+                0.03    0.06 64242366/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+[64]     1.0    0.04    0.07 80039761         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [64]
+                0.03    0.05 80039761/80039761     std::pointer_traits<char*>::pointer_to(char&) [73]
+-----------------------------------------------
+                0.11    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [43]
+[65]     1.0    0.11    0.00   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00   42922/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [61]
+                0.00    0.00   42922/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [64]
+                0.00    0.00   21461/402402493     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [18]
+                0.00    0.00   21461/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.00    0.00   21461/73351635     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [66]
+                0.00    0.00   21461/360523096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long) [44]
+                0.00    0.00   21461/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.00    0.00   21461/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [100]
+                0.00    0.00   21461/78373096     std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&) [109]
+                0.00    0.00   21461/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const [99]
+                0.00    0.00   21461/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() [94]
+-----------------------------------------------
+                0.00    0.00   21461/73351635     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.01    0.00 9087808/73351635     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [92]
+                0.07    0.02 64242366/73351635     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+[66]     1.0    0.08    0.02 73351635         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [66]
+                0.02    0.00 73351635/78373096     std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&) [109]
+-----------------------------------------------
+                0.02    0.02  343173/719309      TBTree::DeleteTree(TBTree::TNode*) [83]
+                0.03    0.02  376136/719309      TBTree::MergeTNodes(TBTree::TNode*, TBTree::TNode*, TBTree::TNode*, int) [75]
+[67]     0.9    0.05    0.05  719309         TBTree::Deallocate(TBTree::TNode*) [67]
+                0.00    0.04 5754472/22229220     TElem::~TElem() [45]
+-----------------------------------------------
+                0.06    0.03 100087694/100087694     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+[68]     0.9    0.06    0.03 100087694         std::char_traits<char>::copy(char*, char const*, unsigned long) [68]
+                0.03    0.00 95087694/246289919     std::is_constant_evaluated() [70]
+-----------------------------------------------
+                0.02    0.07   21461/21461       std::__cxx11::to_string(unsigned long) [25]
+[69]     0.8    0.02    0.07   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&) [69]
+                0.01    0.06   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+                0.00    0.00   21461/6666665     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char> const&) [102]
+                0.00    0.00   21461/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [64]
+-----------------------------------------------
+                0.00    0.00   21461/246289919     std::char_traits<char>::assign(char*, unsigned long, char) [134]
+                0.03    0.00 75590382/246289919     std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned long) [59]
+                0.03    0.00 75590382/246289919     std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned long) [46]
+                0.03    0.00 95087694/246289919     std::char_traits<char>::copy(char*, char const*, unsigned long) [68]
+[70]     0.8    0.09    0.00 246289919         std::is_constant_evaluated() [70]
+-----------------------------------------------
+                                                 <spontaneous>
+[71]     0.8    0.09    0.00                 std::__size_to_integer(unsigned long) [71]
+-----------------------------------------------
+                0.04    0.04 64242366/64242366     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+[72]     0.8    0.04    0.04 64242366         __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_select_on_copy(std::allocator<char> const&) [72]
+                0.04    0.00 64242366/64242366     std::allocator_traits<std::allocator<char> >::select_on_container_copy_construction(std::allocator<char> const&) [96]
+-----------------------------------------------
+                0.03    0.05 80039761/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [64]
+[73]     0.7    0.03    0.05 80039761         std::pointer_traits<char*>::pointer_to(char&) [73]
+                0.04    0.01 80039761/80039761     char* std::addressof<char>(char&) [89]
+-----------------------------------------------
+                0.01    0.06   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&) [69]
+[74]     0.6    0.01    0.06   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+                0.06    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_assign(char*, unsigned long, char) [81]
+                0.00    0.00   21461/75590382     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+                0.00    0.00   21461/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.00    0.00   21461/84132652     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [61]
+                0.00    0.00   21461/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.00    0.00   21461/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [100]
+-----------------------------------------------
+                0.00    0.07  206643/206643      TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+[75]     0.6    0.00    0.07  206643         TBTree::MergeTNodes(TBTree::TNode*, TBTree::TNode*, TBTree::TNode*, int) [75]
+                0.03    0.02  376136/719309      TBTree::Deallocate(TBTree::TNode*) [67]
+                0.00    0.02  913043/12225261     TElem::operator=(TElem const&) [36]
+-----------------------------------------------
+                0.03    0.04 6645204/6645204     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [52]
+[76]     0.6    0.03    0.04 6645204         void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [76]
+                0.01    0.01 6645204/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.01    0.01 6645204/6645204     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char const*, char const*) [114]
+                0.01    0.00 6645204/6645204     bool __gnu_cxx::__is_null_pointer<char const>(char const*) [126]
+                0.00    0.00 6645204/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.00    0.00 6645204/6645204     std::iterator_traits<char const*>::difference_type std::distance<char const*>(char const*, char const*) [147]
+-----------------------------------------------
+                0.07    0.00 75590382/75590382     std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned long) [46]
+[77]     0.6    0.07    0.00 75590382         __gnu_cxx::new_allocator<char>::deallocate(char*, unsigned long) [77]
+-----------------------------------------------
+                                                 <spontaneous>
+[78]     0.6    0.07    0.00                 std::char_traits<char>::lt(char const&, char const&) [78]
+-----------------------------------------------
+                0.03    0.04 9998876/9998876     bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [80]
+[79]     0.5    0.03    0.04 9998876         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+                0.01    0.00 9998876/174101515     unsigned long const& std::min<unsigned long>(unsigned long const&, unsigned long const&) [53]
+                0.01    0.00 9998876/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.01    0.00 9998876/174483356     std::char_traits<char>::compare(char const*, char const*, unsigned long) [54]
+                0.01    0.00 3333335/4645542     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_compare(unsigned long, unsigned long) [121]
+                0.00    0.00 9998876/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+                0.00    0.00 9998876/22420013     std::char_traits<char>::length(char const*) [143]
+-----------------------------------------------
+                0.00    0.06 9998876/9998876     main [1]
+[80]     0.5    0.00    0.06 9998876         bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*) [80]
+                0.03    0.04 9998876/9998876     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+-----------------------------------------------
+                0.06    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+[81]     0.5    0.06    0.00   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_assign(char*, unsigned long, char) [81]
+                0.00    0.00   21461/21461       std::char_traits<char>::assign(char*, unsigned long, char) [134]
+-----------------------------------------------
+                0.06    0.01 75590382/75590382     std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned long) [59]
+[82]     0.5    0.06    0.01 75590382         __gnu_cxx::new_allocator<char>::allocate(unsigned long, void const*) [82]
+                0.01    0.00 75590382/75590382     __gnu_cxx::new_allocator<char>::_M_max_size() const [125]
+-----------------------------------------------
+                              343172             TBTree::DeleteTree(TBTree::TNode*) [83]
+                0.01    0.05       1/1           TBTree::~TBTree() [84]
+[83]     0.5    0.01    0.05       1+343172  TBTree::DeleteTree(TBTree::TNode*) [83]
+                0.02    0.02  343173/719309      TBTree::Deallocate(TBTree::TNode*) [67]
+                              343172             TBTree::DeleteTree(TBTree::TNode*) [83]
+-----------------------------------------------
+                0.00    0.06       1/1           main [1]
+[84]     0.5    0.00    0.06       1         TBTree::~TBTree() [84]
+                0.01    0.05       1/1           TBTree::DeleteTree(TBTree::TNode*) [83]
+-----------------------------------------------
+                0.00    0.01 1667789/7422261     main [1]
+                0.01    0.03 5754472/7422261     TBTree::AllocateTNode() [41]
+[85]     0.5    0.01    0.04 7422261         TElem::TElem() [85]
+                0.00    0.04 7422261/9087808     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [92]
+-----------------------------------------------
+                0.04    0.02 5775933/5775933     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+[86]     0.5    0.04    0.02 5775933         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned long, unsigned long, char const*) const [86]
+                0.01    0.01 5775933/99779403     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::max_size() const [38]
+                0.00    0.00 5775933/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+-----------------------------------------------
+                0.00    0.02 10639556/31784780     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.00    0.03 21145224/31784780     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+[87]     0.5    0.00    0.05 31784780         __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [87]
+                0.05    0.00 63951401/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.00    0.00  763682/164866321     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::data() const [51]
+                0.00    0.00  381841/174483356     std::char_traits<char>::compare(char const*, char const*, unsigned long) [54]
+-----------------------------------------------
+                0.05    0.00 252482141/252482141     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+[88]     0.5    0.05    0.00 252482141         __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator*() const [88]
+-----------------------------------------------
+                0.04    0.01 80039761/80039761     std::pointer_traits<char*>::pointer_to(char&) [73]
+[89]     0.5    0.04    0.01 80039761         char* std::addressof<char>(char&) [89]
+                0.01    0.00 80039761/80039761     char* std::__addressof<char>(char&) [117]
+-----------------------------------------------
+                0.05    0.00 80018300/80018300     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() [23]
+[90]     0.5    0.05    0.00 80018300         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider() [90]
+-----------------------------------------------
+                0.03    0.02 5000000/5000000     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+[91]     0.5    0.03    0.02 5000000         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::begin() [91]
+                0.02    0.00 5000000/10000000     __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::__normal_iterator(char* const&) [93]
+                0.00    0.00 5000000/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+-----------------------------------------------
+                0.00    0.01 1665547/9087808     main [1]
+                0.00    0.04 7422261/9087808     TElem::TElem() [85]
+[92]     0.4    0.00    0.05 9087808         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string() [92]
+                0.01    0.01 9087808/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+                0.01    0.00 9087808/73351635     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [66]
+                0.00    0.01 9087808/80039761     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [64]
+-----------------------------------------------
+                0.02    0.00 5000000/10000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::begin() [91]
+                0.02    0.00 5000000/10000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::end() [103]
+[93]     0.4    0.04    0.00 10000000         __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::__normal_iterator(char* const&) [93]
+-----------------------------------------------
+                0.00    0.00   21461/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00 10000000/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.02    0.00 75590382/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned long) [32]
+                0.02    0.00 75590382/161202225     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long) [24]
+[94]     0.4    0.04    0.00 161202225         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() [94]
+-----------------------------------------------
+                0.04    0.00 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+[95]     0.4    0.04    0.00 64242366         bool __gnu_cxx::__is_null_pointer<char>(char*) [95]
+-----------------------------------------------
+                0.04    0.00 64242366/64242366     __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_select_on_copy(std::allocator<char> const&) [72]
+[96]     0.4    0.04    0.00 64242366         std::allocator_traits<std::allocator<char> >::select_on_container_copy_construction(std::allocator<char> const&) [96]
+-----------------------------------------------
+                0.04    0.00 164102639/164102639     decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [11]
+[97]     0.3    0.04    0.00 164102639         auto std::__detail::__char_traits_cmp_cat<std::char_traits<char> >(int) [97]
+-----------------------------------------------
+                0.00    0.00  380308/124916982     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+                0.01    0.00 42043229/124916982     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.02    0.00 82493445/124916982     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+[98]     0.3    0.04    0.00 124916982         std::operator>(std::strong_ordering, std::__cmp_cat::__unspec) [98]
+-----------------------------------------------
+                0.00    0.00   21461/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00 4249674/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.00    0.00 12225261/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.01    0.00 33656304/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.02    0.00 64242366/114395066     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+[99]     0.3    0.04    0.00 114395066         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const [99]
+-----------------------------------------------
+                0.00    0.00   21461/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00   21461/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [74]
+                0.00    0.00 3973419/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [47]
+                0.00    0.00 8499348/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+                0.01    0.00 16828152/84111191     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long) [29]
+                0.02    0.00 54767350/84111191     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+[100]    0.3    0.04    0.00 84111191         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [100]
+-----------------------------------------------
+                0.01    0.02   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [43]
+[101]    0.3    0.01    0.02   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned long, char const*) [101]
+                0.00    0.02   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned long, unsigned long, char const*, unsigned long) [111]
+                0.00    0.00   21461/22420013     std::char_traits<char>::length(char const*) [143]
+-----------------------------------------------
+                0.00    0.00   21461/6666665     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&) [69]
+                0.03    0.00 6645204/6666665     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [52]
+[102]    0.3    0.03    0.00 6666665         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char> const&) [102]
+-----------------------------------------------
+                0.00    0.03 5000000/5000000     ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [2]
+[103]    0.3    0.00    0.03 5000000         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::end() [103]
+                0.02    0.00 5000000/10000000     __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::__normal_iterator(char* const&) [93]
+                0.00    0.00 5000000/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+                0.00    0.00 5000000/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+-----------------------------------------------
+                0.01    0.01 5754472/5754472     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+[104]    0.3    0.01    0.01 5754472         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const [104]
+                0.01    0.00 5754472/5754472     std::less<char const*>::operator()(char const*, char const*) const [120]
+                0.00    0.00 5754472/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+-----------------------------------------------
+                0.01    0.01 64242366/64242366     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [16]
+[105]    0.2    0.01    0.01 64242366         std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [105]
+                0.01    0.00 64242366/64242366     std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag) [118]
+                0.00    0.00 64242366/64242366     std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&) [142]
+-----------------------------------------------
+                0.03    0.00 39185657/39185657     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+[106]    0.2    0.03    0.00 39185657         std::operator<(std::strong_ordering, std::__cmp_cat::__unspec) [106]
+-----------------------------------------------
+                0.03    0.00 12225261/12225261     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [42]
+[107]    0.2    0.03    0.00 12225261         __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_copy_assign() [107]
+-----------------------------------------------
+                0.03    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [43]
+[108]    0.2    0.03    0.00   21461         std::remove_reference<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>::type&& std::move<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) [108]
+-----------------------------------------------
+                0.00    0.00   21461/78373096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [65]
+                0.00    0.00 5000000/78373096     void std::__alloc_on_move<std::allocator<char> >(std::allocator<char>&, std::allocator<char>&) [130]
+                0.02    0.00 73351635/78373096     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [66]
+[109]    0.2    0.02    0.00 78373096         std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&) [109]
+-----------------------------------------------
+                0.01    0.01 5000000/5000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+[110]    0.2    0.01    0.01 5000000         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::clear() [110]
+                0.00    0.01 5000000/356251961     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [19]
+-----------------------------------------------
+                0.00    0.02   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned long, char const*) [101]
+[111]    0.1    0.00    0.02   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned long, unsigned long, char const*, unsigned long) [111]
+                0.01    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_limit(unsigned long, unsigned long) const [112]
+                0.00    0.00   21461/5775933     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [58]
+                0.00    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check(unsigned long, char const*) const [132]
+-----------------------------------------------
+                0.01    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned long, unsigned long, char const*, unsigned long) [111]
+[112]    0.1    0.01    0.00   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_limit(unsigned long, unsigned long) const [112]
+                0.00    0.00   21461/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+-----------------------------------------------
+                                                 <spontaneous>
+[113]    0.1    0.01    0.00                 void std::__fill_a<char*, char>(char*, char*, char const&) [113]
+-----------------------------------------------
+                0.01    0.01 6645204/6645204     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [76]
+[114]    0.1    0.01    0.01 6645204         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char const*, char const*) [114]
+                0.00    0.01 6645204/100712770     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [56]
+-----------------------------------------------
+                0.00    0.00 39565965/164102639     TBTree::InsertNonfull(TBTree::TNode*, TElem) [17]
+                0.00    0.00 42043229/164102639     TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+                0.01    0.00 82493445/164102639     TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [3]
+[115]    0.1    0.01    0.00 164102639         std::__cmp_cat::__unspec::__unspec(std::__cmp_cat::__unspec*) [115]
+-----------------------------------------------
+                0.00    0.00 64242366/164021769     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [9]
+                0.01    0.00 99779403/164021769     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::max_size() const [38]
+[116]    0.1    0.01    0.00 164021769         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() const [116]
+-----------------------------------------------
+                0.01    0.00 80039761/80039761     char* std::addressof<char>(char&) [89]
+[117]    0.1    0.01    0.00 80039761         char* std::__addressof<char>(char&) [117]
+-----------------------------------------------
+                0.01    0.00 64242366/64242366     std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [105]
+[118]    0.1    0.01    0.00 64242366         std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag) [118]
+-----------------------------------------------
+                0.01    0.00 8749706/8749706     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+[119]    0.1    0.01    0.00 8749706         __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_move_assign() [119]
+-----------------------------------------------
+                0.01    0.00 5754472/5754472     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const [104]
+[120]    0.1    0.01    0.00 5754472         std::less<char const*>::operator()(char const*, char const*) const [120]
+-----------------------------------------------
+                0.00    0.00 1312207/4645542     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [13]
+                0.01    0.00 3333335/4645542     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+[121]    0.1    0.01    0.00 4645542         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_compare(unsigned long, unsigned long) [121]
+-----------------------------------------------
+                0.01    0.00  750326/750326      std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+[122]    0.1    0.01    0.00  750326         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >* std::__addressof<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&) [122]
+-----------------------------------------------
+                                                 <spontaneous>
+[123]    0.1    0.01    0.00                 std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::c_str() const [123]
+-----------------------------------------------
+                                                 <spontaneous>
+[124]    0.1    0.01    0.00                 std::char_traits<char>::move(char*, char const*, unsigned long) [124]
+-----------------------------------------------
+                0.01    0.00 75590382/75590382     __gnu_cxx::new_allocator<char>::allocate(unsigned long, void const*) [82]
+[125]    0.0    0.01    0.00 75590382         __gnu_cxx::new_allocator<char>::_M_max_size() const [125]
+-----------------------------------------------
+                0.01    0.00 6645204/6645204     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [76]
+[126]    0.0    0.01    0.00 6645204         bool __gnu_cxx::__is_null_pointer<char const>(char const*) [126]
+-----------------------------------------------
+                                                 <spontaneous>
+[127]    0.0    0.01    0.00                 char* std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m<char const*, char*>(char const*, char const*, char*) [127]
+-----------------------------------------------
+                                                 <spontaneous>
+[128]    0.0    0.01    0.00                 std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_move(char*, char const*, unsigned long) [128]
+-----------------------------------------------
+                                                 <spontaneous>
+[129]    0.0    0.01    0.00                 char* std::__copy_move_a2<false, char const*, char*>(char const*, char const*, char*) [129]
+-----------------------------------------------
+                0.00    0.00 5000000/5000000     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+[130]    0.0    0.00    0.00 5000000         void std::__alloc_on_move<std::allocator<char> >(std::allocator<char>&, std::allocator<char>&) [130]
+                0.00    0.00 5000000/78373096     std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&) [109]
+-----------------------------------------------
+                0.00    0.00    1013/1013        TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+[131]    0.0    0.00    0.00    1013         TBTree::TNode::FindSuccessor(TBTree::TNode*) [131]
+                0.00    0.00    1013/14806959     TElem::TElem(TElem const&) [31]
+-----------------------------------------------
+                0.00    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned long, unsigned long, char const*, unsigned long) [111]
+[132]    0.0    0.00    0.00   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check(unsigned long, char const*) const [132]
+                0.00    0.00   21461/679259395     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [26]
+-----------------------------------------------
+                0.00    0.00   21461/21461       std::__cxx11::to_string(unsigned long) [25]
+[133]    0.0    0.00    0.00   21461         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator[](unsigned long) [133]
+                0.00    0.00   21461/1697919116     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [21]
+-----------------------------------------------
+                0.00    0.00   21461/21461       std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_assign(char*, unsigned long, char) [81]
+[134]    0.0    0.00    0.00   21461         std::char_traits<char>::assign(char*, unsigned long, char) [134]
+                0.00    0.00   21461/246289919     std::is_constant_evaluated() [70]
+-----------------------------------------------
+                0.00    0.00     211/211         TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [8]
+[135]    0.0    0.00    0.00     211         TBTree::TNode::FindPredecessor(TBTree::TNode*) [135]
+                0.00    0.00     211/14806959     TElem::TElem(TElem const&) [31]
+-----------------------------------------------
+                0.00    0.00 64242366/64242366     std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*) [105]
+[142]    0.0    0.00    0.00 64242366         std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&) [142]
+-----------------------------------------------
+                0.00    0.00   21461/22420013     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned long, char const*) [101]
+                0.00    0.00 5754472/22420013     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*) [55]
+                0.00    0.00 6645204/22420013     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [52]
+                0.00    0.00 9998876/22420013     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [79]
+[143]    0.0    0.00    0.00 22420013         std::char_traits<char>::length(char const*) [143]
+-----------------------------------------------
+                0.00    0.00 8749706/8749706     std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&) [62]
+[144]    0.0    0.00    0.00 8749706         __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_always_equal() [144]
+-----------------------------------------------
+                0.00    0.00 6645204/6645204     std::iterator_traits<char const*>::difference_type std::distance<char const*>(char const*, char const*) [147]
+[145]    0.0    0.00    0.00 6645204         std::iterator_traits<char const*>::difference_type std::__distance<char const*>(char const*, char const*, std::random_access_iterator_tag) [145]
+-----------------------------------------------
+                0.00    0.00 6645204/6645204     std::iterator_traits<char const*>::difference_type std::distance<char const*>(char const*, char const*) [147]
+[146]    0.0    0.00    0.00 6645204         std::iterator_traits<char const*>::iterator_category std::__iterator_category<char const*>(char const* const&) [146]
+-----------------------------------------------
+                0.00    0.00 6645204/6645204     void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [76]
+[147]    0.0    0.00    0.00 6645204         std::iterator_traits<char const*>::difference_type std::distance<char const*>(char const*, char const*) [147]
+                0.00    0.00 6645204/6645204     std::iterator_traits<char const*>::iterator_category std::__iterator_category<char const*>(char const* const&) [146]
+                0.00    0.00 6645204/6645204     std::iterator_traits<char const*>::difference_type std::__distance<char const*>(char const*, char const*, std::random_access_iterator_tag) [145]
+-----------------------------------------------
+                0.00    0.00   21461/21461       std::__cxx11::to_string(unsigned long) [25]
+[148]    0.0    0.00    0.00   21461         unsigned int std::__detail::__to_chars_len<unsigned long>(unsigned long, int) [148]
+-----------------------------------------------
+                0.00    0.00       1/1           _GLOBAL__sub_I__ZN6TBTreeC2Ev [151]
+[149]    0.0    0.00    0.00       1         __static_initialization_and_destruction_0(int, int) [149]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[150]    0.0    0.00    0.00       1         TBTree::TBTree() [150]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2022 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+ [149] __static_initialization_and_destruction_0(int, int) [13] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [24] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_create(unsigned long&, unsigned long)
+   [2] ToLower(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [132] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check(unsigned long, char const*) const [44] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_length(unsigned long)
+  [31] TElem::TElem(TElem const&) [112] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_limit(unsigned long, unsigned long) const [29] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_mutate(unsigned long, unsigned long, char const*, unsigned long)
+  [85] TElem::TElem()         [20] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::capacity() const [81] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_assign(char*, unsigned long, char)
+  [45] TElem::~TElem()        [38] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::max_size() const [5] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::push_back(char)
+  [36] TElem::operator=(TElem const&) [127] char* std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m<char const*, char*>(char const*, char const*, char*) [65] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  [67] TBTree::Deallocate(TBTree::TNode*) [78] std::char_traits<char>::lt(char const&, char const&) [9] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  [83] TBTree::DeleteTree(TBTree::TNode*) [68] std::char_traits<char>::copy(char*, char const*, unsigned long) [92] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string()
+  [40] TBTree::SplitChild(TBTree::TNode*, int, TBTree::TNode*) [124] std::char_traits<char>::move(char*, char const*, unsigned long) [52] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+  [75] TBTree::MergeTNodes(TBTree::TNode*, TBTree::TNode*, TBTree::TNode*, int) [134] std::char_traits<char>::assign(char*, unsigned long, char) [69] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(unsigned long, char, std::allocator<char> const&)
+  [41] TBTree::AllocateTNode() [35] std::char_traits<char>::assign(char&, char const&) [23] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string()
+  [17] TBTree::InsertNonfull(TBTree::TNode*, TElem) [143] std::char_traits<char>::length(char const*) [62] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+   [8] TBTree::DeleteFromTNode(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [54] std::char_traits<char>::compare(char const*, char const*, unsigned long) [49] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(char const*)
+   [6] TBTree::SWV(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [30] std::pointer_traits<char const*>::pointer_to(char const&) [39] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+ [131] TBTree::TNode::FindSuccessor(TBTree::TNode*) [73] std::pointer_traits<char*>::pointer_to(char&) [133] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator[](unsigned long)
+ [135] TBTree::TNode::FindPredecessor(TBTree::TNode*) [46] std::allocator_traits<std::allocator<char> >::deallocate(std::allocator<char>&, char*, unsigned long) [4] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator+=(char)
+   [3] TBTree::TNode::Search(TBTree::TNode*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [96] std::allocator_traits<std::allocator<char> >::select_on_container_copy_construction(std::allocator<char> const&) [25] std::__cxx11::to_string(unsigned long)
+   [7] TBTree::Delete(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [59] std::allocator_traits<std::allocator<char> >::allocate(std::allocator<char>&, unsigned long) [148] unsigned int std::__detail::__to_chars_len<unsigned long>(unsigned long, int)
+  [12] TBTree::Insert(TElem)  [63] std::allocator_traits<std::allocator<char> >::max_size(std::allocator<char> const&) [28] void std::__detail::__to_chars_10_impl<unsigned long>(char*, unsigned int, unsigned long)
+  [10] TBTree::Search(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) [32] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_destroy(unsigned long) [97] auto std::__detail::__char_traits_cmp_cat<std::char_traits<char> >(int)
+ [150] TBTree::TBTree()       [22] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_dispose() [115] std::__cmp_cat::__unspec::__unspec(std::__cmp_cat::__unspec*)
+  [84] TBTree::~TBTree()      [58] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_replace(unsigned long, unsigned long, char const*, unsigned long) [145] std::iterator_traits<char const*>::difference_type std::__distance<char const*>(char const*, char const*, std::random_access_iterator_tag)
+  [77] __gnu_cxx::new_allocator<char>::deallocate(char*, unsigned long) [121] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_compare(unsigned long, unsigned long) [118] std::iterator_traits<char*>::difference_type std::__distance<char*>(char*, char*, std::random_access_iterator_tag)
+  [82] __gnu_cxx::new_allocator<char>::allocate(unsigned long, void const*) [100] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_capacity(unsigned long) [60] char const* std::__addressof<char const>(char const&)
+ [144] __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_always_equal() [66] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char>&&) [122] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >* std::__addressof<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+  [72] __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_select_on_copy(std::allocator<char> const&) [102] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::_Alloc_hider(char*, std::allocator<char> const&) [117] char* std::__addressof<char>(char&)
+ [107] __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_copy_assign() [90] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_Alloc_hider::~_Alloc_hider() [129] char* std::__copy_move_a2<false, char const*, char*>(char const*, char const*, char*)
+ [119] __gnu_cxx::__alloc_traits<std::allocator<char>, char>::_S_propagate_on_move_assign() [74] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct(unsigned long, char) [130] void std::__alloc_on_move<std::allocator<char> >(std::allocator<char>&, std::allocator<char>&)
+ [126] bool __gnu_cxx::__is_null_pointer<char const>(char const*) [76] void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char const*>(char const*, char const*, std::forward_iterator_tag) [71] std::__size_to_integer(unsigned long)
+  [95] bool __gnu_cxx::__is_null_pointer<char>(char*) [14] void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*) [146] std::iterator_traits<char const*>::iterator_category std::__iterator_category<char const*>(char const* const&)
+  [93] __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::__normal_iterator(char* const&) [16] void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) [142] std::iterator_traits<char*>::iterator_category std::__iterator_category<char*>(char* const&)
+  [57] __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator++() [64] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() [70] std::is_constant_evaluated()
+  [33] bool __gnu_cxx::operator==<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >(__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&, __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > const&) [19] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_set_length(unsigned long) [53] unsigned long const& std::min<unsigned long>(unsigned long const&, unsigned long const&)
+ [125] __gnu_cxx::new_allocator<char>::_M_max_size() const [114] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char const*, char const*) [108] std::remove_reference<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>::type&& std::move<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&)
+  [50] __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::base() const [48] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy_chars(char*, char*, char*) [109] std::remove_reference<std::allocator<char>&>::type&& std::move<std::allocator<char>&>(std::allocator<char>&)
+  [88] __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >::operator*() const [15] void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct_aux<char*>(char*, char*, std::__false_type) [113] void std::__fill_a<char*, char>(char*, char*, char const&)
+ [120] std::less<char const*>::operator()(char const*, char const*) const [94] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() [147] std::iterator_traits<char const*>::difference_type std::distance<char const*>(char const*, char const*)
+ [104] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_disjunct(char const*) const [103] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::end() [105] std::iterator_traits<char*>::difference_type std::distance<char*>(char*, char*)
+  [18] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_is_local() const [91] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::begin() [37] char const* std::addressof<char const>(char const&)
+  [27] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_local_data() const [110] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::clear() [89] char* std::addressof<char>(char&)
+  [86] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_check_length(unsigned long, unsigned long, char const*) const [55] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(char const*) [87] __gnu_cxx::__enable_if<std::__is_char<char>::__value, bool>::__type std::operator==<char>(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+ [116] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_get_allocator() const [42] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [80] bool std::operator==<char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, char const*)
+  [51] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::data() const [101] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::insert(unsigned long, char const*) [98] std::operator>(std::strong_ordering, std::__cmp_cat::__unspec)
+  [26] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::size() const [61] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data(char*) [106] std::operator<(std::strong_ordering, std::__cmp_cat::__unspec)
+ [123] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::c_str() const [56] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_copy(char*, char const*, unsigned long) [43] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > std::operator+<char, std::char_traits<char>, std::allocator<char> >(char const*, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >&&)
+  [99] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::length() const [128] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_S_move(char*, char const*, unsigned long) [11] decltype ((__char_traits_cmp_cat<std::char_traits<char> >)(0)) std::operator<=><char, std::char_traits<char>, std::allocator<char> >(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  [21] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_data() const [111] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::replace(unsigned long, unsigned long, char const*, unsigned long) [34] _init
+  [79] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::compare(char const*) const [47] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [1] main
