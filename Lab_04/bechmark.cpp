@@ -1,10 +1,27 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <iomanip>
+#include <limits>
 
 
 const int SEP = -1; // разделитель
 using TDigitSRH = std::pair<int64_t, std::pair<size_t, size_t>>; // псевдоним, чтобы меньше писать
+
+
+std::vector<int> Z_func_naive(const std::vector<TDigitSRH>& S) {
+    int n = S.size();
+    std::vector<int> Z(n, 0);
+
+    for (int i = 1; i < n; i++) {
+        while (i + Z[i] < n && S[Z[i]].first == S[i + Z[i]].first) { // это стандартный подсчет z-функции
+            Z[i]++;
+        }
+    }
+
+    return Z;
+}
+
 
 
 std::vector<int> Z_func(const std::vector<TDigitSRH>& S) {
@@ -31,6 +48,11 @@ std::vector<int> Z_func(const std::vector<TDigitSRH>& S) {
 
 
 int main() {
+
+    long double Z_naive = 0;
+    long double Z_eff = 0;
+    long double start, end;
+
     std::string P;
     getline(std::cin, P);
     std::vector<TDigitSRH> vec_p;
@@ -44,7 +66,7 @@ int main() {
         cnt_n++;
     }
 
-    int p_sz = vec_p.size();
+    
     TDigitSRH sep_elem = std::make_pair(SEP, std::make_pair(vec_p.size(), 1));
 
     vec_p.push_back(sep_elem);
@@ -66,11 +88,23 @@ int main() {
     }
 
 
+    start = clock();
     std::vector<int> Z = Z_func(vec_p);
+    end = clock();
+    Z_eff = Z_eff + end - start;
 
-    for (size_t i = p_sz + 1; i < Z.size(); i++) {
-        if (Z[i] == p_sz) {
-            std::cout << vec_p[i].second.second << ", " << vec_p[i].second.first + 1 << std::endl;
-        }
-    }
+    start = clock();
+    std::vector<int> Z_n = Z_func_naive(vec_p);
+    end = clock();
+    Z_naive = Z_naive + end - start;
+
+
+    std::cout << "Z naive: " << std::fixed << std::setprecision(3) << Z_naive / 1000.0 << " ms"<< std::endl;
+    std::cout << "Z effective: " << std::fixed << std::setprecision(3) << Z_eff / 1000.0 << " ms" << std::endl;
+
+    // for (size_t i = p_sz + 1; i < Z.size(); i++) {
+    //     if (Z[i] == p_sz) {
+    //         std::cout << vec_p[i].second.second << ", " << vec_p[i].second.first + 1 << std::endl;
+    //     }
+    // }
 }
