@@ -3,8 +3,8 @@
 #include <sstream>
 
 
-const uint32_t SEP = -1; // разделитель
-using TDigitSRH = std::pair<uint32_t, std::pair<size_t, size_t>>; // псевдоним, чтобы меньше писать
+const int SEP = -1; // разделитель
+using TDigitSRH = std::pair<int64_t, std::pair<size_t, size_t>>; // псевдоним, чтобы меньше писать
 
 
 std::vector<int> Z_func(const std::vector<TDigitSRH>& S) {
@@ -37,11 +37,11 @@ int main() {
     
     // подготовка паттерна
     std::istringstream ss(P);
-    uint32_t num = 0;
-    size_t cnt_num = 0;
-    while (ss >> num) {
-        vec_p.push_back(std::make_pair(num, std::make_pair(cnt_num, 0)));
-        cnt_num++;
+    int64_t number = 0;
+    size_t cnt_n = 0;
+    while (ss >> number) {
+        vec_p.push_back(std::make_pair(number, std::make_pair(cnt_n, 1)));
+        cnt_n++;
     }
 
     int p_sz = vec_p.size();
@@ -56,7 +56,7 @@ int main() {
     while (getline(std::cin, T)) {
         
         std::istringstream ss(T);
-        uint32_t num = 0;
+        int64_t num = 0;
         size_t cnt_num = 0;
         while (ss >> num) {
             vec_p.push_back(std::make_pair(num, std::make_pair(cnt_num, cnt_line)));
@@ -68,7 +68,7 @@ int main() {
 
     std::vector<int> Z = Z_func(vec_p);
 
-    for (size_t i = 0; i < Z.size(); i++) {
+    for (size_t i = p_sz + 1; i < Z.size(); i++) {
         if (Z[i] == p_sz) {
             std::cout << vec_p[i].second.second << ", " << vec_p[i].second.first + 1 << std::endl;
         }
