@@ -73,4 +73,5 @@ class TSuffixTree {
         void searchPattern(const std::string& pattern, std::vector<int>& indices);
         void CreateTree(); // создание дерева
         void PrintEdgesInOrder();
+        void MatchStatistic(const std::string &str, std::vector<int> &ms);
 };
