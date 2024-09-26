@@ -5,8 +5,7 @@ tests/
 tmp
 *.tar
 solution/
-lab1
-lab2
+lab*
 benchmark
 
 build/
