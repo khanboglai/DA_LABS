@@ -198,51 +198,35 @@ void TSuffixTree::MatchStatistic(const std::string &str, std::vector<int> &ms) {
     TNode *current_node = root; // начинаю от корня
     int current_index = 0; // начало текста
     int str_len = str.length(); // длина текста
-    int cnt_syms = 0; // сколько мы прошли 
+    int cnt_syms = 0; // сколько мы прошли
+    int skip_sysm = 0; 
     TNode* before_node = nullptr;
 
-    // std::cout << current_node->start << std::endl; -1
-    // std::cout << *(current_node->end) << std::endl; -1
-
     while (current_index < str_len) {
-        // std::cout << "Cur idx: " << current_index << std::endl;
+        auto search = current_node->childs.find(str[current_index]);
 
-        auto find = current_node->childs.find(str[current_index]);
-
-        if (find == current_node->childs.end()) {
+        if (search == current_node->childs.end()) {
             current_index++;
-            // std::cout << "continue\n";
-            continue; // continue
+            continue;
         }
 
-        TNode *child = find->second;
-        // std::cout << "Suff idx: " << child->suff_id << std::endl;
-        before_node = current_node;
+        TNode *child = search->second;
+
+        if (!child) {
+            break;
+        }
 
         for (int i = child->start; i <= *(child->end); i++) {
-            // std::cout << "i: " << i << std::endl;
             if (str[current_index] == text[i]) {
                 cnt_syms++;
             } else {
-                current_node = before_node->suff_link;
-                
-                // if (current_node == root) {
-                //     std::cout << "suffix link on root" << std::endl;
-                // }
-
                 ms.push_back(cnt_syms);
                 cnt_syms--;
-                current_index--;
-                current_index += cnt_syms;
-                continue;
+                break;
             }
             current_index++;
         }
 
-        // std::cout << "Cnt syms: " << cnt_syms << std::endl;
-        // ms.push_back(cnt_syms);
-        // current_index++;
-        
-        current_node = child; // перешли в ребенка
+        current_node = child;
     }
 }
