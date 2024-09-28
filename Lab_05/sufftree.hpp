@@ -20,6 +20,7 @@
 #include <vector>
 #include <algorithm>
 
+typedef std::string::iterator t_index;
 
 class TSuffixTree {
     private:
@@ -63,8 +64,6 @@ class TSuffixTree {
         std::string text;
         int SuffTreeEnd; // end для всего дерева, первая эвристика
 
-        void PrintEdges(TNode* node, int depth);
-
 
     public:
         TSuffixTree(std::string &text); // конструктор дерева
@@ -72,6 +71,7 @@ class TSuffixTree {
 
         void searchPattern(const std::string& pattern, std::vector<int>& indices);
         void CreateTree(); // создание дерева
-        void PrintEdgesInOrder();
-        void MatchStatistic(const std::string &str, std::vector<int> &ms);
+        void MatchStatistic(std::vector<int> &value, const std::string &text);
 };
+
+// void MatchStatistic(const std::string &str, std::vector<int> &ms);

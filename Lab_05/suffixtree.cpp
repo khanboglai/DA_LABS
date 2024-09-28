@@ -114,119 +114,64 @@ void TSuffixTree::CreateTree() {
     }
 }
 
-
-void TSuffixTree::CollectIdx(TNode *node, std::vector<int> &vec) {
-    if (!node) {
-        return;
-    }
-
-    for (auto it : node->childs) {
-        CollectIdx(it.second, vec);
-    }
-    if (node->suff_id != -1) {
-        vec.push_back(node->suff_id);
-    }
-}
-
-
-void TSuffixTree::searchPattern(const std::string& pattern, std::vector<int>& indices) {
-
-    TNode* currentNode = root; // Начинаем с корневого узла
-    int currentIndex = 0; // Индекс текущего символа в шаблоне
-    int patternLength = pattern.length();
-
-    while (currentIndex < patternLength) {
-        char currentChar = pattern[currentIndex];
-
-        // Проверяем наличие символа в дочерних узлах
-        if (currentNode->childs.find(currentChar) == currentNode->childs.end()) {
-            // Символ не найден, выходим из метода
-            return;
-        }
-
-        // Переходим к дочернему узлу
-        TNode* childNode = currentNode->childs[currentChar];
-        int edgeLength = LengthOnCurve(childNode); // Длина ребра
-        int edgeStart = childNode->start; // Начало ребра
-
-        // Проходим по ребру
-        for (int i = 0; i < edgeLength && currentIndex < patternLength; i++) {
-            if (text[edgeStart + i] != pattern[currentIndex]) {
-                // Если символы не совпадают, выходим из метода
-                return;
-            }
-            currentIndex++;
-        }
-
-        // Если мы прошли все символы на ребре, переходим к дочернему узлу
-        currentNode = childNode;
-    }
-
-    // Если мы дошли до конца шаблона, собираем индексы суффиксов
-    CollectIdx(currentNode, indices);
-
-}
-
 int TSuffixTree::LengthOnCurve(TNode *node) {
     return *(node->end) - (node->start) + 1;
 }
 
 
-void TSuffixTree::PrintEdges(TSuffixTree::TNode *node, int depth) {
-    
-    for (const auto& child : node->childs) {
-        TNode* childNode = child.second;
+void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
+    ms.resize(str.length(), 0);
 
-        // Индексы левой и правой границы строки на ребре
-        int leftIndex = childNode->start;
-        int rightIndex = *(childNode->end); // Используем указатель на конец
+    TNode *current_node = root;
+    size_t current_id = 0;
+    // size_t skip_syms = 0;
+    size_t cnt_syms = 0;
+    size_t lens = str.length();
 
-        std::cout << depth << " " << leftIndex + 1 << " " << rightIndex + 1 << std::endl;        
+    while(current_id < lens) {
+        bool flag_cont = false;
+        
+        std::cout << "# id: " << current_id << std::endl;
 
-        // Рекурсивно обходим дочерний узел
-        PrintEdges(childNode, depth + 1);
-    }
-}
+        auto search = current_node->childs.find(str[current_id]);
 
-
-void TSuffixTree::PrintEdgesInOrder() {
-    PrintEdges(root, 0);
-}
-
-
-void TSuffixTree::MatchStatistic(const std::string &str, std::vector<int> &ms) {
-    TNode *current_node = root; // начинаю от корня
-    int current_index = 0; // начало текста
-    int str_len = str.length(); // длина текста
-    int cnt_syms = 0; // сколько мы прошли
-    int skip_sysm = 0; 
-    TNode* before_node = nullptr;
-
-    while (current_index < str_len) {
-        auto search = current_node->childs.find(str[current_index]);
-
-        if (search == current_node->childs.end()) {
-            current_index++;
+        if (search == current_node->childs.end()) { // если не нашли текущий символ
+            current_node = current_node->suff_link;
+            current_id++; // переходим к следующему
             continue;
         }
 
-        TNode *child = search->second;
 
-        if (!child) {
-            break;
-        }
+        // все же нашли
+        TNode *next_node = search->second; // пошли в потомка, которого нашли
+        
+        for (int i = next_node->start; i <= *(next_node->end); i++) {
+            if (str[current_id] == text[i]) {
+                cnt_syms++; // считаем, сколько совпало
+            } else{
+                if (current_node->suff_link) { // пустая внутрення вершина
+                    current_node = current_node->suff_link; // перешли по суффиксной ссылке
+                }
+                
+                std::cout << "cur id: " << current_id << std::endl;
+                std::cout << "cnt: " << cnt_syms << std::endl;
 
-        for (int i = child->start; i <= *(child->end); i++) {
-            if (str[current_index] == text[i]) {
-                cnt_syms++;
-            } else {
-                ms.push_back(cnt_syms);
-                cnt_syms--;
+                ms[current_id - cnt_syms] = cnt_syms; // положить в нужную позицию счетчик
+
+                current_id -= cnt_syms - 1; // откуда ищем
+                cnt_syms = 0; // уменьшить совпавшие при переходе на ветку
+
+                flag_cont = true; // надо продолжить без перехода в потомка
                 break;
             }
-            current_index++;
+            ms[current_id] = cnt_syms;
+            current_id++; // перескакиваем на следующую букву
         }
 
-        current_node = child;
+        if (flag_cont) { // без перехода в потомка
+            continue;
+        }
+
+        current_node = next_node; // переход в потомка
     }
 }
