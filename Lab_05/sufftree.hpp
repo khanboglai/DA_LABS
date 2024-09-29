@@ -59,7 +59,7 @@ class TSuffixTree {
 
         int growth_index; // идекс символа, на котором мы стоим сейчас
         int growth_step; // на сколько символов надо пройти до нужного индекса
-        int CountPlannedSuffix; // счетчик планируемых суффиксов
+        int plannedSuffixCount; // счетчик планируемых суффиксов
 
         std::string text;
         int SuffTreeEnd; // end для всего дерева, первая эвристика

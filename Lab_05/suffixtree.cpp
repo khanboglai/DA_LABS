@@ -9,7 +9,7 @@ TSuffixTree::TSuffixTree(std::string &str) : text(str) {
     growth_node = nullptr;
     growth_index = -1;
     growth_step = 0;
-    CountPlannedSuffix = 0;
+    plannedSuffixCount = 0;
     SuffTreeEnd = -1;
 
     text += SENTINEL;
@@ -34,9 +34,9 @@ TSuffixTree::~TSuffixTree() {
 void TSuffixTree::GrowthTree(int pos) {
     last_inner_node = nullptr;
     SuffTreeEnd++; // правило 1, увеличиваем текст на дугах
-    CountPlannedSuffix++; // планируемое число новых суффиксов
+    plannedSuffixCount++; // планируемое число новых суффиксов
 
-    while (CountPlannedSuffix) {
+    while (plannedSuffixCount) {
         if (growth_step == 0) { // надо искать из корня
             growth_index = pos;
         }
@@ -45,7 +45,7 @@ void TSuffixTree::GrowthTree(int pos) {
         auto find = growth_node->childs.find(text[growth_index]);
 
         if (find == growth_node->childs.end()) { // если такого нет
-            growth_node->childs.insert(std::make_pair(text[growth_index], new TNode(root, pos, &SuffTreeEnd, pos - CountPlannedSuffix + 1))); // добавим новую дугу, идущую в лист
+            growth_node->childs.insert(std::make_pair(text[growth_index], new TNode(root, pos, &SuffTreeEnd, pos - plannedSuffixCount + 1))); // добавим новую дугу, идущую в лист
 
             if (last_inner_node != nullptr) { // если мы работаем не скорнем, то надо прокинуть ссылки для внутренних вершин
                 last_inner_node->suff_link = growth_node; // правило 2
@@ -70,10 +70,6 @@ void TSuffixTree::GrowthTree(int pos) {
                 if (last_inner_node != nullptr && growth_node != root) { // && growth_node != root
                     last_inner_node->suff_link = growth_node; // установка суффиксной ссылки
                 }
-
-                // if (last_inner_node != nullptr && text[pos] == *(SENTINEL.c_str())) {
-                //     last_inner_node->suff_link = root; // Установить ссылку на корень
-                // }
                 
                 growth_step++; // увеличиваем шаг 
                 break; // правило 3, стоп
@@ -86,7 +82,7 @@ void TSuffixTree::GrowthTree(int pos) {
             next->start += growth_step; // следующая вершина начинается после внутренне вершины
 
             // прикрепим листовые вершины к внутренней
-            split->childs.insert(std::make_pair(text[pos], new TNode(root, pos, &SuffTreeEnd, pos - CountPlannedSuffix + 1))); // создаем новую листовую
+            split->childs.insert(std::make_pair(text[pos], new TNode(root, pos, &SuffTreeEnd, pos - plannedSuffixCount + 1))); // создаем новую листовую
             split->childs.insert(std::make_pair(text[next->start], next)); // цепляем старую
 
             if (last_inner_node != nullptr) {
@@ -95,7 +91,7 @@ void TSuffixTree::GrowthTree(int pos) {
             last_inner_node = split; // последняя внутреннея вершина 
         }
 
-        CountPlannedSuffix--; // осталось создать меньше суффиксов
+        plannedSuffixCount--; // осталось создать меньше суффиксов
 
         if (growth_node == root && growth_step > 0) {
             growth_step--;
