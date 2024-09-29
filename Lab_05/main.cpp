@@ -18,7 +18,7 @@ int main() {
     std::string text = "qababaz";
     t.MatchStatistic(ms, text);
 
-    std::cout << str << std::endl;
+    std::cout << str1 << std::endl;
 
     for (char el : text) {
         std::cout << el << " ";

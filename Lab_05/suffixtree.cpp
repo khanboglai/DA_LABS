@@ -5,7 +5,7 @@ std::string SENTINEL = "$";
 
 TSuffixTree::TSuffixTree(std::string &str) {
     text = std::move(str);
-    root = new TNode(nullptr, -1, new int(-1));
+    root = new TNode(nullptr, -1, new int(-1), -1); // корень это внутрення вершина, суфф индекс = -1
     last_inner_node = nullptr;
     current_node = nullptr;
     current_index = -1;
@@ -34,7 +34,7 @@ TSuffixTree::~TSuffixTree() {
 
 void TSuffixTree::SplitNode(TNode *next, int position) {
     // символа нет на дуге, надо создать внутреннюю вершину
-    TNode *split_node = new TNode(root, next->start, new int(next->start + growth_step - 1));
+    TNode *split_node = new TNode(root, next->start, new int(next->start + growth_step - 1), -1);
     current_node->childs[text[current_index]] = std::move(split_node); // добавим к текущей ноде нового потомка
 
     next->start += growth_step; // следующая вершина начинается после внутренне вершины
@@ -51,7 +51,7 @@ void TSuffixTree::SplitNode(TNode *next, int position) {
 
 
 void TSuffixTree::UpdateCurrentPos() {
-    if (current_node == root && growth_step > 0) {
+    if (current_node == root && growth_step) {
         growth_step--;
         current_index++;
     } else if (current_node != root) {

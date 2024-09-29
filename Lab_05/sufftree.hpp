@@ -24,14 +24,7 @@ class TSuffixTree {
     private:
         class TNode {
             public:
-                TNode(TNode *slink, int st, int *e) { // конструктор для внутренней вершины
-                    suff_link = slink;
-                    start = st;
-                    end = e;
-                    suff_id = -1;
-                }
-
-                TNode(TNode *slink, int st, int *e, int suffix_idx) { // конструктор для листа
+                TNode(TNode *slink, int st, int *e, int suffix_idx) { // конструктор для узла
                     suff_link = slink;
                     start = st;
                     end = e;
@@ -54,11 +47,11 @@ class TSuffixTree {
         void UpdateCurrentPos();
 
         TNode *root;
-        TNode *last_inner_node; // последняя внутрення вершина, которую мы сосздали
+        TNode *last_inner_node; // последняя внутрення вершина, которую мы создали
         TNode *current_node; // узел, от которого будем увеличивать дерево
 
-        int current_index; // идекс символа, на котором мы стоим сейчас
-        int growth_step; // на сколько символов надо пройти до нужного индекса
+        int current_index; // индекс символа, на котором мы стоим сейчас
+        int growth_step; // на сколько символов надо пройти до нужного индекса, вторая эвристика
         int plannedSiffixs; // счетчик планируемых суффиксов
 
         std::string text;
