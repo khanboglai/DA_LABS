@@ -9,11 +9,15 @@ P = aba
 
 int main() {
 
-    std::string str = "baobab";
+    /*
+    T = aobbaoababba
+    P = baobab
+    */
+    std::string str = "aba";
 
     TSuffixTree t(str);
     std::vector<int> ms;
-    std::string text = "aobbaoababba";
+    std::string text = "qababaz";
     t.MatchStatistic(ms, text);
 
     std::cout << str << std::endl;
@@ -23,13 +27,19 @@ int main() {
     }
     std::cout << std::endl;
 
-    for (size_t i = 0; i < text.length(); i++) {
-        std::cout << i << " ";
-    }
-    std::cout << std::endl;
+    // for (size_t i = 0; i < text.length(); i++) {
+    //     std::cout << i << " ";
+    // }
+    // std::cout << std::endl;
 
     for (size_t i = 0; i < ms.size(); i++) {
         std::cout << ms[i] << " "; 
     }
-    std::cout << std::endl;    
+    std::cout << std::endl;
+
+    for (size_t i = 0; i < ms.size(); i++) {
+        if (ms[i] == int(str.size())) {
+            std::cout << i + 1 << std::endl;
+        }
+    }    
 }

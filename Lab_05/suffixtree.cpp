@@ -120,77 +120,35 @@ int TSuffixTree::LengthOnCurve(TNode *node) {
 
 
 void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
-    ms.resize(str.length(), 0);
+    // Инициализируем вектор значениями 0
+    ms.assign(str.size(), 0);
 
-    TNode *current_node = root;
-    size_t current_id = 0;
-    size_t skip_syms = 0;
-    size_t cnt_syms = 0;
-    size_t lens = str.length();
-    bool increase_fl = true;
+    // Проходим по всем символам текста
+    for (size_t i = 0; i < str.size(); ++i) {
+        TNode *current_node = root; // Начинаем с корня
+        size_t j = i; // Индекс в тексте
 
-    while(current_id < lens) {
-        bool flag_cont = false;
-        
-        std::cout << "# id: " << current_id << std::endl;
+        // Пока есть символы для проверки
+        while (j < str.size()) {
+            // Проверяем, есть ли переход по текущему символу
+            if (current_node->childs.find(str[j]) != current_node->childs.end()) {
+                TNode *next_node = current_node->childs[str[j]];
+                size_t edge_length = LengthOnCurve(next_node); // Длина дуги
 
-        auto search = current_node->childs.find(str[current_id]);
-
-        if (search == current_node->childs.end()) { // если не нашли текущий символ
-            current_node = current_node->suff_link;
-            // current_id++; // переходим к следующему
-            continue;
-        }
-
-        // все же нашли
-        TNode *next_node = search->second; // пошли в потомка, которого нашли
-        
-        for (int i = next_node->start; i <= *(next_node->end); i++) {
-            if (str[current_id] == text[i]) {
-                cnt_syms++; // считаем, сколько совпало
-            } else{
-                if (current_node->suff_link) { // пустая внутрення вершина
-                    current_node = current_node->suff_link; // перешли по суффиксной ссылке
+                // Проверяем, сколько символов совпадает
+                for (size_t k = 0; k < edge_length && j < str.size(); ++k) {
+                    if (str[j] == text[next_node->start + k]) {
+                        ms[i]++; // Увеличиваем счетчик совпадений
+                        j++;
+                    } else {
+                        break; // Если символы не совпадают, выходим из цикла
+                    }
                 }
-                
-                std::cout << "cur id: " << current_id << std::endl;
-                std::cout << "cnt: " << cnt_syms << std::endl;
 
-                skip_syms = cnt_syms - 1;
-
-                std::cout << "skip: " << skip_syms << std::endl;
-
-                ms[current_id - cnt_syms] = cnt_syms; // положить в нужную позицию счетчик
-
-                current_id -= cnt_syms - 1; // откуда ищем
-
-                cnt_syms = 0; // уменьшить совпавшие при переходе на ветку
-
-                flag_cont = true; // надо продолжить без перехода в потомка
-                
-                // if (skip_syms == 1) { 
-                //     increase_fl = false;
-                //     skip_syms = 0;
-                // }
-                break;
+                current_node = next_node; // Переходим к следующему узлу
+            } else {
+                break; // Если перехода нет, выходим из цикла
             }
-            current_id++; // перескакиваем на следующую букву
-        }
-
-        if (flag_cont) { // без перехода в потомка
-            continue;
-        }
-
-        if (skip_syms != 1) {
-            current_node = next_node; // переход в потомка
-        } else {
-            skip_syms = 0;
-            if (current_node->suff_link) {
-                current_node = current_node->suff_link;
-            }
-            ms[current_id - 1] = cnt_syms;
-            cnt_syms = 0;
-            increase_fl = true;
         }
     }
 }
