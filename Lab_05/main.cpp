@@ -1,6 +1,4 @@
 #include "sufftree.hpp"
-#include <sstream>
-#include <iterator>
 
 /*
 T = qababaz
@@ -14,7 +12,7 @@ int main() {
     P = baobab
     */
     std::string str = "aba";
-
+    std::string str1 = str;
     TSuffixTree t(str);
     std::vector<int> ms;
     std::string text = "qababaz";
@@ -27,18 +25,13 @@ int main() {
     }
     std::cout << std::endl;
 
-    // for (size_t i = 0; i < text.length(); i++) {
-    //     std::cout << i << " ";
-    // }
-    // std::cout << std::endl;
-
     for (size_t i = 0; i < ms.size(); i++) {
         std::cout << ms[i] << " "; 
     }
     std::cout << std::endl;
 
     for (size_t i = 0; i < ms.size(); i++) {
-        if (ms[i] == int(str.size())) {
+        if (ms[i] == int(str1.size())) {
             std::cout << i + 1 << std::endl;
         }
     }    

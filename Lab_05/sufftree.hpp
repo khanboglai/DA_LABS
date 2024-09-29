@@ -16,11 +16,9 @@
 
 #include <iostream>
 #include <string>
-#include <map>
+#include <unordered_map>
 #include <vector>
-#include <algorithm>
 
-typedef std::string::iterator t_index;
 
 class TSuffixTree {
     private:
@@ -43,35 +41,32 @@ class TSuffixTree {
                 TNode *suff_link;
                 int start;
                 int *end; // правая граница для текста на дуге
-                std::map<char, TNode*> childs;
+                std::unordered_map<char, TNode*> childs;
                 int suff_id;
         };
 
-        void GrowthTree(int pos); // развитие дерева при добавлении нового символа
+        void CreateTree(); // создание дерева
+        void AddSuffix(int position); // развитие дерева при добавлении нового символа
         void DeleteTree(TNode *node); // удаление дерева
-
         int LengthOnCurve(TNode *node); // кол-во символов на дуге
-        void CollectIdx(TNode *node, std::vector<int> &vec); // сбор индексов при проходе по дереву
+
+        void SplitNode(TNode *next, int position);
+        void UpdateCurrentPos();
 
         TNode *root;
         TNode *last_inner_node; // последняя внутрення вершина, которую мы сосздали
-        TNode *growth_node; // узел, от которого будем увеличивать дерево
+        TNode *current_node; // узел, от которого будем увеличивать дерево
 
-        int growth_index; // идекс символа, на котором мы стоим сейчас
+        int current_index; // идекс символа, на котором мы стоим сейчас
         int growth_step; // на сколько символов надо пройти до нужного индекса
-        int plannedSuffixCount; // счетчик планируемых суффиксов
+        int plannedSiffixs; // счетчик планируемых суффиксов
 
         std::string text;
-        int SuffTreeEnd; // end для всего дерева, первая эвристика
+        int sufftreeEnd; // end для всего дерева, первая эвристика
 
 
     public:
         TSuffixTree(std::string &text); // конструктор дерева
         ~TSuffixTree(); // деструктор
-
-        void searchPattern(const std::string& pattern, std::vector<int>& indices);
-        void CreateTree(); // создание дерева
         void MatchStatistic(std::vector<int> &value, const std::string &text);
 };
-
-// void MatchStatistic(const std::string &str, std::vector<int> &ms);
