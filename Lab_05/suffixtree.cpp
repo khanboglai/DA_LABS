@@ -124,9 +124,10 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
 
     TNode *current_node = root;
     size_t current_id = 0;
-    // size_t skip_syms = 0;
+    size_t skip_syms = 0;
     size_t cnt_syms = 0;
     size_t lens = str.length();
+    bool increase_fl = true;
 
     while(current_id < lens) {
         bool flag_cont = false;
@@ -137,10 +138,9 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
 
         if (search == current_node->childs.end()) { // если не нашли текущий символ
             current_node = current_node->suff_link;
-            current_id++; // переходим к следующему
+            // current_id++; // переходим к следующему
             continue;
         }
-
 
         // все же нашли
         TNode *next_node = search->second; // пошли в потомка, которого нашли
@@ -156,15 +156,24 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
                 std::cout << "cur id: " << current_id << std::endl;
                 std::cout << "cnt: " << cnt_syms << std::endl;
 
+                skip_syms = cnt_syms - 1;
+
+                std::cout << "skip: " << skip_syms << std::endl;
+
                 ms[current_id - cnt_syms] = cnt_syms; // положить в нужную позицию счетчик
 
                 current_id -= cnt_syms - 1; // откуда ищем
+
                 cnt_syms = 0; // уменьшить совпавшие при переходе на ветку
 
                 flag_cont = true; // надо продолжить без перехода в потомка
+                
+                // if (skip_syms == 1) { 
+                //     increase_fl = false;
+                //     skip_syms = 0;
+                // }
                 break;
             }
-            ms[current_id] = cnt_syms;
             current_id++; // перескакиваем на следующую букву
         }
 
@@ -172,6 +181,16 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
             continue;
         }
 
-        current_node = next_node; // переход в потомка
+        if (skip_syms != 1) {
+            current_node = next_node; // переход в потомка
+        } else {
+            skip_syms = 0;
+            if (current_node->suff_link) {
+                current_node = current_node->suff_link;
+            }
+            ms[current_id - 1] = cnt_syms;
+            cnt_syms = 0;
+            increase_fl = true;
+        }
     }
 }
