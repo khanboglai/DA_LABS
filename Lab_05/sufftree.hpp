@@ -20,6 +20,12 @@
 #include <vector>
 
 
+// константы
+const char SENTINEL = '$';
+const int TERMPOS = -1;
+const int TERMVAL = 0;
+
+
 class TSuffixTree {
     private:
         class TNode {
@@ -34,11 +40,12 @@ class TSuffixTree {
                 TNode *suff_link;
                 int start;
                 int *end; // правая граница для текста на дуге
-                std::unordered_map<char, TNode*> childs;
+                std::unordered_map<char, TNode*> childs; // нам не нужно хранить значения в определенном порядке
                 int suff_id;
         };
 
         void CreateTree(); // создание дерева
+        TNode *FindChildNode(TNode *current, char s);
         void AddSuffix(int position); // развитие дерева при добавлении нового символа
         void DeleteTree(TNode *node); // удаление дерева
         int LengthOnCurve(TNode *node); // кол-во символов на дуге

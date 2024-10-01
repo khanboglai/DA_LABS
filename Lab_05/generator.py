@@ -6,7 +6,7 @@ import sys
 import string
 import random
 
-ALPHABET = 'abcd'#string.ascii_lowercase 
+ALPHABET = 'abcdefghijklmnopqrstvuwxyz' # string.ascii_lowercase 
 
 def get_random_text(text_len=None):
     if text_len is None:
