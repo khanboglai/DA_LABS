@@ -30,18 +30,18 @@ class TSuffixTree {
     private:
         class TNode {
             public:
-                TNode(TNode *slink, int st, int *e, bool leaf_status) { // конструктор для узла
-                    suff_link = slink;
-                    start = st;
-                    end = e;
-                    is_leaf = leaf_status;
-                }
-
                 TNode *suff_link;
                 int start;
                 int *end; // правая граница для текста на дуге
                 std::unordered_map<char, TNode*> childs; // нам не нужно хранить значения в определенном порядке
                 bool is_leaf;
+
+                TNode(int st, int *e, TNode *sf_link, bool leaf_status) { // конструктор для узла
+                    suff_link = sf_link;
+                    start = st;
+                    end = e;
+                    is_leaf = leaf_status;
+                }
         };
 
         void CreateTree(); // создание дерева

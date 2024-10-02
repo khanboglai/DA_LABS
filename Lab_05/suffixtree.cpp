@@ -3,7 +3,7 @@
 
 TSuffixTree::TSuffixTree(std::string &str) {
     text = std::move(str);
-    root = new TNode(nullptr, TERMPOS, new int(TERMPOS), false); // корень это внутрення вершина, суфф индекс = -1
+    root = new TNode(TERMPOS, new int(TERMPOS), nullptr, false); // корень это внутрення вершина, суфф индекс = -1
     last_inner_node = nullptr;
     current_node = nullptr;
     current_index = TERMPOS;
@@ -38,13 +38,13 @@ TSuffixTree::~TSuffixTree() {
 
 void TSuffixTree::SplitNode(TNode *next, int position) {
     // символа нет на дуге, надо создать внутреннюю вершину
-    TNode *split_node = new TNode(root, next->start, new int(next->start + jump_cnt - 1), false); // -1 для внутренней вершины
+    TNode *split_node = new TNode(next->start, new int(next->start + jump_cnt - 1), root, false); // -1 для внутренней вершины
     current_node->childs[text[current_index]] = std::move(split_node); // добавим к текущей ноде нового потомка
 
     next->start += jump_cnt; // следующая вершина начинается после внутренне вершины
 
     // прикрепим листовые вершины к внутренней
-    split_node->childs[text[position]] = std::move(new TNode(root, position, &sufftreeEnd, true)); // создаем новую листовую
+    split_node->childs[text[position]] = std::move(new TNode(position, &sufftreeEnd, nullptr, true)); // создаем новую листовую
     split_node->childs[text[next->start]] = std::move(next); // цепляем старую
 
     if (last_inner_node) {
@@ -55,11 +55,13 @@ void TSuffixTree::SplitNode(TNode *next, int position) {
 
 
 void TSuffixTree::UpdateCurrentPos() {
-    if (current_node == root && jump_cnt) {
-        jump_cnt--;
+    if (current_node == root) { // если мы в корень попали, то надо перейти на следующий символ
+        if (jump_cnt) {
+            jump_cnt--; // значит надо уменьшить шаг
+        }
         current_index++;
-    } else if (current_node != root) {
-        current_node = current_node->suff_link; // перемещение по суффиксной ссылке
+    } else {
+        current_node = current_node->suff_link; // если мы не в корне, то идти только по суффиксной ссылке
     }
 }
 
@@ -88,7 +90,7 @@ void TSuffixTree::AddSuffix(int position) {
 
         if (!next) { // если такого нет
             // std::cout << current_index << " " << position << " " << plannedSiffixs << std::endl;
-            current_node->childs[text[current_index]] = std::move(new TNode(root, position, &sufftreeEnd, true));
+            current_node->childs[text[current_index]] = std::move(new TNode(position, &sufftreeEnd, nullptr, true));
         
             if (last_inner_node) { // если мы работаем не скорнем, то надо прокинуть ссылки для внутренних вершин
                 last_inner_node->suff_link = current_node; // правило 2
@@ -99,7 +101,7 @@ void TSuffixTree::AddSuffix(int position) {
 
             if (jump_cnt >= curve_len) { // можем ли перепрыгнуть всю дугу
                 current_index += curve_len; // след символ
-                jump_cnt -= curve_len;
+                jump_cnt -= curve_len; // уменьшаем прыжок
                 current_node = next; // след узел
                 continue;
             }
@@ -108,11 +110,11 @@ void TSuffixTree::AddSuffix(int position) {
             if (text[next->start + jump_cnt] == text[position]) {
 
                 // проверка на внутренние вершины
-                if (last_inner_node && current_node != root) { // here
-                    last_inner_node->suff_link = current_node; // установка суффиксной ссылки
-                }
+                // if (last_inner_node && current_node != root) { // here
+                //     last_inner_node->suff_link = current_node; // установка суффиксной ссылки
+                // }
 
-                jump_cnt++; // увеличиваем шаг 
+                jump_cnt++; // увеличиваем прыжок
                 break; // правило 3, стоп
             }
 
