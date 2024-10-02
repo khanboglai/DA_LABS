@@ -140,36 +140,49 @@ int TSuffixTree::LengthOnCurve(TNode *node) {
 
 
 void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
-    ms.resize(str.size(), 0); // заполнили вектор 0
+    // Инициализируем вектор значениями 0
+    ms.assign(str.size(), 0);
 
-    for (size_t i = 0; i < str.size(); ++i) { // проход по всем символам текста
-        TNode *currentNode = root; // начинаем с корня
-        size_t comp_idx = i; // индекс в тексте
+    // Проходим по всем символам текста
+    for (size_t i = 0; i < str.size(); ++i) {
+        TNode *currentNode = root; // Начинаем с корня
+        size_t j = i; // Индекс в тексте
 
-        // пока есть символы для проверки
-        while (comp_idx < str.size()) {
-            // проверяем, есть ли переход по текущему символу
-            if (currentNode->childs.find(str[comp_idx]) != currentNode->childs.end()) {
-                TNode *next_node = currentNode->childs[str[comp_idx]];
+        // Пока есть символы для проверки
+        while (j < str.size()) {
+            // Проверяем, есть ли переход по текущему символу
+            if (!currentNode) {
+                currentNode = root;
+            }
+
+            if (currentNode->childs.find(str[j]) != currentNode->childs.end()) {
+                TNode *next_node = currentNode->childs[str[j]];
                 size_t curve_len = LengthOnCurve(next_node); // Длина дуги
 
-                // проверяем, сколько символов совпадает
-                size_t k = 0; 
-                // не нужно сбрасыватьв 0, 
-                // чтобы при переходе по суфф ссылке начать с этой позиции, не проверяя снова все символы
-                for (; k < curve_len && comp_idx < str.size(); ++k) {
-                    if (str[comp_idx] == text[next_node->start + k]) {
-                        ms[i]++; // увеличиваем счетчик совпадений
-                        comp_idx++;
-                    } else {
-                        currentNode = currentNode->suff_link; // переходим по суффиксной ссылке
-                        break; // если символы не совпадают, выходим из цикла
-                    }
+                // Проверяем, сколько символов совпадает
+                size_t k = 0;
+                while (k < curve_len && j < str.size() && str[j] == text[next_node->start + k]) {
+                    ms[i]++; // Увеличиваем счетчик совпадений
+                    j++;
+                    k++;
                 }
 
-                currentNode = next_node; // переходим к следующему узлу
+                // Если мы вышли из цикла из-за несовпадения
+                if (k < curve_len) {
+                    // Здесь мы должны сделать переход по суффиксной ссылке
+                    if (currentNode) {
+                        currentNode = currentNode->suff_link; // Переход по суффиксной ссылке
+                    }
+
+                    // Пропускаем символы, которые были сравнены на предыдущей дуге
+                    j = next_node->start + 1; // Устанавливаем j на следующий символ для сравнения
+                    break;
+                } else {
+                    currentNode = next_node; // Переходим к следующему узлу
+                }
             } else {
-                break; // если перехода нет, выходим из цикла
+                // Если перехода нет, выходим из цикла
+                break;
             }
         }
     }
