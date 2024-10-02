@@ -3,7 +3,7 @@
 
 TSuffixTree::TSuffixTree(std::string &str) {
     text = std::move(str);
-    root = new TNode(nullptr, TERMPOS, new int(TERMPOS), TERMPOS); // корень это внутрення вершина, суфф индекс = -1
+    root = new TNode(nullptr, TERMPOS, new int(TERMPOS), false); // корень это внутрення вершина, суфф индекс = -1
     last_inner_node = nullptr;
     current_node = nullptr;
     current_index = TERMPOS;
@@ -24,7 +24,7 @@ void TSuffixTree::DeleteTree(TNode *node) {
     for (auto it : node->childs) {
         DeleteTree(it.second);
     }
-    if (node->suff_id == TERMPOS) { // проверим, есть ли указатели, которые мы не выделяли
+    if (!(node->is_leaf)) { // проверим, есть ли указатели, которые мы не выделяли
         delete node->end;
     }
     delete node;
@@ -38,13 +38,13 @@ TSuffixTree::~TSuffixTree() {
 
 void TSuffixTree::SplitNode(TNode *next, int position) {
     // символа нет на дуге, надо создать внутреннюю вершину
-    TNode *split_node = new TNode(root, next->start, new int(next->start + jump_cnt - 1), TERMPOS); // -1 для внутренней вершины
+    TNode *split_node = new TNode(root, next->start, new int(next->start + jump_cnt - 1), false); // -1 для внутренней вершины
     current_node->childs[text[current_index]] = std::move(split_node); // добавим к текущей ноде нового потомка
 
     next->start += jump_cnt; // следующая вершина начинается после внутренне вершины
 
     // прикрепим листовые вершины к внутренней
-    split_node->childs[text[position]] = std::move(new TNode(root, position, &sufftreeEnd, position)); // создаем новую листовую
+    split_node->childs[text[position]] = std::move(new TNode(root, position, &sufftreeEnd, true)); // создаем новую листовую
     split_node->childs[text[next->start]] = std::move(next); // цепляем старую
 
     if (last_inner_node) {
@@ -88,7 +88,7 @@ void TSuffixTree::AddSuffix(int position) {
 
         if (!next) { // если такого нет
             // std::cout << current_index << " " << position << " " << plannedSiffixs << std::endl;
-            current_node->childs[text[current_index]] = std::move(new TNode(root, position, &sufftreeEnd, position));
+            current_node->childs[text[current_index]] = std::move(new TNode(root, position, &sufftreeEnd, true));
         
             if (last_inner_node) { // если мы работаем не скорнем, то надо прокинуть ссылки для внутренних вершин
                 last_inner_node->suff_link = current_node; // правило 2
@@ -140,13 +140,14 @@ int TSuffixTree::LengthOnCurve(TNode *node) {
 
 
 void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
-    // Инициализируем вектор значениями 0
+    // инициализируем вектор значениями 0
     ms.assign(str.size(), 0);
 
-    // Проходим по всем символам текста
+    // проходим по всем символам текста
     for (size_t i = 0; i < str.size(); ++i) {
-        TNode *currentNode = root; // Начинаем с корня
-        size_t j = i; // Индекс в тексте
+        TNode *currentNode = root; // начинаем с корня
+        size_t j = i; // индекс в тексте
+        size_t k = 0;
 
         // Пока есть символы для проверки
         while (j < str.size()) {
@@ -157,31 +158,33 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &str) {
 
             if (currentNode->childs.find(str[j]) != currentNode->childs.end()) {
                 TNode *next_node = currentNode->childs[str[j]];
-                size_t curve_len = LengthOnCurve(next_node); // Длина дуги
+                size_t curve_len = LengthOnCurve(next_node);
 
-                // Проверяем, сколько символов совпадает
-                size_t k = 0;
+                // проверяем, сколько символов совпадает
+                
                 while (k < curve_len && j < str.size() && str[j] == text[next_node->start + k]) {
-                    ms[i]++; // Увеличиваем счетчик совпадений
+                    ms[i]++; // увеличиваем счетчик совпадений
                     j++;
                     k++;
                 }
 
-                // Если мы вышли из цикла из-за несовпадения
+                // если мы вышли из цикла из-за несовпадения
                 if (k < curve_len) {
-                    // Здесь мы должны сделать переход по суффиксной ссылке
+                    // здесь мы должны сделать переход по суффиксной ссылке
                     if (currentNode) {
-                        currentNode = currentNode->suff_link; // Переход по суффиксной ссылке
+                        currentNode = currentNode->suff_link; // переход по суффиксной ссылке
                     }
 
-                    // Пропускаем символы, которые были сравнены на предыдущей дуге
-                    j = next_node->start + 1; // Устанавливаем j на следующий символ для сравнения
+                    // пропускаем символы, которые были сравнены на предыдущей дуге
+                    j = ms[i] - 1; // устанавливаем j на следующий символ для сравнения
+                    k = ms[i] - 1; // устанавливаем k на следующий символ для сравнения
                     break;
                 } else {
-                    currentNode = next_node; // Переходим к следующему узлу
+                    currentNode = next_node; // переходим к следующему узлу
+                    k = 0;
                 }
             } else {
-                // Если перехода нет, выходим из цикла
+                // если перехода нет, выходим из цикла
                 break;
             }
         }
