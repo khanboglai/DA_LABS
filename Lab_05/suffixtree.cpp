@@ -108,12 +108,6 @@ void TSuffixTree::AddSuffix(int position) {
 
             // если уже есть символ, по правилу 3 идем к следующему символу
             if (text[next->start + jump_cnt] == text[position]) {
-
-                // проверка на внутренние вершины
-                // if (last_inner_node && current_node != root) { // here
-                //     last_inner_node->suff_link = current_node; // установка суффиксной ссылки
-                // }
-
                 jump_cnt++; // увеличиваем прыжок
                 break; // правило 3, стоп
             }

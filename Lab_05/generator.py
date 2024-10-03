@@ -10,7 +10,7 @@ ALPHABET = 'abcdefghijklmnopqrstvuwxyz' # string.ascii_lowercase
 
 def get_random_text(text_len=None):
     if text_len is None:
-        text_len = random.randint(1000, 100000)
+        text_len = random.randint(1000, 10000)
     return "".join( [ random.choice( ALPHABET ) for _ in range( text_len ) ] )
 
 def get_all_occurrences( text, pattern ):
@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 else:
                     # Берём рандомную подстроку. Она может совпасть с 
                     # существующей.
-                    pattern = get_random_text( random.randint( 50, 1000 ) )
+                    pattern = get_random_text( random.randint( 50, 500 ) )
                 # Определяем позиции, на которых встретился наш шаблон в тексте.
                 #pos = [ str(m.start()+1) for m in re.finditer(pattern, text) ]
                 pos = get_all_occurrences( text, pattern )

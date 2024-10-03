@@ -1,4 +1,5 @@
 #include "sufftree.hpp"
+#include <sstream>
 
 /*
 T = qababaz
@@ -30,4 +31,34 @@ int main() {
             std::cout << i + 1 << std::endl;
         }
     }    
+
+    // std::string text;
+    // std::cin >> text;
+
+    // std::string pattern;
+    // int cnt = 1;
+
+    // while (std::cin >> pattern) {
+    //     std::stringstream res;
+    //     int p_l = pattern.length();
+    //     TSuffixTree t(pattern);
+    //     std::vector<int> ms;
+    //     t.MatchStatistic(ms, text);
+
+    //     for (size_t i = 0; i < ms.size(); i++) {
+    //         if (ms[i] == p_l) {
+    //             res << i + 1 << ", ";
+    //         }
+    //     }
+
+    //     std::string re = res.str();
+
+    //     if (!re.empty()) {
+    //         re = re.erase(re.length() - 2);
+    //         std::cout << cnt << ": " << re << std::endl;
+                
+    //     } 
+    //     cnt++;
+        
+    // }
 }
