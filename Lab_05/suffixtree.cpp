@@ -74,11 +74,6 @@ void TSuffixTree::AddSuffix(int position) {
         if (!next_node) { // суффикса нет
             // создадим новый узел под него, это лист
             params.current_node->child[str[params.current_index]] = new TNode(position, &suffixTreeEnd, nullptr, true);
-
-            // if (last_inner_node) {
-            //     last_inner_node->suffix_link = current_node;
-            //     last_inner_node = nullptr;
-            // }
         } else { // суффикс есть
 
             // символ был вставлен ранее, ничего не делаем, правило 3
@@ -108,20 +103,22 @@ void TSuffixTree::AddSuffix(int position) {
             inner_node->child[str[next_node->begin]] = next_node; // прикрепляем наш узел к внутреннему узлу
 
             if (last_inner_node) { // есть неприкаяная внутренння вершина
+                // std::cout << "YES" << std::endl;
                 last_inner_node->suffix_link = inner_node; // прокидываем ссылку
             }
             last_inner_node = inner_node; // теперь новая внутрення вершина последняя
         }
 
-        params.plannedSuffixs--; // суффикс добавлен
 
         if (params.current_node == root) { // в корне
             params.current_index++; // пошли проверять следующий суффикс
             if (params.jump_counter) {
                 params.jump_counter--;
             }
+            params.plannedSuffixs--; // суффикс добавлен
         } else { // у нас есть еще ветки, надо посетить их
             params.current_node = params.current_node->suffix_link;
+            continue; // надо пойти к другим суффиксам и там тоже разделить
         }
     }
 }
