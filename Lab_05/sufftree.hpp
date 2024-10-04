@@ -1,72 +1,46 @@
-// Строим суффиксное дерево при помощи алгоритма Укконена за O(n)
-#pragma once
-
-/*
-Правила в гасфилде
-
-Правило 1
-увеличиваем end -> end++
-
-Правило 2
-создание внутренней и листовой вершины 
-
-Правило 3
-путь начинается с нового символа, значит ничего делать не нужно
-*/
-
 #include <iostream>
 #include <string>
-#include <unordered_map>
 #include <vector>
-
-
-// константы
-const char SENTINEL = '$';
-const int TERMPOS = -1;
-const int TERMVAL = 0;
+#include <unordered_map>
 
 
 class TSuffixTree {
     private:
         class TNode {
             public:
-                TNode *suff_link;
-                int start;
-                int *end; // правая граница для текста на дуге
-                std::unordered_map<char, TNode*> childs; // нам не нужно хранить значения в определенном порядке
-                bool is_leaf;
+                int begin; // начало ребра
+                int *end; // конец ребра, указатель, чтобы можно было его менять
+                TNode *suffix_link; // суффиксная ссылка
+                bool is_leaf; // статус узла
+                std::unordered_map<char, TNode *> child; // потомки
+                // вибрал unordered_map потому что в среднем вставка, поиск, удаления за O(1)
 
-                TNode(int st, int *e, TNode *sf_link, bool leaf_status) { // конструктор для узла
-                    suff_link = sf_link;
-                    start = st;
-                    end = e;
-                    is_leaf = leaf_status;
-                }
+                TNode(int start, int *finish, TNode* s_link, bool leaf); // конструктор узла
         };
 
+        // структура для параметров дерева
+        struct TreeData {
+            TNode *current_node; // текущий узел
+            int current_index; // текущий символ
+            int jump_counter; // счетчик прыжков
+            int plannedSuffixs; // количество суффиксов, которое нужно создать
+            // TNode *last_inner_node; // последняя внутрення вершина, котору мы создали и которую мы не привязяли
+
+        };
+
+
+        TNode *root; // корень
+        std::string str; // срока, по которой строим
+        int suffixTreeEnd; // конец ребра для всего дерева
+        TreeData params; // параметры, которые нужно запомнить
+
         void CreateTree(); // создание дерева
-        TNode *FindChildNode(TNode *current, char s);
-        void AddSuffix(int position); // развитие дерева при добавлении нового символа
-        void DeleteTree(TNode *node); // удаление дерева
-        int LengthOnCurve(TNode *node); // кол-во символов на дуге
-
-        void SplitNode(TNode *next, int position);
-        void UpdateCurrentPos();
-
-        TNode *root;
-        TNode *last_inner_node; // последняя внутрення вершина, которую мы создали
-        TNode *current_node; // узел, от которого будем увеличивать дерево
-
-        int current_index; // индекс символа, на котором мы стоим сейчас
-        int jump_cnt; // на сколько символов надо пройти до нужного индекса, вторая эвристика
-        int plannedSiffixs; // счетчик планируемых суффиксов
-
-        std::string text;
-        int sufftreeEnd; // end для всего дерева, первая эвристика
-
+        void AddSuffix(int position); // добавлений суффикса
+        void DestroyTree(TNode *node); // удаление дерева
+        int CurveLength(TNode *node); // длина текста на ребре
 
     public:
-        TSuffixTree(std::string &text); // конструктор дерева
-        ~TSuffixTree(); // деструктор
-        void MatchStatistic(std::vector<int> &value, const std::string &text);
+        TSuffixTree(std::string &input_str); // конструктор дерева
+        ~TSuffixTree(); // дествруктор
+        void MatchStatistic(std::vector<int> &ms, const std::string &str); // подсчет статистики совпадений
 };
