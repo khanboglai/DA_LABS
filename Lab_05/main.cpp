@@ -14,6 +14,11 @@ int main() {
 
     t.MatchStatistic(ms, text);
 
+    // for (size_t i = 0; i < ms.size(); i++) {
+    //     std::cout << ms[i] << " ";
+    // }
+    // std::cout << std::endl;
+
     for (size_t i = 0; i < ms.size(); i++) {
         if (ms[i] == pattern_len) {
             std::cout << i + 1 << std::endl;

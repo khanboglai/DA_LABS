@@ -10,7 +10,7 @@ ALPHABET = 'abcdefghijklmnopqrstvuwxyz' # string.ascii_lowercase
 
 def get_random_text(text_len=None):
     if text_len is None:
-        text_len = random.randint(10, 100)
+        text_len = random.randint(10, 50)
     return "".join( [ random.choice( ALPHABET ) for _ in range( text_len ) ] )
 
 def get_all_occurrences( text, pattern ):
@@ -37,7 +37,7 @@ if __name__ == "__main__":
              open( "{0}.a".format( test_file_name ), "w" ) as answer_file:
             text = get_random_text()
             pattern_count = 1
-            output_file.write( "{}\n".format( text ) )
+            
             for cnt in range( pattern_count ):
                 # Определяем, использовать ли настоящую подстроку или 
                 # воображаемую.
@@ -50,11 +50,12 @@ if __name__ == "__main__":
                 else:
                     # Берём рандомную подстроку. Она может совпасть с 
                     # существующей.
-                    pattern = get_random_text( random.randint( 100, 1000 ) )
+                    pattern = get_random_text( random.randint( 1, 5))
                 # Определяем позиции, на которых встретился наш шаблон в тексте.
                 #pos = [ str(m.start()+1) for m in re.finditer(pattern, text) ]
-                pos = get_all_occurrences( pattern, text )
+                pos = get_all_occurrences( text, pattern )
                 output_file.write( "{}\n".format( pattern ) )
+                output_file.write( "{}\n".format( text ) )
                 # Если не нашли ни одного вхождения, то и записывать в файл с ответом не будем.
                 if len(pos):
                     answer_file.write( "{}\n".format("\n".join(pos) ) )

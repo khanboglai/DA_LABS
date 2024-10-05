@@ -149,8 +149,6 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &text) 
                 TNode *next_node = current_node->child[text[j]];
                 size_t curve_len = CurveLength(next_node);
 
-                j += skip_equal; // после поиска надо пропустить символы, если это возможно
-
                 // проверяем, сколько символов совпадает
                 while (skip_equal < curve_len && j < text.length() && text[j] == str[next_node->begin + skip_equal]) {
                     ms[i]++; // увеличиваем счетчик совпадений
@@ -160,18 +158,9 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &text) 
 
                 // если мы вышли из цикла из-за несовпадения
                 if (skip_equal < curve_len) {
-                    if (current_node) {
-                        current_node = current_node->suffix_link; // переход по суффиксной ссылке
-                    }
-
-                    skip_equal = ms[i] - 1; // устанавливаем skip_equal на следующий символ для сравнения
-                    i++; // переход на следующий элемент текста
-
-                    if (i < text.length()) { // при переходе по суффиксной ссылке у нас уже есть совпавшие символы
-                        ms[i] = skip_equal; // запишем сразу число совпавших символов
-                    }
-
-                    j = i; // надо начать поиск по следующего символа текста
+                    current_node = current_node->suffix_link; // переход по суффиксной ссылке
+                    
+                    break;
                 } else {
                     current_node = next_node; // переходим к следующему узлу
                     skip_equal = 0; // при переходе надо обновить прыжок
