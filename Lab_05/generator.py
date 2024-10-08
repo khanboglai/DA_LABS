@@ -35,7 +35,7 @@ if __name__ == "__main__":
         test_file_name = "tests/{:02d}".format( enum + 1 )
         with open( "{0}.t".format( test_file_name ), 'w' ) as output_file, \
              open( "{0}.a".format( test_file_name ), "w" ) as answer_file:
-            text = get_random_text(1000)
+            text = get_random_text(10000)
             pattern_count = 1
             
             for cnt in range( pattern_count ):
@@ -50,7 +50,7 @@ if __name__ == "__main__":
                 else:
                     # Берём рандомную подстроку. Она может совпасть с 
                     # существующей.
-                    pattern = get_random_text(2)
+                    pattern = get_random_text(1000)
                 # Определяем позиции, на которых встретился наш шаблон в тексте.
                 #pos = [ str(m.start()+1) for m in re.finditer(pattern, text) ]
                 pos = get_all_occurrences( text, pattern )

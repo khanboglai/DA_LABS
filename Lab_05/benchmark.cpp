@@ -3,74 +3,97 @@
 #include <limits>
 #include <iomanip>
 #include <fstream>
+#include <map>
 
+const char TERMINAL = '$';
 
-class SuffixTreeNode {
+using vec_t = std::vector<size_t>;
+
+class SuffixNode {
 public:
-    std::unordered_map<char, SuffixTreeNode*> children;
-    int start, *end;
-    int suffixIndex;
-
-    SuffixTreeNode(int start, int* end) : start(start), end(end), suffixIndex(-1) {}
+    int number = -1;
+    std::map<char, SuffixNode> m_data;
 };
 
 class SuffixTree {
-private:
-    SuffixTreeNode* root;
-    std::string text;
-
-    void buildSuffixTree() {
-        int n = text.length();
-        int* end = new int;
-        *end = -1;
-
-        for (int i = 0; i < n; i++) {
-            addSuffix(i, end);
-        }
-    }
-
-    void addSuffix(int startIndex, int* end) {
-        SuffixTreeNode* currentNode = root;
-        for (int i = startIndex; i < text.length(); i++) {
-            char currentChar = text[i];
-            if (currentNode->children.find(currentChar) == currentNode->children.end()) {
-                SuffixTreeNode* newNode = new SuffixTreeNode(i, end);
-                currentNode->children[currentChar] = newNode;
-                currentNode = newNode;
-            } else {
-                currentNode = currentNode->children[currentChar];
-            }
-        }
-    }
-
-    void searchUtil(SuffixTreeNode* node, const std::string& pattern, int depth, std::vector<int>& result) {
-        if (depth == pattern.length()) {
-            if (node->suffixIndex != -1) {
-                result.push_back(node->suffixIndex);
-            }
-            return;
-        }
-
-        char currentChar = pattern[depth];
-        if (node->children.find(currentChar) != node->children.end()) {
-            searchUtil(node->children[currentChar], pattern, depth + 1, result);
-        }
-    }
-
 public:
-    SuffixTree(const std::string& text) : text(text) {
-        root = new SuffixTreeNode(-1, new int(-1));
-        buildSuffixTree();
-    }
-
-    std::vector<int> search(const std::string& pattern) {
-        std::vector<int> result;
-        searchUtil(root, pattern, 0, result);
-        return result;
-    }
+    SuffixTree( const std::string & pattern ) { Build( pattern + TERMINAL ); }
+    ~SuffixTree() {}
+    bool Search( const std::string & text, vec_t &pos ); 
+private:
+    void Build( const std::string & );
+    void AddSuffix( const std::string &, size_t );
+    void CollectPositions( const SuffixNode *node, vec_t &pos );
+private:
+    SuffixNode root;
 };
 
+void SuffixTree::Build( const std::string & pattern ) {
+    for( size_t i = 0; i < pattern.size(); ++i ) {
+        std::string suffix = pattern.substr( i, pattern.size() - i );
+        AddSuffix( suffix, i+1 );
+    }
+}
 
+
+void SuffixTree::AddSuffix( const std::string & suffix, size_t number) {
+    SuffixNode *node = &root;
+    for( size_t i = 0; i < suffix.size(); ++i ) {
+        const char *sign = &suffix[i];
+        auto it = node->m_data.find( *sign );
+        // Если дуги с такой меткой нет, тогда создадим её. 
+        if( it == node->m_data.end() ) {
+            SuffixNode new_node = SuffixNode();
+            // Лист? Тогда присвоим ему номер суффикса.
+            if( i == suffix.size() - 1 ) {
+                new_node.number = number;
+            }
+            node->m_data[*sign] = new_node;
+        }
+        node = &(node->m_data[*sign]);
+    }
+}
+
+
+void SuffixTree::CollectPositions( const SuffixNode *node, vec_t &pos ) {
+    for( auto const &elem : node->m_data ) {
+        if( elem.first == TERMINAL ) {
+            pos.push_back( elem.second.number );
+        }
+        
+        CollectPositions( &(elem.second), pos );
+    }
+}
+
+
+bool SuffixTree::Search( const std::string & text, vec_t &pos ) {
+    SuffixNode *node = &root;
+    for( size_t i = 0; i < text.size(); ++i ) {
+        const char *sign = &text[i];
+        auto it = node->m_data.find( *sign );
+        // Если нет ребра с такой меткой, то текст мы не нашли.
+        if( it == node->m_data.end() ) {
+            return false;
+        }
+        node = &(node->m_data[*sign]);
+
+        // Это последний символ? Тогда найдём все позиции в оставшемся
+        // поддереве.
+        if( i == text.size() - 1 ) {
+            CollectPositions( node, pos );
+            std::sort( pos.begin(), pos.end() );
+        }
+    }
+    return true;
+}
+
+
+// int main() {
+//     std::string text, pattern;
+//     std::cin >> pattern;
+    
+//     return 0;
+// }
 
 int main() {
     std::ofstream nullStream("/dev/null");
@@ -100,17 +123,22 @@ int main() {
 
 
     start = clock();
-    SuffixTree suffixTree(text);
-    std::vector<int> occurrences = suffixTree.search(pat);
-
-    if (!occurrences.empty()) {
-        for (int index : occurrences) {
-            std::cout << index << std::endl;
+    SuffixTree root(text);
+    
+    vec_t pos;
+    // Образец не встретился в суффиксе.
+    bool st = root.Search( pat, pos );
+    
+    if (st) {
+        for (size_t elem : pos) {
+            std::cout << elem << std::endl;
         }
+    }
+
     end = clock();
 
     long double searh = end - start;
-    std::cout << "std::search: " << std::fixed << std::setprecision(3) << searh / 1000.0 << " ms"<< std::endl;
+    std::cout << "Naive Suffix Tree: " << std::fixed << std::setprecision(3) << searh / 1000.0 << " ms"<< std::endl;
     
     std::cout << std::endl;
 
