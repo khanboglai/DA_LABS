@@ -22,6 +22,7 @@ class TSuffixTree {
                 // вибрал unordered_map потому что в среднем вставка, поиск, удаления за O(1)
 
                 TNode(int start, int *finish, TNode* s_link, bool leaf); // конструктор узла
+                ~TNode() = default;
         };
 
         // структура для параметров дерева
