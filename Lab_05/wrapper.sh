@@ -28,7 +28,7 @@ function main()
   local bin=lab5
   log_info "\e[32mStage #1. Compiling...\e[0m"
   if ! make ; then
-    log_error "\e[31mFailed to compile lab2.cpp\e[0m"
+    log_error "\e[31mFailed to compile lab5.cpp\e[0m"
     return 1
   fi
   log_info "\e[34mCompiling OK\e[0m"
@@ -36,7 +36,7 @@ function main()
   log_info "\e[32mStage #2. Test generating...\e[0m"
   rm -rf ${TESTS_DIR}
   mkdir ${TESTS_DIR}
-  local count_of_tests=10
+  local count_of_tests=1
   if ! ./generator.py ${count_of_tests} ; then
     log_error "\e[31mFailed to generate tests\e[0m"
     return 1
@@ -59,19 +59,19 @@ function main()
     log_info "\e[34m${test_file}\e[0m, lines=${file_line_cnt} \e[32mOK\e[0m"
   done
 
-#   log_info "\e[32mStage #4 Benchmarking...\e[0m"
-#   if ! make benchmark ; then
-#    log_info "\e[31mFailed to compile benchmark.\e[0m"
-#    return 1
-#   fi
-#   local benchmark_bin=./benchmark
-#   for test_file in $( ls ${TESTS_DIR}/*.t ) ; do
-#    log_info "\e[32mRunning ${test_file}\e[0m"
-#    if ! ${benchmark_bin} < ${test_file} ; then
-#      log_error "\e[31mFailed to run ${benchmark_bin} for ${test_file}.\e[0m"
-#      return 1
-#    fi
-#   done
+  log_info "\e[32mStage #4 Benchmarking...\e[0m"
+  if ! make benchmark ; then
+   log_info "\e[31mFailed to compile benchmark.\e[0m"
+   return 1
+  fi
+  local benchmark_bin=./benchmark
+  for test_file in $( ls ${TESTS_DIR}/*.t ) ; do
+   log_info "\e[32mRunning ${test_file}\e[0m"
+   if ! ${benchmark_bin} < ${test_file} ; then
+     log_error "\e[31mFailed to run ${benchmark_bin} for ${test_file}.\e[0m"
+     return 1
+   fi
+  done
 }
 
 # $1 -- первый аргумент

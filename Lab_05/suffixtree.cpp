@@ -46,6 +46,7 @@ void TSuffixTree::CreateTree() {
     params.jump_counter = TERMVAL;
     params.plannedSuffixs = TERMVAL;
     params.current_node = root;
+    params.last_inner_node = nullptr;
 
     for (int i = 0; i < int(str.length()); i++) {
         AddSuffix(i);
@@ -58,7 +59,7 @@ int TSuffixTree::CurveLength(TNode *node) {
 }
 
 
-void TSuffixTree::SplitNode(TNode *node, int position, TNode *last_inner_node) {
+void TSuffixTree::SplitCurve(TNode *node, int position) {
     // создаем внутреннюю вершину
     TNode *inner_node = new TNode(node->begin, new int(node->begin + params.jump_counter - 1), root, !ISLEAF);
     params.current_node->child[str[params.current_index]] = inner_node; // прикрепляем ее к дереву
@@ -69,21 +70,22 @@ void TSuffixTree::SplitNode(TNode *node, int position, TNode *last_inner_node) {
     inner_node->child[str[position]] = new TNode(position, &suffixTreeEnd, nullptr, ISLEAF);
     inner_node->child[str[node->begin]] = node; // прикрепляем наш узел к внутреннему узлу
 
-    if (last_inner_node) { // есть неприкаяная внутренння вершина
-        last_inner_node->suffix_link = inner_node; // прокидываем ссылку
+    if (params.last_inner_node) { // есть неприкаяная внутренння вершина
+        // std::cout << "here" << std::endl;
+        params.last_inner_node->suffix_link = inner_node; // прокидываем ссылку
     }
-    last_inner_node = inner_node; // теперь новая внутрення вершина последняя
+    params.last_inner_node = inner_node; // теперь новая внутрення вершина последняя
 }
 
 
 void TSuffixTree::AddSuffix(int position) {
-    TNode *last_inner_node = nullptr; // последняя внутрення вершина, котору мы создали и которую мы не привязяли
+    params.last_inner_node = nullptr;
     params.plannedSuffixs++;
     suffixTreeEnd++;
 
     while (params.plannedSuffixs) {
         if (!(params.jump_counter)) { // прыгать некуда, надо пойти честно с заданной позиции
-            params.current_index = position;
+           params.current_index = position;
         }
 
         // ищем символ в дереве
@@ -112,7 +114,7 @@ void TSuffixTree::AddSuffix(int position) {
             }
 
             // дошли сюда, значит надо разделить ребро
-            SplitNode(next_node, position, last_inner_node);
+            SplitCurve(next_node, position);
         }
 
         if (params.current_node == root) { // в корне
@@ -123,7 +125,6 @@ void TSuffixTree::AddSuffix(int position) {
             params.plannedSuffixs--; // суффикс добавлен
         } else { // у нас есть еще ветки, надо посетить их
             params.current_node = params.current_node->suffix_link;
-            continue; // надо пойти к другим суффиксам и там тоже разделить
         }
     }
 }
@@ -131,15 +132,16 @@ void TSuffixTree::AddSuffix(int position) {
 
 void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &text) {
     // инициализируем вектор значениями 0
-    ms.assign(text.length(), 0);
+    size_t len_t = text.length();
+    ms.assign(len_t, 0);
 
     // проходим по всем символам текста
-    for (size_t i = 0; i < text.size(); ++i) {
+    for (size_t i = 0; i < len_t; ++i) {
         TNode *current_node = root; // начинаем с корня
         size_t j = i; // индекс в тексте
         size_t skip_equal = 0;
 
-        while (j < text.length()) {
+        while (j < len_t) {
 
             if (!current_node) {
                 current_node = root;
@@ -150,7 +152,7 @@ void TSuffixTree::MatchStatistic(std::vector<int> &ms, const std::string &text) 
                 size_t curve_len = CurveLength(next_node);
 
                 // проверяем, сколько символов совпадает
-                while (skip_equal < curve_len && j < text.length() && text[j] == str[next_node->begin + skip_equal]) {
+                while (skip_equal < curve_len && j < len_t && text[j] == str[next_node->begin + skip_equal]) {
                     ms[i]++; // увеличиваем счетчик совпадений
                     j++;
                     skip_equal++;

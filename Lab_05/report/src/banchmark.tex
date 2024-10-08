@@ -5,29 +5,27 @@
 
 Будем тестировать на последовтельности из: $10^3$, $10^4$, $10^5$, $10^6$.
 
-
+100, 50
+1000, 500
+10000, 5000
+100000, 50000
 \begin{alltt}
-alex@wega:~/Рабочий стол/вуз/2course/da_labs/Lab_04$ g++ -std=c++17 -pedantic -Wall -Wextra -Werror bechmark.cpp
-alex@wega:~/Рабочий стол/вуз/2course/da_labs/Lab_04$ ./a.out < tests/1
-Z\_naive: 0.026 ms
-Z\_effective: 0.050 ms
-alex@wega:~/Рабочий стол/вуз/2course/da_labs/Lab_04$ ./a.out < tests/2
-Z\_naive: 0.365 ms
-Z\_effective: 0.440 ms
-alex@wega:~/Рабочий стол/вуз/2course/da_labs/Lab_04$ ./a.out < tests/3
-Z naive: 21.339 ms
-Z effective: 18.047 ms
-alex@wega:~/Рабочий стол/вуз/2course/da_labs/Lab_04$ ./a.out < tests/4
-Z naive: 40.037 ms
-Z effective: 19.681 ms
+[info] [2024-10-08 21:10:57] Running tests/01.t
+Ukkonen+MS: 0.009 ms
+std::search: 0.002 ms
+[info] [2024-10-08 21:15:32] Running tests/01.t
+Ukkonen+MS: 0.136 ms
+std::search: 0.008 ms
+[info] [2024-10-08 21:16:04] Running tests/01.t
+Ukkonen+MS: 1.366 ms
+std::search: 0.103 ms
+[info] [2024-10-08 21:16:42] Running tests/01.t
+Ukkonen+MS: 11.739 ms
+std::search: 0.723 ms
+[info] [2024-10-08 21:17:46] Running tests/01.t
+Ukkonen+MS: 60.507 ms
+std::search: 8.749 ms
 \end{alltt}
-
-
-На первых тестах наивная Z-функция работает быстрее. Это связано с тем, что в ней нет дополнительных проверок, 
-как в эффективной Z-функции, где мы проверяем правую границу Z-блока.
-Видно, что стандартная Z-функция работает медлее с большими текстами, Так как она вычисляет значение 
-для каждого символа. Эффективная Z-функция использует значения уже рассчитанные, посещая каждую позицию не более 
-двух раз,что для больших текстов является более эффективным.
 
 
 \pagebreak

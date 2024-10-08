@@ -31,6 +31,7 @@ class TSuffixTree {
             int current_index; // текущий символ
             int jump_counter; // счетчик прыжков
             int plannedSuffixs; // количество суффиксов, которое нужно создать
+            TNode *last_inner_node; // последняя внутрення вершина, котору мы создали и которую мы не привязяли
         };
 
 
@@ -43,7 +44,7 @@ class TSuffixTree {
         void AddSuffix(int position); // добавлений суффикса
         void DestroyTree(TNode *node); // удаление дерева
         int CurveLength(TNode *node); // длина текста на ребре
-        void SplitNode(TNode *node, int position, TNode *last_inner_node); // разделение ребра (создание внутреннего узла)
+        void SplitCurve(TNode *node, int position); // разделение ребра (создание внутреннего узла)
 
     public:
         TSuffixTree(std::string &input_str); // конструктор дерева

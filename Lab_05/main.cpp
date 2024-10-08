@@ -23,5 +23,6 @@ int main() {
         if (ms[i] == pattern_len) {
             std::cout << i + 1 << std::endl;
         }
-    }    
+    } 
+    return 0;
 }
