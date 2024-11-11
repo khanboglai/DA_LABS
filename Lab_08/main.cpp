@@ -3,7 +3,7 @@
 #include <algorithm>
 
 
-int IsLinearIndependent(std::vector<std::vector<double>> &matr) {
+bool IsLinearIndependent(std::vector<std::vector<double>> &matr) {
     int rows = matr.size();
     int cols = matr[0].size() - 2;
     int rank = 0;
@@ -28,7 +28,7 @@ int IsLinearIndependent(std::vector<std::vector<double>> &matr) {
             if (row != rank) {
                 double factor = matr[row][col] / matr[rank][col];
 
-                for (int j = col; j < cols; j++) {
+                for (int j = col; j < rows; j++) {
                     matr[row][j] -= factor * matr[rank][j];
                 }
             }
@@ -49,6 +49,11 @@ int main() {
     int m, n;
     std::cin >> m >> n;
 
+    if (m < n) {
+        std::cout << -1 << std::endl;
+        return 0;
+    }
+    
     std::vector<std::vector<double>> matr(m, std::vector<double>(n + 2));
 
     for (int i = 0; i < m; i++) {
@@ -69,19 +74,23 @@ int main() {
         check.push_back(matr[i]);
 
         if (!IsLinearIndependent(check)) {
-            check.pop_back();
+            // check.pop_back();
+            std::cout << -1 << std::endl;
+            return 0;
         }
     }
 
     int LI = check.size();
+    // std::cout << LI << std::endl;
 
     if (LI < n) {
         std::cout << -1 << std::endl;
     } else {
-        for (int i = 0; i < m; i++) {
-            if (check[i].back() == i) {
-                std::cout << i + 1 << " ";
-            }
+        
+        std::sort(check.begin(), check.end(), Comparator);
+
+        for (auto &elem : check) {
+            std::cout << elem.back() + 1 << " ";
         }
         std::cout << std::endl;
     }
