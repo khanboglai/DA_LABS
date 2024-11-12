@@ -17,7 +17,8 @@ for enum in range(count_of_tests):
         
         
         n = random.randint(2, MAX_NUM)
-        m = random.randint(2, n)
+        m = random.randint(n, MAX_NUM)
+
         output_file.write(str(m) + ' ' + str(n) + '\n')
 
         data = ""

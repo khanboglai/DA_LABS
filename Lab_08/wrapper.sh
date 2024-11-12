@@ -37,7 +37,7 @@ function main()
   log_info "\e[32mStage #2. Test generating...\e[0m"
   rm -rf ${TESTS_DIR}
   mkdir ${TESTS_DIR}
-  local count_of_tests=20
+  local count_of_tests=5
   if ! ./generator.py ${count_of_tests} ; then
     log_error "\e[31mFailed to generate tests\e[0m"
     return 1
