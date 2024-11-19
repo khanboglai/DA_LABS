@@ -23,3 +23,5 @@ res*
 ans*
 *.t
 *.txt
+main
+bench
