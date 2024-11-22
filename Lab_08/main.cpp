@@ -1,36 +1,30 @@
 #include <bits/stdc++.h>
 
-
 // Функция для нахождения ранга матрицы
-bool IsLinearIndependent(std::vector<std::vector<double>> &matr) {
-    
-    // ранг находим путем приведения матрицы к ступенчатому виду
+int GetRank(std::vector<std::vector<double>> &matr) {
+    int rows = matr.size();
+    int cols = matr[0].size() - 2;
+    int rank = 0;
 
-    int rows = matr.size(); // кол-во строк матрицы
-    int cols = matr[0].size() - 2; // кол-во столбцов матрицы, без цены и входного индекса
-    int rank = 0; // ранг матрицы
-
-    for (int col = 0; col < cols; col++) { // проходим по всем столбцам
+    for (int col = 0; col < cols; col++) {
         int current_row = -1;
-        
-        for (int row = rank; row < rows; row++) { // будем искать первую не нулевую строку в столбце
+        for (int row = rank; row < rows; row++) {
             if (matr[row][col] != 0) {
                 current_row = row;
                 break;
             }
         }
 
-        if (current_row == -1) { // в столбце нет ненулевых элементов
+        if (current_row == -1) {
             continue;
         }
 
-        std::swap(matr[rank], matr[current_row]); // если нашли строку с ненулевым элементом в столбце, поднимаеем ее выше
+        std::swap(matr[rank], matr[current_row]);
 
-        for (int row = 0; row < rows; row++) { // проходим по всем строкам матрицы
+        for (int row = 0; row < rows; row++) {
             if (row != rank) {
-                double factor = matr[row][col] / matr[rank][col]; // вычисляем коэффициент
-
-                for (int j = col; j < cols; j++) { // обнуляем элементы в столбце
+                double factor = matr[row][col] / matr[rank][col];
+                for (int j = col; j < cols; j++) {
                     matr[row][j] -= factor * matr[rank][j];
                 }
             }
@@ -38,15 +32,12 @@ bool IsLinearIndependent(std::vector<std::vector<double>> &matr) {
         rank++;
     }
     
-    return rank == cols; // проверяем, совпадает ли ранг с количсеством столбцов 
+    return rank;
 }
 
-
-// компоратор, для сортировки матрицы
 bool ComporatorCost(const std::vector<double> &a, const std::vector<double> &b) {
     return a[a.size() - 2] < b[b.size() - 2];
 }
-
 
 int main() {
     int m, n;
@@ -54,35 +45,39 @@ int main() {
 
     std::vector<std::vector<double>> matrix(m, std::vector<double>(n + 2)); // + 2 для сохранения цены и входного индекса
 
-    for (int i = 0; i < m; i++) { // ввод матрицы
+    for (int i = 0; i < m; i++) {
         for (int j = 0; j < n + 1; j++) {
             std::cin >> matrix[i][j];
         }
-        matrix[i][n + 1] = i;
+        matrix[i][n + 1] = i; // сохраняем индекс добавки
     }
 
-    /*
-        Идея --- сортировать по цене, после искать линейнонезависимые строки путем подсчета ранга
+    std::sort(matrix.begin(), matrix.end(), ComporatorCost); // сортировка по цене
 
-        Ранг должен быть равен количеству столбцов (веществ)
-    */
+    std::vector<int> selected_indices;
+    std::vector<std::vector<double>> current_matrix;
 
-    std::sort(matrix.begin(), matrix.end(), ComporatorCost); // сортировка матрицы по возрастанию
-
-    if (IsLinearIndependent(matrix)) { // проверяем на линейную независимость, ранг = n?
+    for (const auto &additive : matrix) {
+        current_matrix.push_back(additive);
+        int rank = GetRank(current_matrix);
         
-        std::vector<int> res;
-        for (int i = 0; i < n; i++) {
-            res.push_back(matrix[i].back() + 1); // сохраняем входные индексы
+        if (rank == int(selected_indices.size()) + 1) { // если ранг увеличился
+            selected_indices.push_back(additive.back() + 1); // сохраняем индекс добавки
         }
- 
-        std::sort(res.begin(), res.end()); // сортируем, чтобы они шли в порядке, в котором их ввели
-        for (const int &elem : res) { // выводим
-            std::cout << elem << " ";
+        
+        if (int(selected_indices.size()) == n) { // если нашли n линейно независимых добавок
+            break;
+        }
+    }
+
+    if (int(selected_indices.size()) == n) {
+        std::sort(selected_indices.begin(), selected_indices.end()); // сортируем индексы
+        for (const int &index : selected_indices) {
+            std::cout << index << " ";
         }
         std::cout << std::endl;
     } else {
-        std::cout << -1 << std::endl; // не удалось найти такую ЛНЗ систему
+        std::cout << -1 << std::endl; // не удалось найти линейно независимые добавки
     }
 
     return 0;

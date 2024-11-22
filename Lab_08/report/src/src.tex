@@ -58,15 +58,13 @@
 \begin{lstlisting}[language=C]
 #include <bits/stdc++.h>
 
-
-bool IsLinearIndependent(std::vector<std::vector<double>> &matr) {
+int GetRank(std::vector<std::vector<double>> &matr) {
     int rows = matr.size();
     int cols = matr[0].size() - 2;
     int rank = 0;
 
     for (int col = 0; col < cols; col++) {
         int current_row = -1;
-        
         for (int row = rank; row < rows; row++) {
             if (matr[row][col] != 0) {
                 current_row = row;
@@ -83,7 +81,6 @@ bool IsLinearIndependent(std::vector<std::vector<double>> &matr) {
         for (int row = 0; row < rows; row++) {
             if (row != rank) {
                 double factor = matr[row][col] / matr[rank][col];
-
                 for (int j = col; j < cols; j++) {
                     matr[row][j] -= factor * matr[rank][j];
                 }
@@ -91,14 +88,13 @@ bool IsLinearIndependent(std::vector<std::vector<double>> &matr) {
         }
         rank++;
     }
-    return rank == cols;
+    
+    return rank;
 }
-
 
 bool ComporatorCost(const std::vector<double> &a, const std::vector<double> &b) {
     return a[a.size() - 2] < b[b.size() - 2];
 }
-
 
 int main() {
     int m, n;
@@ -115,22 +111,34 @@ int main() {
 
     std::sort(matrix.begin(), matrix.end(), ComporatorCost);
 
-    if (IsLinearIndependent(matrix)) {
-        std::vector<int> res;
-        for (int i = 0; i < n; i++) {
-            res.push_back(matrix[i].back() + 1);
+    std::vector<int> selected_indices;
+    std::vector<std::vector<double>> current_matrix;
+
+    for (const auto &additive : matrix) {
+        current_matrix.push_back(additive);
+        int rank = GetRank(current_matrix);
+        
+        if (rank == int(selected_indices.size()) + 1) {
+            selected_indices.push_back(additive.back() + 1);
         }
-    
-        std::sort(res.begin(), res.end());
-        for (const int &elem : res) {
-            std::cout << elem << " ";
+        
+        if (int(selected_indices.size()) == n) {
+            break;
+        }
+    }
+
+    if (int(selected_indices.size()) == n) {
+        std::sort(selected_indices.begin(), selected_indices.end());
+        for (const int &index : selected_indices) {
+            std::cout << index << " ";
         }
         std::cout << std::endl;
     } else {
         std::cout << -1 << std::endl;
     }
+
     return 0;
-}   
+}
 \end{lstlisting}
 
 
