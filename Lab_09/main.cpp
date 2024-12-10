@@ -6,15 +6,13 @@ using graph = std::vector<std::vector<std::pair<int, int64_t>>>; // неорие
 using g_item = std::pair<int64_t, int>; // такое положение элементов в паре нужно для правильного расположения в очереди
 
 
-int dijkstra(const graph &g, int u, int f, std::vector<int64_t> &d) {
-    int n = g.size();
+void dijkstra(const graph &g, int u, int f, std::vector<int64_t> &d) {
     d[u] = 0; // расстояние до начальной вершины 0
     // можно реализовать алгоритм на множестве
     // тут определили порядок элементов в очереди так, чтобы в начале были элемнты с наименим весом
     std::priority_queue<g_item, std::vector<g_item>, std::greater<g_item>> pq;
 
     pq.push(std::make_pair(0, u)); // кладем старторую вершину
-    std::vector<bool> visited(n, false);
 
     while (!pq.empty()) {
         g_item current = pq.top();
@@ -26,11 +24,9 @@ int dijkstra(const graph &g, int u, int f, std::vector<int64_t> &d) {
             break;
         }
 
-        if (visited[u]) { // если мы посетили вершину, нет смысла заходить в нее, из нее уже все релаксировано
+        if (current.first > d[u]) { // в очереди могут быть старые данные
             continue;
         }
-
-        visited[u] = true;
 
         for (size_t i = 0; i < g[u].size(); i++) {
             int v = g[u][i].first; // достаем вершину, в которое есть ребро из u
@@ -45,9 +41,9 @@ int dijkstra(const graph &g, int u, int f, std::vector<int64_t> &d) {
     }
 
     if (d[f] != INF) { // если путь равен бесконечности, то он не достижим из начальной вершины
-        return d[f];
+        std::cout << d[f] << std::endl;
     } else {
-        return -1; // вес не может получится меньше 0, алгоритм не работает с отрицательными весами
+        std::cout << "No solution\n";
     }
 }
 
@@ -61,8 +57,8 @@ int main() {
         int u, v;
         int64_t w;
         std::cin >> u >> v >> w;
-        --u; // 0-индекс нотация
-        --v;
+        u--; // 0-индекс нотация
+        v--;
 
         // граф неориентированный, нужно рассмотреть путь не только из u->v, но и из v->u
         g[u].push_back(std::make_pair(v, w));
@@ -71,21 +67,10 @@ int main() {
 
     std::vector<int64_t> d(n, INF); // вектор наименьших расстояний до вершины, изначально бесконечность до каждой
 
-    int res = dijkstra(g, start - 1, finish - 1, d);
+    start--;
+    finish--;
 
-    if (res != -1) {
-        std::cout << res << std::endl;
-    } else {
-        std::cout << "No solution\n";
-    }
-
-    // for (int i = 0; i < n; i++) {
-    //     std::cout << "Вершина " << (i + 1) << ": "; // +1 для 1-индексации
-    //     for (const auto& edge : g[i]) {
-    //         std::cout << " -> (Вершина " << (edge.first + 1) << ", Вес " << edge.second << ")";
-    //     }
-    //     std::cout << std::endl;
-    // }
+    dijkstra(g, start, finish, d);
 
     return 0;
 }
