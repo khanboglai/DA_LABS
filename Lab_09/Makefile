@@ -6,6 +6,9 @@ all: main ans
 main: main.cpp
 	$(CXX) $(CXXFLAGS) main.cpp -o main
 
+bf: bf.cpp
+	$(CXX) $(CXXFLAGS) bf.cpp -o bf
+
 ans: ans.cpp
 	$(CXX) $(CXXFLAGS) ans.cpp -o ans
 

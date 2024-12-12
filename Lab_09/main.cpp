@@ -40,11 +40,11 @@ void dijkstra(const graph &g, int u, int f, std::vector<int64_t> &d) {
         }
     }
 
-    if (d[f] != INF) { // если путь равен бесконечности, то он не достижим из начальной вершины
-        std::cout << d[f] << std::endl;
-    } else {
-        std::cout << "No solution\n";
-    }
+    // if (d[f] != INF) { // если путь равен бесконечности, то он не достижим из начальной вершины
+    //     std::cout << d[f] << std::endl;
+    // } else {
+    //     std::cout << "No solution\n";
+    // }
 }
 
 
@@ -52,6 +52,8 @@ int main() {
     int n, m, start, finish;
     std::cin >> n >> m >> start >> finish;
     graph g(n);
+
+    double st, end;
 
     for (int i = 0; i < m; i++) {
         int u, v;
@@ -70,7 +72,12 @@ int main() {
     start--;
     finish--;
 
+    st = clock();
     dijkstra(g, start, finish, d);
+    end = clock();
+
+    double res = end - st;
+    std::cout << "Dijkstra: " << std::fixed << std::setprecision(3) << res / 1000.0 << " ms"<< std::endl;
 
     return 0;
 }
